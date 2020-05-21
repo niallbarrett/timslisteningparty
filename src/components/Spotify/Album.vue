@@ -1,16 +1,19 @@
 <template>
-  <div class="album br-2xs overflow-hidden">
+  <div class="bg-accent br-2xs overflow-hidden">
     <div class="p-xs">
-      <img :src="art" class="w-100" @click="play(item.uri)"/>
+      <img :src="art" class="w-100 cursor-pointer" @click="playAlbum(item.uri)"/>
     </div>
     <div>
-      <Track v-for="track in tracks" :key="track.id" :item="track"/>
+      <Track v-for="track in tracks" :key="track.id" :item="track" @play="playTrack"/>
     </div>
   </div>
 </template>
 
 <script>
 import Track from './Track'
+
+import SpotifyWebApi from 'spotify-web-api-js'
+let spotify = new SpotifyWebApi()
 
 export default {
   components: {
@@ -31,15 +34,20 @@ export default {
     }
   },
   methods: {
-    play(uri) {
-      console.log(uri)
+    playAlbum(uri) {
+      spotify.play({context_uri: uri}).then(function (data) {
+        console.log(data)
+      }, function (err) {
+        console.log(err)
+      })
+    },
+    playTrack(uri) {
+      spotify.play({uris: [uri]}).then(function (data) {
+        console.log(data)
+      }, function (err) {
+        console.log(err)
+      })
     }
   }
 }
 </script>
-
-<style lang='scss' scoped>
-  .album {
-    background: rgb(245, 248, 250);
-  }
-</style>

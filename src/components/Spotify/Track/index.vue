@@ -1,16 +1,22 @@
 <template>
-  <div class="track p-t-2xs p-r-xs p-b-2xs p-l-xs d-flex align-items-center">
-    <div>
+  <div class="track p-t-2xs p-r-xs p-b-2xs p-l-xs d-flex align-items-center fs-xs cursor-pointer hover" @click="$emit('play', item.uri)">
+    <div class="bold">
       {{ item.name }}
     </div>
-    <div class="m-l-auto fs-xs c-secondary">
+    <Explicit v-if="item.explicit"/>
+    <div class="m-l-auto c-secondary">
       {{ formatDuration(item.duration_ms) }}
     </div>
   </div>
 </template>
 
 <script>
+import Explicit from './Explicit'
+
 export default {
+  components: {
+    Explicit
+  },
   props: {
     item: {
       type: Object,
@@ -39,10 +45,7 @@ export default {
     &:before {
       content: counter(tracks);
       padding-right: var(--space-3xs);
-    }
-
-    &:hover {
-      background: red;
+      font-weight: 700;
     }
   }
 </style>

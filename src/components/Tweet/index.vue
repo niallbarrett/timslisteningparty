@@ -1,5 +1,5 @@
 <template>
-  <div class="tweet d-flex b-t p-t-xs p-r-sm p-b-sm p-l-sm" :class="{'flex-wrap':item.retweeted_status}">
+  <div class="tweet d-flex b-t p-t-xs p-r-sm p-b-sm p-l-sm hover" :class="{'flex-wrap':item.retweeted_status}">
     <p v-if="item.retweeted_status" class="rt w-100 m-b-2xs m-l-md c-secondary fa-b fa-rt">Retweeted by {{ item.user.name }}</p>
     <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="h-lg w-lg m-r-xs"/>
     <div class="body flex-1">
@@ -112,10 +112,6 @@ export default {
     opacity: 0;
     animation: flash 1s ease;
     animation-fill-mode: forwards;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.03);
-    }
 
     .rt {
       font-size: calc(var(--space-xs) * 1.2);
