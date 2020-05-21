@@ -1,0 +1,42 @@
+@import './_variables.scss';
+@import './_helpers.scss';
+
+@font-face {
+  font-family: $icon-font;
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('./fonts/fa-solid-900.eot');
+  src: url('./fonts/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+       url('./fonts/fa-solid-900.woff2') format('woff2'),
+       url('./fonts/fa-solid-900.woff') format("woff"),
+       url('./fonts/fa-solid-900.ttf') format("truetype"),
+       url('./fonts/fa-solid-900.svg#fontawesome') format("svg");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  box-sizing: border-box;
+}
+body {
+  font-family: $base-font;
+  font-size: $base-font-size;
+}
+i {
+  font-style: normal;
+}
+.handle:before {
+  content: '@';
+}
+.time:before {
+  content: '· ';
+}
+.fa-b:before {
+  font-family: $icon-font;
+  @extend .p-r-3xs;
+}
+.fa-rt:before {
+  content: '\f079';
+}

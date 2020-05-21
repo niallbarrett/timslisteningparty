@@ -1,0 +1,162 @@
+.pos-sticky-t {
+  position: sticky;
+  top: 0;
+}
+.pos-absolute {
+  position: absolute;
+}
+.pos-absolute-b {
+  @extend .pos-absolute;
+  bottom: 0;
+}
+.pos-relative {
+  position: relative;
+}
+.d-block {
+  display: block;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.d-flex {
+  display: flex;
+}
+.d-inline {
+  display: inline;
+}
+.d-grid {
+  display: grid;
+}
+.flex-1 {
+  flex: 1;
+}
+.direction-column-reverse {
+  flex-direction: column-reverse;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.align-items-start {
+  align-items: flex-start;
+}
+.align-items-center {
+  align-items: center;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.c-primary {
+  color: var(--primary-color);
+}
+.c-secondary {
+  color: var(--secondary-color);
+}
+.bold {
+  font-weight: 700;
+}
+.extra-bold {
+  font-weight: 800;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.object-fit-cover {
+  object-fit: cover;
+}
+.object-fit-contain {
+  object-fit: contain;
+}
+.vertical-align-middle {
+  vertical-align: middle;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+@each $space, $value in $space-sizes {
+  .h-#{$space} {
+    height: $value;
+  }
+  .max-h-#{$space} {
+    max-height: $value;
+  }
+  .w-#{$space} {
+    width: $value;
+  }
+  .br-#{$space} {
+    border-radius: $value;
+  }
+  .fs-#{$space} {
+    font-size: $value;
+  }
+  @each $side in $sides {
+    $s: str-slice($side, 0, 1);
+
+    @if $s == 'a' {
+      .p-#{$space} {
+        padding: $value;
+      }
+      .m-#{$space} {
+        margin: $value;
+      }
+    }
+    @else {
+      .p-#{$s}-#{$space}{
+        padding-#{$side}: $value;
+      }
+      .m-#{$s}-#{$space} {
+        margin-#{$side}: $value;
+      }
+    }
+  }
+}
+@each $side in $sides {
+  $s: str-slice($side, 0, 1);
+
+  @if $s == 'a' {
+    .b-#{$s} {
+      border-width: 1px;
+      border-color: var(--border-color);
+      border-style: solid;
+    }
+  }
+  @else {
+    .b-#{$s} {
+      border-#{$side}-width: 1px;
+      border-#{$side}-color: var(--border-color);
+      border-#{$side}-style: solid;
+    }
+  }
+}
+.m-r-auto {
+  margin-right: auto;
+}
+.m-l-auto {
+  margin-left: auto;
+}
+.min-h-100vh {
+  min-height: 100vh;
+}
+.max-h-100 {
+  max-height: 100%;
+}
+.w-100 {
+  width: 100%;
+}
+.max-w-100 {
+  max-width: 100%;
+}
