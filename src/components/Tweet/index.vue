@@ -5,7 +5,7 @@
     <div class="body flex-1">
       <div class="head d-flex align-items-center">
         <Avatar v-if="quote" :image="tweet.user.profile_image_url" class="h-sm w-sm m-r-3xs"/>
-        <p class="bold">{{ tweet.user.name }}</p>
+        <p class="fw-700">{{ tweet.user.name }}</p>
         <Verified v-if="true" class="h-sm"/>
         <p class="c-secondary handle p-r-3xs p-l-3xs">{{ tweet.user.screen_name }}</p>
         <p class="c-secondary time">{{ time }}</p>

@@ -1,10 +1,10 @@
 <template>
-  <div class="track p-t-2xs p-r-xs p-b-2xs p-l-xs d-flex align-items-center fs-xs cursor-pointer hover" @click="$emit('play', item.uri)">
-    <div class="bold">
+  <div class="track p-xs d-flex align-items-center cursor-pointer hover" @click="$emit('play', item.uri)">
+    <div>
       {{ item.name }}
     </div>
     <Explicit v-if="item.explicit"/>
-    <div class="m-l-auto c-secondary">
+    <div class="m-l-auto fs-xs c-secondary">
       {{ formatDuration(item.duration_ms) }}
     </div>
   </div>
@@ -45,7 +45,7 @@ export default {
     &:before {
       content: counter(tracks);
       padding-right: var(--space-3xs);
-      font-weight: 700;
+      font-weight: inherit;
     }
   }
 </style>

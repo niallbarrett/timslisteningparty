@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <div class="fs-sm">Connect to Spotify.</div>
-    <button @click="redirectToSpotify">Connect</button>
-  </div>
+  <Panel title="Connect to Spotify" class="bg-accent">
+    <div class="d-flex direction-column p-xs">
+      <Button text="Connect" @click="redirectToSpotify"/>
+      <div class="m-t-xs fs-xs c-secondary">*Please note that a Premium account is required to remote play.</div>
+    </div>
+  </Panel>
 </template>
 
 <script>
+import Panel from '@/components/common/Panel'
+import Button from '@/components/common/Button'
+
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 
 export default {
+  components: {
+    Panel,
+    Button
+  },
   data() {
     return {
       endpoint: 'https://accounts.spotify.com/authorize',

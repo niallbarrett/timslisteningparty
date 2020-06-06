@@ -27,6 +27,12 @@ body {
 i {
   font-style: normal;
 }
+button, input {
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  @extend .fs-xs;
+}
 .handle:before {
   content: '@';
 }
@@ -35,14 +41,20 @@ i {
 }
 .fa-b:before {
   font-family: $icon-font;
-  @extend .p-r-3xs;
 }
 .fa-rt:before {
   content: '\f079';
+  @extend .p-r-3xs;
+}
+.fa-search:before {
+  content: '\f002';
 }
 .hover {
   transition: background-color var(--transition-duration) var(--transition-timing-function);
   &:hover {
     background-color: rgba(0, 0, 0, 0.03);
   }
+}
+.sidebar {
+  width: calc(var(--space-4xlg) * 0.9);
 }
