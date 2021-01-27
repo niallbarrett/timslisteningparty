@@ -5,7 +5,9 @@ const app = express()
 const port = 4000
 const Twit = require('twit')
 
-const FOLLOWING = []
+const TIM_ID = '19429176'
+const TEST_ID = '1004998938804543489'
+const FOLLOWING = [TEST_ID]
 
 const server = app.listen(`${port}`, function() {
   console.log(`Server started on port ${port}`)
@@ -20,16 +22,14 @@ const T = new Twit({
   access_token_secret: process.env.VUE_APP_TWITTER_ACCESS_TOKEN_SECRET
 })
 
-// let stream = T.stream('statuses/filter', { follow: ['1004998938804543489'] })
+function startStream() {
+  let stream = T.stream('statuses/filter', { follow: FOLLOWING })
 
-// stream.on('tweet', function(tweet) {
-//   console.log(tweet)
-// if (tweet.user.id == userID)
-// {
-// console.log(userID + "tweeted: " + tweet.text);
-// }
-//   io.emit('tweet', tweet)
-// })
+  stream.on('tweet', function(tweet) {
+    if (FOLLOWING.includes(tweet.user.id_str))
+      io.emit('tweet', tweet)
+  })
+}
 
 io.on('connection', function(socket) {
 
@@ -40,8 +40,10 @@ io.on('connection', function(socket) {
   })
 
   socket.on('follow', function(id) {
+    if (FOLLOWING.includes(id))
+      return
+
     FOLLOWING.push(id)
-    console.log(FOLLOWING)
   })
 
 })

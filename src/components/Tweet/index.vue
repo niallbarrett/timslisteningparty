@@ -1,23 +1,27 @@
 <template>
-  <div class="tweet d-flex b-t p-t-xs p-r-sm p-b-sm p-l-sm hover" :class="{'flex-wrap':item.retweeted_status}">
-    <p v-if="item.retweeted_status" class="rt w-100 m-b-2xs m-l-md c-secondary fa-b fa-rt">Retweeted by {{ item.user.name }}</p>
+  <div class="tweet d-flex b-t p-t-xs p-r-sm p-b-sm p-l-sm hover" :class="{'flex-wrap': item.retweeted_status}">
+    <p v-if="item.retweeted_status" class="rt w-100 m-b-2xs m-l-md c-secondary fa-b fa-rt">
+      Retweeted by {{ item.user.name }}
+    </p>
     <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="h-lg w-lg m-r-xs"/>
     <div class="body flex-1">
       <div class="head d-flex align-items-center">
         <Avatar v-if="quote" :image="tweet.user.profile_image_url" class="h-sm w-sm m-r-3xs"/>
-        <p class="fw-700">{{ tweet.user.name }}</p>
-        <Verified v-if="true" class="h-sm"/>
-        <p class="c-secondary handle p-r-3xs p-l-3xs">{{ tweet.user.screen_name }}</p>
-        <p class="c-secondary time">{{ time }}</p>
+        <p class="fw-700">
+          {{ tweet.user.name }}
+        </p>
+        <Verified v-if="item.verified" class="h-sm"/>
+        <p class="c-secondary handle p-r-3xs p-l-3xs">
+          {{ tweet.user.screen_name }}
+        </p>
+        <p class="c-secondary time">
+          {{ time }}
+        </p>
       </div>
-      <p class="text m-t-2xs" v-html="text"></p>
+      <p class="text m-t-2xs" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-xs br-xs b-a':!quote}">
-        <template v-if="entities.media[0].type === 'animated_gif'">
-          <MediaGif :item="entities.media[0]"/>
-        </template>
-        <template v-else-if="entities.media[0].type === 'video'">
-          <MediaVideo :item="entities.media[0]"/>
-        </template>
+        <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
+        <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
         <MediaImages v-else :items="entities.media"/>
       </div>
       <tweet
@@ -54,7 +58,6 @@ export default {
     },
     quote: {
       type: Boolean,
-      required: false,
       default: false
     }
   },

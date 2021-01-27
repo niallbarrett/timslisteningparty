@@ -48,9 +48,10 @@ export default {
 
       this.timeout = setTimeout(() => {
        this.$socket.emit('search', this.query)
-      }, 500);
+      }, 300);
     },
     follow(user) {
+      this.query = ''
       this.following.push(user)
       this.$socket.emit('follow', user.id_str)
     }

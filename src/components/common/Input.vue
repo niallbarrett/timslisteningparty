@@ -6,7 +6,7 @@
       type="text"
       :placeholder="placeholder"
       :value="value"
-      class="input h-xs w-100 p-t-sm p-r-xs p-b-sm bg-border b-a br-sm lh-sm"
+      class="input h-xs w-100 p-t-sm p-r-xs p-b-sm bg-accent b-a br-sm lh-sm"
       @focus="$emit('focus')"
       @blur="$emit('blur')"
       @input="$emit('input', $event.target.value)">

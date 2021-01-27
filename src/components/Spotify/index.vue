@@ -59,19 +59,17 @@ export default {
       if (this.prev !== null)
         this.prev.abort()
 
-      this.prev = spotify.searchAlbums(this.query, { limit: 10 })
+      this.prev = spotify.searchAlbums(this.query)
       this.prev.then((data) => {
         this.prev = null
         this.loading = false
-        console.log(data, this.results)
 
         return this.results = data.albums.items
       })
-      // spotify.searchAlbums(this.query).then((data) => {
-      //   return this.results = data.albums.items
-      // })
     },
     getAlbum(id) {
+      this.query = ''
+
       spotify.getAlbum(id).then((data) => {
         return this.album = data
       })

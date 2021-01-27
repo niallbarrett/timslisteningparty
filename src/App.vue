@@ -37,6 +37,7 @@ export default {
   sockets: {
     tweet: function(tweet) {
       this.tweets.push(tweet)
+      this.scrollToTop()
     }
   },
   methods: {
@@ -44,6 +45,13 @@ export default {
       // this.media = [this.json[2], this.json[7], this.json[11]]
       let tweet = this.json.shift()
       this.tweets.push(tweet)
+      this.scrollToTop()
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }

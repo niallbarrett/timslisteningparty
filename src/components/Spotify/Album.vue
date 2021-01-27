@@ -3,8 +3,8 @@
     <div class="d-flex p-xs">
       <img :src="art" class="h-xlg w-xlg m-r-2xs cursor-pointer" @click="playAlbum(item.uri)"/>
       <div class="m-t-2xs d-flex direction-column">
-        <div class="fs-sm fw-800">{{ name }}</div>
-        <div>{{ artist }}</div>
+        <div class="m-b-3xs fs-sm fw-800">{{ name }}</div>
+        <div class="c-secondary">{{ artist }}</div>
       </div>
     </div>
     <div>
@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import Panel from '@/components/common/Panel'
-import Track from './Track'
-
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
+
+import Panel from '@/components/common/Panel'
+import Track from './Track'
 
 export default {
   components: {
