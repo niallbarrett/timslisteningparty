@@ -1,9 +1,68 @@
+$spaces: 0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 256, 512;
+$typography: 32, 26, 22, 18, 16, 14, 12;
+$weights: 300, 400, 500, 600, 700, 800;
+$displays: block, inline-block, inlin, flex, grid;
+$positions: absolute, relative, sticky, fixed;
+$sides: 'all', 'top', 'right', 'bottom', 'left';
+
+// Spacing
+@each $space in $spaces {
+  $i: index($spaces, $space) - 1;
+  $v: #{$space}px;
+
+  .p-#{$i} {
+    padding: $v;
+  }
+  .p-x-#{$i} {
+    padding-right: $v;
+    padding-left: $v;
+  }
+  .p-y-#{$i} {
+    padding-top: $v;
+    padding-bottom: $v;
+  }
+  .m-#{$i} {
+    margin: $v;
+  }
+  .m-x-#{$i} {
+    margin-right: $v;
+    margin-left: $v;
+  }
+  .m-y-#{$i} {
+    margin-top: $v;
+    margin-bottom: $v;
+  }
+  .h-#{$i} {
+    height: $v;
+  }
+  .w-#{$i} {
+    width: $v;
+  }
+  @each $side in $sides {
+    $s: str-slice($side, 0, 1);
+    .p-#{$s}-#{$i}{
+      padding-#{$side}: $v;
+    }
+    .m-#{$s}-#{$i} {
+      margin-#{$side}: $v;
+    }
+  }
+}
+.m-r-auto {
+  margin-right: auto;
+}
+.m-l-auto {
+  margin-left: auto;
+}
+// Position
+@each $position in $positions {
+  .pos-#{$position} {
+    position: $position;
+  }
+}
 .pos-sticky-t {
   position: sticky;
   top: 0;
-}
-.pos-absolute {
-  position: absolute;
 }
 .pos-absolute-b {
   @extend .pos-absolute;
@@ -13,24 +72,13 @@
   @extend .pos-absolute;
   right: 0;
 }
-.pos-relative {
-  position: relative;
+// Display
+@each $display in $displays {
+  .d-#{$display} {
+    display: $display;
+  }
 }
-.d-block {
-  display: block;
-}
-.d-inline-block {
-  display: inline-block;
-}
-.d-flex {
-  display: flex;
-}
-.d-inline {
-  display: inline;
-}
-.d-grid {
-  display: grid;
-}
+// Flex
 .flex-1 {
   flex: 1;
 }
@@ -64,6 +112,20 @@
 .flex-wrap {
   flex-wrap: wrap;
 }
+// Typography
+@each $size in $typography {
+  $i: index($typography, $size) - 1;
+
+  .f-#{$i} {
+    font-size: #{$size}px;
+  }
+}
+@each $weight in $weights {
+  .fw-#{$weight} {
+    font-weight: $weight;
+  }
+}
+// Colors
 .bg-color {
   background-color: var(--bg-color);
 }
@@ -87,12 +149,6 @@
 }
 .c-accent {
   color: var(--accent-color);
-}
-.fw-700 {
-  font-weight: 700;
-}
-.fw-800 {
-  font-weight: 800;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -118,49 +174,6 @@
 .pointer-events-none {
   pointer-events: none;
 }
-@each $space, $value in $space-sizes {
-  .h-#{$space} {
-    height: $value;
-  }
-  .max-h-#{$space} {
-    max-height: $value;
-  }
-  .min-h-#{$space} {
-    min-height: $value;
-  }
-  .w-#{$space} {
-    width: $value;
-  }
-  .br-#{$space} {
-    border-radius: $value;
-  }
-  .fs-#{$space} {
-    font-size: $value;
-  }
-  .lh-#{$space} {
-    line-height: $value;
-  }
-  @each $side in $sides {
-    $s: str-slice($side, 0, 1);
-
-    @if $s == 'a' {
-      .p-#{$space} {
-        padding: $value;
-      }
-      .m-#{$space} {
-        margin: $value;
-      }
-    }
-    @else {
-      .p-#{$s}-#{$space}{
-        padding-#{$side}: $value;
-      }
-      .m-#{$s}-#{$space} {
-        margin-#{$side}: $value;
-      }
-    }
-  }
-}
 @each $side in $sides {
   $s: str-slice($side, 0, 1);
 
@@ -178,12 +191,6 @@
       border-#{$side}-style: solid;
     }
   }
-}
-.m-r-auto {
-  margin-right: auto;
-}
-.m-l-auto {
-  margin-left: auto;
 }
 .h-100 {
   height: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="m-b-sm pos-relative" v-click-outside="blur">
+  <div class="m-b-sm pos-relative">
     <Input v-model="localValue" :placeholder="placeholder" @focus="focus = true"/>
     <div v-if="showResults" class="results min-h-lg w-100 pos-absolute br-2xs overflow-x-hidden overflow-y-auto">
       <Spinner v-if="loading"/>
@@ -54,11 +54,6 @@ export default {
       set(val) {
         return this.$emit('input', val)
       }
-    }
-  },
-  methods: {
-    blur() {
-      return this.focus = false
     }
   }
 }

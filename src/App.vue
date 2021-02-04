@@ -9,10 +9,12 @@
     <div class="pos-sticky-t p-t-sm">
       <Following/>
     </div>
+    <Setup/>
   </div>
 </template>
 
 <script>
+import Setup from '@/components/Setup'
 import Spotify from '@/components/Spotify'
 import Following from '@/components/Following'
 import Timeline from '@/components/Timeline'
@@ -22,6 +24,7 @@ import Test from '@/json/tweets.json'
 
 export default {
   components: {
+    Setup,
     Spotify,
     Following,
     Timeline,
