@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex pos-absolute">
     <div class="step p-y-5 p-x-6 d-flex direction-column bg-color">
       <div class="m-b-3">
         <div class="f-2 fw-800">
@@ -32,6 +32,7 @@ export default {
 
 <style lang='scss' scoped>
   .step {
-    border-radius: 4px;
+    width: 500px; // TEMP
+    border-radius: 8px;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-start" @keyup.space="add" tabIndex="0">
     <div class="pos-sticky-t p-t-sm">
-      <Spotify/>
+      <Spotify v-if="false"/>
     </div>
     <Timeline class="m-r-sm m-l-sm">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
@@ -9,7 +9,7 @@
     <div class="pos-sticky-t p-t-sm">
       <Following/>
     </div>
-    <Setup/>
+    <Setup v-if="showSetup" :show.sync="showSetup"/>
   </div>
 </template>
 
@@ -34,7 +34,8 @@ export default {
     return {
       tweets: [],
       json: Test,
-      media: []
+      media: [],
+      showSetup: true
     }
   },
   sockets: {

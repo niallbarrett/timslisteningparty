@@ -2,6 +2,7 @@
   <button
     class="button h-6 p-x-3 d-flex align-items-center justify-content-center f-5 fw-700 cursor-pointer"
     :class="{'is-clear': clear}"
+    v-bind="$attrs"
     v-on="$listeners">
     {{ text }}
   </button>
@@ -38,6 +39,9 @@ export default {
     }
     &:hover {
       --opacity: 0.8;
+    }
+    &:disabled {
+      --opacity: 0.6;
     }
   }
 </style>

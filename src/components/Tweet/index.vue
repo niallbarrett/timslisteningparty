@@ -3,7 +3,7 @@
     <p v-if="item.retweeted_status" class="rt w-100 m-b-2xs m-l-md c-secondary fa-b fa-rt">
       Retweeted by {{ item.user.name }}
     </p>
-    <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="h-lg w-lg m-r-xs"/>
+    <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="h-7 w-7 m-r-xs"/>
     <div class="body flex-1">
       <div class="head d-flex align-items-center">
         <Avatar v-if="quote" :image="tweet.user.profile_image_url" class="h-sm w-sm m-r-3xs"/>
@@ -19,7 +19,7 @@
         </p>
       </div>
       <p class="text m-t-2xs" v-html="text"/>
-      <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-xs br-xs b-a':!quote}">
+      <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-xs br-xs b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
         <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
         <MediaImages v-else :items="entities.media"/>
@@ -81,7 +81,8 @@ export default {
     },
     entities() {
       if (this.tweet.extended_tweet)
-        return this.tweet.extended_tweet.extended_entities
+        return this.tweet.extended_tweet.entities
+
       if (this.tweet.extended_entities)
         return this.tweet.extended_entities
 

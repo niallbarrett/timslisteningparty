@@ -27,6 +27,16 @@ button, input {
     background-color: rgba(0, 0, 0, 0.03);
   }
 }
+.popover {
+  &[aria-hidden='true'] {
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  &[aria-hidden='false'] {
+    opacity: 1;
+    transition: opacity .15s;
+  }
+}
 .v-popover {
   display: block !important;
   .trigger {
@@ -34,3 +44,4 @@ button, input {
     flex: 1;
   }
 }
+
