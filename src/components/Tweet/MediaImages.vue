@@ -1,8 +1,8 @@
 <template>
-  <div class="d-grid h-4xlg" :class="'grid-' + items.length">
+  <div :class="`h-14 d-grid grid-${items.length}`">
     <div
-      v-for="(item, index) in items"
-      :key="index"
+      v-for="item in items"
+      :key="item.id_str"
       class="media-item"
       :style="{backgroundImage: `url(${item.media_url})`}"/>
   </div>
@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .media-item {
+    background-size: cover;
+    background-position: center;
+  }
   .d-grid {
     grid-template-columns: 1fr;
     &:not(.grid-1) {
@@ -29,9 +33,5 @@ export default {
     &.grid-3 .media-item:first-child {
       grid-row: 1/3;
     }
-  }
-  .media-item {
-    background-size: cover;
-    background-position: center;
   }
 </style>

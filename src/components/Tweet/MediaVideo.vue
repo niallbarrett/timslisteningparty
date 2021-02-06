@@ -1,9 +1,9 @@
 <template>
-  <div class="media-item pos-relative cursor-pointer" @click="toggle">
-    <video ref="video" class="vid max-h-100 max-w-100 d-block object-fit-contain pointer-events-none" controls @timeupdate="onTimeUpdate">
+  <div class="media-item pos-relative cursor-pointer">
+    <video ref="video" class="max-h-100 max-w-100 m-0-auto d-block object-fit-contain" controls @timeupdate="onTimeUpdate">
       <source :src="item.video_info.variants[1].url" :type="item.video_info.variants[1].content_type"/>
     </video>
-    <MediaBadge :text="time" class="p-l-2xs p-r-2xs"/>
+    <MediaBadge :text="time" class="p-x-2"/>
   </div>
 </template>
 
@@ -29,14 +29,8 @@ export default {
     onTimeUpdate() {
       this.currentTime = this.$refs.video.currentTime * 1000
     },
-    toggle() {
-      if (this.$refs.video.paused)
-        return this.$refs.video.play()
-
-      return this.$refs.video.pause()
-    },
     formatDisplay(time) {
-      return time > 9 ? time : '0' + time
+      return time > 9 ? time : `0${time}`
     }
   },
   computed: {
@@ -49,7 +43,7 @@ export default {
       const seconds = Math.floor((left / 1000) % 60)
       const minutes = Math.floor((left / 1000 / 60) % 60)
 
-      return minutes + ':' + this.formatDisplay(seconds)
+      return `${minutes}:${this.formatDisplay(seconds)}`
     }
   }
 }
@@ -58,8 +52,5 @@ export default {
 <style lang='scss' scoped>
   .media-item {
     background-color: var(--video-bg-color);
-  }
-  .vid {
-    margin: 0 auto;
   }
 </style>

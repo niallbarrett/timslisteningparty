@@ -1,5 +1,5 @@
 <template>
-  <img :src="image" class="avatar flex-shrink-0"/>
+  <img :src="image" :class="`avatar h-${compact ? '4 w-4':'7 w-7'} flex-shrink-0`"/>
 </template>
 
 <script>
@@ -8,6 +8,10 @@ export default {
     image: {
       type: String,
       required: true
+    },
+    compact: {
+      type: Boolean,
+      default: false
     }
   }
 }

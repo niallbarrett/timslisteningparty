@@ -1,25 +1,23 @@
 <template>
-  <div class="tweet d-flex b-t p-t-xs p-r-sm p-b-sm p-l-sm hover" :class="{'flex-wrap': item.retweeted_status}">
-    <p v-if="item.retweeted_status" class="rt w-100 m-b-2xs m-l-md c-secondary fa-b fa-rt">
-      Retweeted by {{ item.user.name }}
-    </p>
-    <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="h-7 w-7 m-r-xs"/>
-    <div class="body flex-1">
-      <div class="head d-flex align-items-center">
-        <Avatar v-if="quote" :image="tweet.user.profile_image_url" class="h-sm w-sm m-r-3xs"/>
+  <div :class="`tweet p-t-3 ${quote ? '':'p-x-3 p-b-4'} d-flex ${item.retweeted_status ? 'flex-wrap':''} b-t hover`">
+    <Retweeted v-if="item.retweeted_status" :name="item.user.name"/>
+    <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="m-r-2"/>
+    <div class="flex-1">
+      <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
+        <Avatar v-if="quote" :image="tweet.user.profile_image_url" class="h-4 w-4 m-r-1"/>
         <p class="fw-700">
           {{ tweet.user.name }}
         </p>
-        <Verified v-if="item.verified" class="h-sm"/>
-        <p class="c-secondary handle p-r-3xs p-l-3xs">
+        <Verified v-if="item.verified" class="h-3"/>
+        <p class="c-secondary handle p-x-1">
           {{ tweet.user.screen_name }}
         </p>
         <p class="c-secondary time">
           {{ time }}
         </p>
       </div>
-      <p class="text m-t-2xs" v-html="text"/>
-      <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-xs br-xs b-a': !quote}">
+      <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
+      <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-1 b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
         <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
         <MediaImages v-else :items="entities.media"/>
@@ -28,28 +26,32 @@
         v-if="tweet.is_quote_status"
         :item="tweet.quoted_status"
         :quote="tweet.is_quote_status"
-        class="quote m-t-xs b-a br-xs overflow-hidden"/>
+        class="is-quote m-t-2 b-a br-1 overflow-hidden"/>
     </div>
   </div>
 </template>
 
 <script>
+// Libraries
 import { format, parse, differenceInCalendarDays } from 'date-fns'
-
+// Components
 import Avatar from '@/components/Avatar'
-import Verified from '@/components/Verified'
+import Retweeted from './Retweeted'
 import MediaImages from './MediaImages'
 import MediaGif from './MediaGif'
 import MediaVideo from './MediaVideo'
+// Assets
+import Verified from '@/components/icons/Verified'
 
 export default {
   name: 'tweet',
   components: {
     Avatar,
-    Verified,
+    Retweeted,
     MediaImages,
     MediaGif,
-    MediaVideo
+    MediaVideo,
+    Verified
   },
   props: {
     item: {
@@ -63,7 +65,7 @@ export default {
   },
   data() {
     return {
-      pattern: 'EEE MMM dd HH:mm:ss xx yyyy',
+      pattern: 'EEE MMM dd HH:mm:ss xx yyyy'
     }
   },
   computed: {
@@ -112,37 +114,10 @@ export default {
 
 <style lang='scss' scoped>
   .tweet {
-    background: var(--bg-color);
+    background-color: var(--bg-color);
     opacity: 0;
     animation: flash 1s ease;
     animation-fill-mode: forwards;
-
-    .rt {
-      font-size: calc(var(--space-xs) * 1.2);
-    }
-
-    .text {
-      line-height: 1.3;
-    }
-
-    &.quote {
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-bottom: 0px;
-
-      .head, .text {
-        padding: 0 var(--space-sm);
-      }
-
-      .text {
-        padding-bottom: var(--space-xs);
-      }
-
-      .media {
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-      }
-    }
   }
   @keyframes flash {
     from {

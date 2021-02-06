@@ -1,6 +1,7 @@
-$spaces: 0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 256, 512;
+$spaces: 0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 256, 384, 512, 768;
 $typography: 32, 26, 22, 18, 16, 14, 12;
 $weights: 300, 400, 500, 600, 700, 800;
+$border-radius: 4, 8, 12;
 $displays: block, inline-block, inline, flex, grid;
 $positions: absolute, relative, sticky, fixed;
 $sides: 'all', 'top', 'right', 'bottom', 'left';
@@ -35,6 +36,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   .h-#{$i} {
     height: $v;
   }
+  .min-h-#{$i} {
+    min-height: $v;
+  }
   .w-#{$i} {
     width: $v;
   }
@@ -47,6 +51,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
       margin-#{$side}: $v;
     }
   }
+}
+.m-0-auto {
+  margin: 0 auto;
 }
 .m-r-auto {
   margin-right: auto;
@@ -125,6 +132,12 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
     font-weight: $weight;
   }
 }
+.lh-condensed {
+  line-height: 1.25;
+}
+.lh-condensed-ultra {
+  line-height: 1;
+}
 // Colors
 .bg-color {
   background-color: var(--bg-color);
@@ -150,6 +163,13 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .c-accent {
   color: var(--accent-color);
 }
+// Border radius
+@each $item in $border-radius {
+  $i: index($border-radius, $item) - 1;
+  .br-#{$i} {
+    border-radius: #{$item}px;
+  }
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -167,6 +187,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .vertical-align-middle {
   vertical-align: middle;
+}
+.cursor-default {
+  cursor: default;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -198,6 +221,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .min-h-100vh {
   min-height: 100vh;
 }
+.max-h-100vh {
+  max-height: 100vh;
+}
 .max-h-100 {
   max-height: 100%;
 }
@@ -206,7 +232,4 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .max-w-100 {
   max-width: 100%;
-}
-.br-50 {
-  border-radius: 50%;
 }

@@ -1,12 +1,12 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-start" @keyup.space="add" tabIndex="0">
-    <div class="pos-sticky-t p-t-sm">
+    <div class="pos-sticky-t p-t-3">
       <Spotify v-if="false"/>
     </div>
-    <Timeline class="m-r-sm m-l-sm">
+    <Timeline :count="tweets.length" class="m-x-3">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
     </Timeline>
-    <div class="pos-sticky-t p-t-sm">
+    <div class="pos-sticky-t p-t-3">
       <Following/>
     </div>
     <Setup v-if="showSetup" :show.sync="showSetup"/>
@@ -34,7 +34,6 @@ export default {
     return {
       tweets: [],
       json: Test,
-      media: [],
       showSetup: true
     }
   },
@@ -46,9 +45,9 @@ export default {
   },
   methods: {
     add() {
-      // this.media = [this.json[2], this.json[7], this.json[11]]
-      let tweet = this.json.shift()
-      this.tweets.push(tweet)
+      // let tweet = this.json.shift()
+      // this.tweets.push(tweet)
+      this.tweets = this.json
       this.scrollToTop()
     },
     scrollToTop() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="input d-flex flex-1 pos-relative">
+  <div class="input d-flex flex-1 pos-relative b-a br-1 overflow-hidden">
     <input :value="value" :placeholder="placeholder" class="input h-6 p-x-3 bg-accent flex-1 f-5" v-on="listeners">
   </div>
 </template>
@@ -32,6 +32,6 @@ export default {
 
 <style lang='scss' scoped>
   .input {
-    border-radius: 4px;
+
   }
 </style>

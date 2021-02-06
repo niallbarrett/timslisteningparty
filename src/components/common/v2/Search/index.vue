@@ -2,7 +2,7 @@
   <v-popover trigger="click">
     <Input v-model="query" v-bind="$attrs"/>
     <template slot="popover">
-      <div class="popover-menu m-t-1 pos-relative b-a" :style="{width: `${width}px`}">
+      <div class="popover-menu m-t-1 pos-relative b-a" :class="{'min-h-8': loading}" :style="{width: `${width}px`}">
         <slot/>
         <Spinner v-if="loading"/>
       </div>
@@ -56,5 +56,6 @@ export default {
     max-height: 200px;
     border-radius: 4px;
     overflow-y: auto;
+    box-shadow: 10px 9px 21px 0px rgba(128, 152, 213, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4);
   }
 </style>

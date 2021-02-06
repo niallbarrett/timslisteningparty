@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Input from '@/components/common/Input'
+import Input from '@/components/common/v2/Input'
 import Spinner from '@/components/common/Spinner'
 
 export default {

@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" appear>
-    <div class="setup d-flex justify-content-center align-items-center pos-fixed bg-border">
+    <div class="setup p-4 d-flex justify-content-center align-items-center pos-fixed bg-border">
       <transition name="slide">
         <Step v-if="step === 0" title="Connect to Spotify" description="A premium account is required.">
           <Button text="Connect" @click="connect"/>
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      step: 2,
+      step: 0,
       endpoint: 'https://accounts.spotify.com/authorize',
       scopes: 'user-read-playback-state user-modify-playback-state user-read-private'
     }

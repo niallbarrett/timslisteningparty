@@ -12,8 +12,10 @@
 </template>
 
 <script>
+// Components
 import Avatar from '@/components/Avatar'
-import Verified from '@/components/Verified'
+// Assets
+import Verified from '@/components/icons/Verified'
 
 export default {
   components: {

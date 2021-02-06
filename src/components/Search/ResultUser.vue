@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Verified from '@/components/Verified'
+import Verified from '@/components/icons/Verified'
 
 export default {
   components: {

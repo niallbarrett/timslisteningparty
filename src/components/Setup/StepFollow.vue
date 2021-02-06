@@ -9,6 +9,9 @@
         @click="select(result)"/>
     </Search>
     <Button text="Start" @click="confirm"/>
+    <template #results>
+      <User v-for="user in following" :key="user.id_str" :item="user" list @remove="select(user)"/>
+    </template>
   </Step>
 </template>
 
@@ -20,13 +23,15 @@ import Step from './Step'
 import Button from '@/components/common/v2/Button'
 import Search from '@/components/common/v2/Search'
 import ResultUser from '@/components/common/v2/Search/ResultUser'
+import User from '@/components/User'
 
 export default {
   components: {
     Step,
     Button,
     Search,
-    ResultUser
+    ResultUser,
+    User
   },
   data() {
     return {
