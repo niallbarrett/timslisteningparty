@@ -1,5 +1,5 @@
 <template>
-  <div :class="['tweet p-t-3 d-flex b-t hover', quote ? null : 'p-x-3 p-b-4', item.retweeted_status ? 'flex-wrap' : null]">
+  <div :class="['tweet p-t-3 d-flex b-t hover', {'p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
     <Retweeted v-if="item.retweeted_status" :name="item.user.name"/>
     <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="m-r-2"/>
     <div class="flex-1">
