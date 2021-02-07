@@ -1,19 +1,19 @@
 <template>
-  <div class="p-y-2 d-flex align-items-center cursor-default">
+  <div class="user p-y-2 p-x-2 d-flex align-items-center cursor-default" :class="{'is-active': active}" v-on="$listeners">
     <Avatar :image="item.profile_image_url_https" class="m-r-2"/>
-    <div class="d-flex direction-column">
+    <div class="d-flex direction-column" :class="{'p-r-2': dismiss}">
       <div class="d-flex align-items-center lh-condensed">
         <div class="f-4 fw-700">
           {{ item.name }}
+          <Verified v-if="item.verified" class="h-3 m-l-1"/>
         </div>
-        <Verified v-if="item.verified" class="h-3 m-l-1"/>
       </div>
       <div class="handle c-secondary f-5">
         {{ item.screen_name }}
       </div>
     </div>
-    <Button v-if="list" icon compact class="m-l-auto flex-shrink-0" @click="$emit('remove')">
-      j
+    <Button v-if="dismiss" icon compact class="m-l-auto m-r-2 flex-shrink-0" @click="$emit('remove')">
+      <Close class="h-3"/>
     </Button>
   </div>
 </template>
@@ -24,22 +24,39 @@ import Avatar from '@/components/Avatar'
 import Button from '@/components/common/v2/Button'
 // Assets
 import Verified from '@/components/icons/Verified'
+import Close from '@/components/icons/Close'
 
 export default {
   components: {
     Avatar,
     Button,
-    Verified
+    Verified,
+    Close
   },
   props: {
     item: {
       type: Object,
       required: true
     },
-    list: {
+    active: {
+      type: Boolean,
+      default: false
+    },
+    dismiss: {
       type: Boolean,
       default: false
     }
   }
 }
 </script>
+
+<style lang='scss' scoped>
+  .user {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    &.is-active {
+      background-color: var(--border-color);
+    }
+  }
+</style>

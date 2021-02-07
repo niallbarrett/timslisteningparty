@@ -1,6 +1,6 @@
 <template>
-  <Step title="Choose the album" description="Something.">
-    <Search v-model="query" placeholder="Search albums" :loading="loading">
+  <Step title="Choose the album" description="Something." wide>
+    <Search v-model="query" placeholder="Search albums" empty="Search by artist or album name" :count="results.length" :loading="loading">
       <ResultAlbum
         v-for="result in results"
         :key="result.id"
@@ -8,7 +8,12 @@
         :item="result"
         @click="select(result.id)"/>
     </Search>
-    <Button text="Next" :disabled="disabled" @click="$emit('next')"/>
+    <template #results>
+      <h1>Album goes here</h1>
+    </template>
+    <template #footer>
+      <Button text="Next" :disabled="disabled" class="primary" @click="$emit('next')"/>
+    </template>
   </Step>
 </template>
 
@@ -50,7 +55,7 @@ export default {
     search() {
       this.loading = true
 
-      if (this.prev !== null)
+      if (this.prev)
         this.prev.abort()
 
       this.prev = spotify.searchAlbums(this.query)

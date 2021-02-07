@@ -39,6 +39,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   .min-h-#{$i} {
     min-height: $v;
   }
+  .max-h-#{$i} {
+    max-height: $v;
+  }
   .w-#{$i} {
     width: $v;
   }
@@ -178,6 +181,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .overflow-y-auto {
   overflow-y: auto;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 .object-fit-cover {
   object-fit: cover;

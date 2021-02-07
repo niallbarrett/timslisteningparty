@@ -18,6 +18,9 @@ export const store = {
     },
     following(state) {
       return state.following
+    },
+    timId(state) {
+      return state.following[0].id_str
     }
   },
   mutations: {

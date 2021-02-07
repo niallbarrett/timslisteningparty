@@ -1,9 +1,11 @@
 <template>
-  <div class="container h-100 w-100 d-flex justify-content-center align-items-center pos-absolute bg-color">
-    <div class="spinner h-4 d-flex">
-      <div v-for="n in 5" :key="n"/>
+  <transition name="fade">
+    <div class="container h-100 w-100 d-flex justify-content-center align-items-center pos-absolute bg-color">
+      <div class="spinner h-4 d-flex">
+        <div v-for="n in 5" :key="n"/>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <style lang='scss' scoped>
@@ -43,5 +45,11 @@
       background-color: var(--secondary);
       transform: scaleY(1.0);
     }
-}
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
 </style>

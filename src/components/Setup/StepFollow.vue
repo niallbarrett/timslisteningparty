@@ -1,16 +1,24 @@
 <template>
-  <Step title="The only ones I know..." description="Choose who you want to listen in to.">
-    <Search v-model="query" placeholder="Search users" :loading="loading" class="m-b-2">
-      <ResultUser
+  <Step title="The only ones I know..." description="Choose who you want to listen along with." wide>
+    <Search v-model="query" placeholder="Search users" empty="Search for Twitter users" :count="results.length" :loading="loading">
+      <User
         v-for="result in results"
         :key="result.id_str"
         :item="result"
-        :selected="following.some(item => item.id_str === result.id_str)"
+        :active="following.some(item => item.id_str === result.id_str)"
+        class="cursor-pointer"
         @click="select(result)"/>
     </Search>
-    <Button text="Start" @click="confirm"/>
     <template #results>
-      <User v-for="user in following" :key="user.id_str" :item="user" list @remove="select(user)"/>
+      <User
+        v-for="user in following"
+        :key="user.id_str"
+        :item="user"
+        :dismiss="user.id_str !== timId"
+        @remove="select(user)"/>
+    </template>
+    <template #footer>
+      <Button text="Start" class="primary" @click="confirm"/>
     </template>
   </Step>
 </template>
@@ -22,7 +30,6 @@ import { mapGetters } from 'vuex'
 import Step from './Step'
 import Button from '@/components/common/v2/Button'
 import Search from '@/components/common/v2/Search'
-import ResultUser from '@/components/common/v2/Search/ResultUser'
 import User from '@/components/User'
 
 export default {
@@ -30,7 +37,6 @@ export default {
     Step,
     Button,
     Search,
-    ResultUser,
     User
   },
   data() {
@@ -39,7 +45,8 @@ export default {
       results: [],
       loading: false,
       prev: null,
-      disabled: true
+      disabled: true,
+      timeout: null
     }
   },
   sockets: {
@@ -50,30 +57,31 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'following'
-    ])
+      'following',
+      'timId'
+    ]),
   },
   watch: {
     query(val) {
-      if (!val.length)
-        return this.loading = false
+      if (val.length > 0)
+        return this.search(val)
 
-      return this.search()
+      return this.loading = false
     }
   },
   methods: {
-    search() {
+    search(query) {
       this.loading = true
 
       if (this.timeout)
         clearTimeout(this.timeout)
 
       this.timeout = setTimeout(() => {
-        this.$socket.emit('search', this.query)
+        this.$socket.emit('search', query)
       }, 300)
     },
     select(user) {
-      if (this.following[0].id_str === user.id_str)
+      if (user.id_str === this.timId)
         return
 
       if (this.following.some(item => item.id_str === user.id_str))

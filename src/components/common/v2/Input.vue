@@ -1,6 +1,7 @@
 <template>
-  <div class="input d-flex flex-1 pos-relative b-a br-1 overflow-hidden">
-    <input :value="value" :placeholder="placeholder" class="input h-6 p-x-3 bg-accent flex-1 f-5" v-on="listeners">
+  <div class="d-flex flex-1 align-items-center pos-relative">
+    <input :value="value" :placeholder="placeholder" :class="['input h-6 p-x-3 bg-accent flex-1 b-a br-1 f-5', inputClass]" v-on="listeners">
+    <slot/>
   </div>
 </template>
 
@@ -14,6 +15,10 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    inputClass: {
+      type: String,
+      default: undefined
     }
   },
   computed: {
@@ -31,7 +36,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  .input {
-
+  .input:focus {
+    background-color: var(--bg-color);
+    border-color: var(--primary-color);
   }
 </style>

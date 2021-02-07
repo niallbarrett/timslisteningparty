@@ -1,9 +1,14 @@
 <template>
   <v-popover trigger="click">
-    <Input v-model="query" v-bind="$attrs"/>
+    <Field v-model="query" v-bind="$attrs" inputClass="p-l-6">
+      <SearchIcon class="h-3 m-l-3 pos-absolute c-primary"/>
+    </Field>
     <template slot="popover">
-      <div class="popover-menu m-t-1 pos-relative b-a" :class="{'min-h-8': loading}" :style="{width: `${width}px`}">
-        <slot/>
+      <div class="popover-menu m-t-1 pos-relative br-1 b-a overflow-y-auto" :class="{'h-8 overflow-y-hidden': loading}" :style="{width: `${width}px`}">
+        <slot v-if="!!count && !!query.length"/>
+        <div v-else class="min-h-8 p-x-3 d-flex align-items-center justify-content-center c-secondary f-5">
+          {{ message }}
+        </div>
         <Spinner v-if="loading"/>
       </div>
     </template>
@@ -11,18 +16,30 @@
 </template>
 
 <script>
-import Input from '@/components/common/v2/Input'
+// Components
+import Field from '@/components/common/v2/Input'
 import Spinner from '@/components/common/Spinner'
+// Assets
+import SearchIcon from '@/components/icons/Search'
 
 export default {
   components: {
-    Input,
-    Spinner
+    Field,
+    Spinner,
+    SearchIcon
   },
   props: {
     value: {
       type: String,
       default: ''
+    },
+    empty: {
+      type: String,
+      default: 'Search for something or other'
+    },
+    count: {
+      type: Number,
+      required: true
     },
     loading: {
       type: Boolean,
@@ -45,6 +62,12 @@ export default {
       set(val) {
         return this.$emit('input', val)
       }
+    },
+    message() {
+      if (!this.query.length)
+        return this.empty
+
+      return 'No results found.'
     }
   }
 }
@@ -54,8 +77,6 @@ export default {
   .popover-menu {
     background-color: #fff;
     max-height: 200px;
-    border-radius: 4px;
-    overflow-y: auto;
     box-shadow: 10px 9px 21px 0px rgba(128, 152, 213, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4);
   }
 </style>

@@ -2,9 +2,11 @@
   <transition name="fade" appear>
     <div class="setup p-4 d-flex justify-content-center align-items-center pos-fixed bg-border">
       <transition name="slide">
-        <Step v-if="step === 0" title="Connect to Spotify" description="A premium account is required.">
-          <Button text="Connect" @click="connect"/>
-          <Button text="Skip" clear @click="step = 2"/>
+        <Step v-if="step === 0" title="Connect to Spotify" description="A premium account is required. For best results, have Spotify open and playing on your chosen device.">
+          <template #footer>
+            <Button text="Skip" clear @click="step = 2"/>
+            <Button text="Connect" class="primary m-l-2" @click="connect"/>
+          </template>
         </Step>
         <StepAlbum v-if="step === 1" @next="step++"/>
         <StepFollow v-if="step === 2" @next="finish"/>
@@ -38,10 +40,16 @@ export default {
   },
   data() {
     return {
-      step: 0,
+      step: 1,
       endpoint: 'https://accounts.spotify.com/authorize',
       scopes: 'user-read-playback-state user-modify-playback-state user-read-private'
     }
+  },
+  mounted() {
+    document.documentElement.style.overflow = 'hidden'
+  },
+  destroyed() {
+    document.documentElement.style.overflow = 'auto'
   },
   created() {
     let token = window.location.hash.substr(1)

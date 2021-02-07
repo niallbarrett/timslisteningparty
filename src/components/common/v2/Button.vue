@@ -37,16 +37,20 @@ export default {
     --height: 40px;
     --width: auto;
     --padding: 0 16px;
-    --bg-color: var(--primary-color);
+    --bg-color: var(--border-color);
     --color: #fff;
     --border-radius: 4px;
     --opacity: 1;
     height: var(--height);
     width: var(--width);
+    padding: var(--padding);
     background-color: var(--bg-color);
     color: var(--color);
     opacity: var(--opacity);
     border-radius: var(--border-radius);
+    &.primary {
+      --bg-color: var(--primary-color);
+    }
     &.is-compact {
       --height: 24px;
       --padding: 0 8px;
