@@ -15,6 +15,16 @@ button, input, video {
   outline: none;
   border: none;
 }
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  &[href^="https://t.co"] {
+    display: none;
+  }
+}
 .handle:before {
   content: '@';
 }
@@ -45,4 +55,3 @@ button, input, video {
     flex: 1;
   }
 }
-

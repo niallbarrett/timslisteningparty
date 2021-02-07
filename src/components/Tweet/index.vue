@@ -1,10 +1,10 @@
 <template>
-  <div :class="`tweet p-t-3 ${quote ? '':'p-x-3 p-b-4'} d-flex ${item.retweeted_status ? 'flex-wrap':''} b-t hover`">
+  <div :class="['tweet p-t-3 d-flex b-t hover', quote ? null : 'p-x-3 p-b-4', item.retweeted_status ? 'flex-wrap' : null]">
     <Retweeted v-if="item.retweeted_status" :name="item.user.name"/>
     <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="m-r-2"/>
     <div class="flex-1">
       <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
-        <Avatar v-if="quote" :image="tweet.user.profile_image_url" class="h-4 w-4 m-r-1"/>
+        <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
         <p class="fw-700">
           {{ tweet.user.name }}
         </p>
@@ -33,6 +33,7 @@
 
 <script>
 // Libraries
+import twttr from 'twitter-text'
 import { format, parse, differenceInCalendarDays } from 'date-fns'
 // Components
 import Avatar from '@/components/Avatar'
@@ -75,12 +76,6 @@ export default {
 
       return this.item
     },
-    text() {
-      if (this.tweet.extended_tweet)
-        return this.tweet.extended_tweet.full_text
-
-      return this.formatText(this.tweet.text)
-    },
     entities() {
       if (this.tweet.extended_tweet)
         return this.tweet.extended_tweet.entities
@@ -89,6 +84,12 @@ export default {
         return this.tweet.extended_entities
 
       return this.tweet.entities
+    },
+    text() {
+      if (this.tweet.extended_tweet)
+        return this.linkify(this.tweet.extended_tweet.full_text)
+
+      return this.linkify(this.tweet.text)
     },
     time() {
       let timestamp = parse(this.tweet.created_at, this.pattern, new Date())
@@ -103,10 +104,8 @@ export default {
     }
   },
   methods: {
-    formatText(text) {
-      console.log(text)
-      return text
-      // return text.replace(/\s([@#][\w_-]+)/g, ' <span class="c-primary">$1</span>')
+    linkify(text) {
+      return twttr.autoLink(text, { usernameIncludeSymbol: true, targetBlank: true })
     }
   }
 }
