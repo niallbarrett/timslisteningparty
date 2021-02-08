@@ -5,7 +5,7 @@
       <div class="d-flex align-items-center lh-condensed">
         <div class="f-4 fw-700">
           {{ item.name }}
-          <Verified v-if="item.verified" class="h-3 m-l-1"/>
+          <Verified v-if="item.verified" class="h-3 vertical-align-middle"/>
         </div>
       </div>
       <div class="handle c-secondary f-5">
