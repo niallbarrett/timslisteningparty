@@ -1,40 +1,51 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-start" @keyup.space="add" tabIndex="0">
-    <div class="pos-sticky-t p-t-3">
-      <Spotify v-if="false"/>
+    <div v-if="album.id" class="pos-sticky-t">
+      <Panel>
+        <template #title>
+          <Album :item="album" class="m-y-4"/>
+        </template>
+        <h1>Tracks</h1>
+      </Panel>
     </div>
     <Timeline :count="tweets.length" class="m-x-3">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
     </Timeline>
-    <div class="pos-sticky-t p-t-3">
-      <Following/>
+    <div v-if="!!following.length" class="w-13 pos-sticky-t">
+      <Panel title="Following">
+        <User v-for="user in following" :key="user.id_str" :item="user"/>
+      </Panel>
     </div>
     <Setup v-if="showSetup" :show.sync="showSetup"/>
   </div>
 </template>
 
 <script>
+import Test from '@/json/tweets.json'
+// Libraries
+import { mapGetters } from 'vuex'
+// Components
 import Setup from '@/components/Setup'
-import Spotify from '@/components/Spotify'
-import Following from '@/components/Following'
 import Timeline from '@/components/Timeline'
 import Tweet from '@/components/Tweet'
-
-import Test from '@/json/tweets.json'
+import Panel from '@/components/common/Panel'
+import Album from '@/components/Setup/Album'
+import User from '@/components/User'
 
 export default {
   components: {
     Setup,
-    Spotify,
-    Following,
     Timeline,
-    Tweet
+    Tweet,
+    Panel,
+    Album,
+    User
   },
   data() {
     return {
       tweets: [],
       json: Test,
-      showSetup: true
+      showSetup: false
     }
   },
   sockets: {
@@ -42,6 +53,12 @@ export default {
       this.tweets.push(tweet)
       this.scrollToTop()
     }
+  },
+  computed: {
+    ...mapGetters([
+      'following',
+      'album'
+    ])
   },
   methods: {
     add() {

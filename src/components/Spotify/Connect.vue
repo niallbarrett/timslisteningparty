@@ -9,7 +9,7 @@
 
 <script>
 import Panel from '@/components/common/Panel'
-import Button from '@/components/common/Button'
+import Button from '@/components/common/v2/Button'
 
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()

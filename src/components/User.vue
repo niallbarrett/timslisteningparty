@@ -1,14 +1,12 @@
 <template>
-  <div class="user p-y-2 p-x-2 d-flex align-items-center cursor-default" :class="{'is-active': active}" v-on="$listeners">
+  <div :class="['user p-y-2 p-x-2 d-flex align-items-center cursor-default', {'is-active': active}]" v-on="$listeners">
     <Avatar :image="item.profile_image_url_https" class="m-r-2"/>
-    <div class="d-flex direction-column" :class="{'p-r-2': dismiss}">
-      <div class="d-flex align-items-center lh-condensed">
-        <div class="f-4 fw-700">
-          {{ item.name }}
-          <Verified v-if="item.verified" class="h-3 vertical-align-middle"/>
-        </div>
+    <div :class="['d-flex direction-column', {'p-r-2': dismiss}]">
+      <div class="d-flex align-items-center f-4 fw-700 lh-condensed wb-break-word">
+        {{ item.name }}
+        <Verified v-if="item.verified" class="h-3 vertical-align-middle"/>
       </div>
-      <div class="handle c-secondary f-5">
+      <div class="handle c-secondary f-5 wb-break-word">
         {{ item.screen_name }}
       </div>
     </div>

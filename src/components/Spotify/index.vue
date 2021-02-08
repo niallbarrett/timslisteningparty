@@ -17,8 +17,8 @@
 <script>
 import Album from './Album'
 import Connect from './Connect'
-import Search from '@/components/Search'
-import ResultAlbum from '@/components/Search/ResultAlbum'
+import Search from '@/components/common/v2/Search'
+import ResultAlbum from '@/components/common/v2/Search/ResultAlbum'
 
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()

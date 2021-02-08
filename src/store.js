@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import tim from '@/json/tim'
+import album from '@/json/album'
 Vue.use(Vuex)
 
 export const store = {
   state: {
     token: null,
-    album: null,
+    album: album, // {}
     following: [tim]
   },
   getters: {

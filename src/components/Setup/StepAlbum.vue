@@ -9,7 +9,7 @@
         @click="select(result.id)"/>
     </Search>
     <template #results>
-      <h1>Album goes here</h1>
+      <Album :item="album"/>
     </template>
     <template #footer>
       <Button text="Next" :disabled="disabled" class="primary" @click="$emit('next')"/>
@@ -19,10 +19,12 @@
 
 <script>
 // Libraries
+import { mapGetters } from 'vuex'
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 // Components
 import Step from './Step'
+import Album from './Album'
 import Button from '@/components/common/v2/Button'
 import Search from '@/components/common/v2/Search'
 import ResultAlbum from '@/components/common/v2/Search/ResultAlbum'
@@ -30,6 +32,7 @@ import ResultAlbum from '@/components/common/v2/Search/ResultAlbum'
 export default {
   components: {
     Step,
+    Album,
     Button,
     Search,
     ResultAlbum
@@ -42,6 +45,11 @@ export default {
       prev: null,
       disabled: true
     }
+  },
+  computed: {
+    ...mapGetters([
+      'album'
+    ])
   },
   watch: {
     query(val) {
