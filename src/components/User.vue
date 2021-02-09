@@ -6,9 +6,7 @@
         {{ item.name }}
         <Verified v-if="item.verified" class="h-3 vertical-align-middle"/>
       </div>
-      <div class="handle c-secondary f-5 wb-break-word">
-        {{ item.screen_name }}
-      </div>
+      <div class="handle c-secondary f-5 wb-break-word">{{ item.screen_name }}</div>
     </div>
     <Button v-if="dismiss" icon compact class="m-l-auto m-r-2 flex-shrink-0" @click="$emit('remove')">
       <Close class="h-3"/>

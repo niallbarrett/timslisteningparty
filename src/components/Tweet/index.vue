@@ -9,12 +9,8 @@
           {{ tweet.user.name }}
         </p>
         <Verified v-if="item.verified" class="h-3"/>
-        <p class="c-secondary handle p-x-1">
-          {{ tweet.user.screen_name }}
-        </p>
-        <p class="c-secondary time">
-          {{ time }}
-        </p>
+        <p class="c-secondary handle p-x-1">{{ tweet.user.screen_name }}</p>
+        <p class="c-secondary time">{{ time }}</p>
       </div>
       <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-1 b-a': !quote}">
