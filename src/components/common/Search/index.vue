@@ -17,7 +17,7 @@
 
 <script>
 // Components
-import Field from '@/components/common/v2/Input'
+import Field from '@/components/common/Input'
 import Spinner from '@/components/common/Spinner'
 // Assets
 import SearchIcon from '@/components/icons/Search'

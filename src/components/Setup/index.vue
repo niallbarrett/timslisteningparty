@@ -26,7 +26,7 @@ let spotify = new SpotifyWebApi()
 import Step from './Step'
 import StepAlbum from './StepAlbum'
 import StepFollow from './StepFollow'
-import Button from '@/components/common/v2/Button'
+import Button from '@/components/common/Button'
 
 export default {
   components: {

@@ -21,7 +21,7 @@
 // Libraries
 import { format } from 'date-fns'
 // Components
-import Button from '@/components/common/v2/Button'
+import Button from '@/components/common/Button'
 // Assets
 import NoteIcon from '@/components/icons/Note'
 import PlayIcon from '@/components/icons/Play'

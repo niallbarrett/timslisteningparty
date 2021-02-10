@@ -13,9 +13,15 @@
   --elevation-1: 10px 9px 21px 0px rgba(128, 152, 213, 0.12);
   --elevation-2: 0 3px 3px -2px rgba(0, 0, 0, 0.4);
 }
-.is-dark {
+.is-dim {
   --accent-color: #1a2834;
   --border-color: #38454d;
   --bg-color: #15202b;
+  --text-color: #fff;
+}
+.is-dark {
+  --accent-color: #15181c;
+  --bg-color: #000;
+  --border-color: #2f3436;
   --text-color: #fff;
 }

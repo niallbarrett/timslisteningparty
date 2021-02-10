@@ -3,7 +3,7 @@
     <div
       v-for="item in items"
       :key="item.id_str"
-      class="media-item"
+      class="media-item cursor-pointer"
       :style="{backgroundImage: `url(${item.media_url})`}"/>
   </div>
 </template>

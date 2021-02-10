@@ -32,8 +32,8 @@
 import { mapGetters } from 'vuex'
 // Components
 import Step from './Step'
-import Button from '@/components/common/v2/Button'
-import Search from '@/components/common/v2/Search'
+import Button from '@/components/common/Button'
+import Search from '@/components/common/Search'
 import User from '@/components/User'
 
 export default {

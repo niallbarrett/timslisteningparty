@@ -76,7 +76,7 @@ export default {
       })
     },
     dark() {
-      document.body.classList.toggle('is-dark')
+      document.body.classList.toggle('is-dim')
     }
   }
 }

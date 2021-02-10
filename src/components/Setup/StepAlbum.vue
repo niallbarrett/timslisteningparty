@@ -29,9 +29,9 @@ let spotify = new SpotifyWebApi()
 // Components
 import Step from './Step'
 import Album from './Album'
-import Button from '@/components/common/v2/Button'
-import Search from '@/components/common/v2/Search'
-import ResultAlbum from '@/components/common/v2/Search/ResultAlbum'
+import Button from '@/components/common/Button'
+import Search from '@/components/common/Search'
+import ResultAlbum from '@/components/common/Search/ResultAlbum'
 
 export default {
   components: {
