@@ -13,7 +13,7 @@
         <p class="c-secondary time">{{ time }}</p>
       </div>
       <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
-      <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-1 b-a': !quote}">
+      <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
         <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
         <MediaImages v-else :items="entities.media"/>
@@ -22,7 +22,7 @@
         v-if="tweet.is_quote_status"
         :item="tweet.quoted_status"
         :quote="tweet.is_quote_status"
-        class="is-quote m-t-2 b-a br-1 overflow-hidden"/>
+        class="is-quote m-t-2 b-a br-2 overflow-hidden"/>
     </div>
   </div>
 </template>

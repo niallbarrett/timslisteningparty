@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.space="add" tabIndex="0">
+  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.right="dark" tabIndex="0">
     <div v-if="album.id" class="pos-sticky-t">
       <Panel>
         <template #title>
@@ -47,7 +47,7 @@ export default {
     return {
       tweets: [],
       json: Test,
-      showSetup: true
+      showSetup: false
     }
   },
   sockets: {
@@ -64,9 +64,9 @@ export default {
   },
   methods: {
     add() {
-      // let tweet = this.json.shift()
-      // this.tweets.push(tweet)
-      this.tweets = this.json
+      let tweet = this.json.shift()
+      this.tweets.push(tweet)
+      // this.tweets = this.json
       this.scrollToTop()
     },
     scrollToTop() {
@@ -74,6 +74,9 @@ export default {
         top: 0,
         behavior: 'smooth'
       })
+    },
+    dark() {
+      document.body.classList.toggle('is-dark')
     }
   }
 }

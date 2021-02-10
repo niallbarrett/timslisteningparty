@@ -1,17 +1,5 @@
 :root {
-  // --space-4xs: 0.15rem; 2.4px
-  // --space-3xs: 0.25rem; 4px
-  // --space-2xs: 0.5rem; 8px
-  // --space-xs: 0.75rem; 12px
-  // --space: 1rem; 16px
-  // --space-sm: 1.25rem; 20px
-  // --space-md: 2rem; 32px
-  // --space-lg: 3.25rem;
-  // --space-xlg: 5.25rem;
-  // --space-2xlg: 8.5rem;
-  // --space-3xlg: 13.75rem;
-  // --space-4xlg: 22.25rem;
-  // --space-5xlg: 36rem;
+  --font: 'Manrope';
   --transition-timing-function: ease-in-out;
   --transition-duration: 0.2s;
   --primary-color: #2e86de;
@@ -19,10 +7,15 @@
   --accent-color: #f5f5f5;
   --border-color: #c8d6e5;
   --bg-color: #fff;
+  --text-color: #000;
   --verified-color: var(--primary-color);
   --video-bg-color: #000;
   --elevation-1: 10px 9px 21px 0px rgba(128, 152, 213, 0.12);
   --elevation-2: 0 3px 3px -2px rgba(0, 0, 0, 0.4);
 }
-
-$base-font: 'Manrope';
+.is-dark {
+  --accent-color: #1a2834;
+  --border-color: #38454d;
+  --bg-color: #15202b;
+  --text-color: #fff;
+}

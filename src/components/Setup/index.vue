@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      step: 1,
+      step: 0,
       endpoint: 'https://accounts.spotify.com/authorize',
       scopes: 'user-read-playback-state user-modify-playback-state user-read-private'
     }

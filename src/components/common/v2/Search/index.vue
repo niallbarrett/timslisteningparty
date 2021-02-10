@@ -4,7 +4,7 @@
       <SearchIcon class="h-3 m-l-3 pos-absolute c-primary"/>
     </Field>
     <template slot="popover">
-      <div class="popover-menu m-t-1 pos-relative br-1 b-a overflow-y-auto" :class="{'h-8 overflow-y-hidden': loading}" :style="{width: `${width}px`}">
+      <div class="popover-menu max-h-14 m-t-1 pos-relative br-1 b-a overflow-y-auto" :class="{'h-8 overflow-y-hidden': loading}" :style="{width: `${width}px`}">
         <slot v-if="!!count && !!query.length"/>
         <div v-else class="min-h-8 p-x-3 d-flex align-items-center justify-content-center c-secondary f-5 ta-center">
           {{ message }}
@@ -75,8 +75,7 @@ export default {
 
 <style lang='scss' scoped>
   .popover-menu {
-    background-color: #fff;
-    max-height: 200px;
-    box-shadow: 10px 9px 21px 0px rgba(128, 152, 213, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4);
+    background-color: var(--bg-color);
+    box-shadow: var(--elevation-1), var(--elevation-2);
   }
 </style>
