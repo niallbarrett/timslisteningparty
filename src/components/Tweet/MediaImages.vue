@@ -1,5 +1,5 @@
 <template>
-  <div :class="`h-14 d-grid grid-${items.length}`">
+  <div :class="`h-15 d-grid grid-${items.length}`">
     <div
       v-for="item in items"
       :key="item.id_str"

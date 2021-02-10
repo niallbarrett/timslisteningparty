@@ -1,4 +1,4 @@
-$spaces: 0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 256, 384, 512, 768;
+$spaces: 0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 196, 256, 384, 512, 768;
 $typography: 32, 26, 22, 18, 16, 14, 12;
 $weights: 300, 400, 500, 600, 700, 800;
 $border-radius: 4, 8, 12;
@@ -113,6 +113,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .align-items-center {
   align-items: center;
 }
+.align-items-end {
+  align-items: flex-end;
+}
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -140,6 +143,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .lh-condensed-ultra {
   line-height: 1;
+}
+.ta-center {
+  text-align: center;
 }
 // Colors
 .bg-color {

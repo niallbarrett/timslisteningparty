@@ -6,7 +6,7 @@
     <template slot="popover">
       <div class="popover-menu m-t-1 pos-relative br-1 b-a overflow-y-auto" :class="{'h-8 overflow-y-hidden': loading}" :style="{width: `${width}px`}">
         <slot v-if="!!count && !!query.length"/>
-        <div v-else class="min-h-8 p-x-3 d-flex align-items-center justify-content-center c-secondary f-5">
+        <div v-else class="min-h-8 p-x-3 d-flex align-items-center justify-content-center c-secondary f-5 ta-center">
           {{ message }}
         </div>
         <Spinner v-if="loading"/>

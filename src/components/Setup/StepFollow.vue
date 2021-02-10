@@ -1,6 +1,10 @@
 <template>
-  <Step title="The only ones I know..." description="Choose who you want to listen along with." wide>
-    <Search v-model="query" placeholder="Search users" empty="Search for Twitter users" :count="results.length" :loading="loading">
+  <Step
+    title="The only ones I know..."
+    description="Choose who you want to listen along with."
+    wide
+    class="is-w-fixed">
+    <Search v-model="query" placeholder="Search users" empty="Search by username or @handle" :count="results.length" :loading="loading">
       <User
         v-for="result in results"
         :key="result.id_str"
@@ -18,7 +22,7 @@
         @remove="select(user)"/>
     </template>
     <template #footer>
-      <Button text="Start" class="primary" @click="confirm"/>
+      <Button text="Start the party" class="primary" @click="confirm"/>
     </template>
   </Step>
 </template>

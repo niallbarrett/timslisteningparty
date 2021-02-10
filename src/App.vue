@@ -3,15 +3,17 @@
     <div v-if="album.id" class="pos-sticky-t">
       <Panel>
         <template #title>
-          <Album :item="album" class="m-y-4"/>
+          <Album :item="album" class="p-t-2 p-x-2"/>
         </template>
-        <h1>Tracks</h1>
+        <h1>
+          Tracks
+        </h1>
       </Panel>
     </div>
     <Timeline :count="tweets.length" class="m-x-3">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
     </Timeline>
-    <div v-if="!!following.length" class="w-13 pos-sticky-t">
+    <div v-if="!!following.length" class="w-14 pos-sticky-t">
       <Panel title="Following">
         <User v-for="user in following" :key="user.id_str" :item="user"/>
       </Panel>
@@ -45,7 +47,7 @@ export default {
     return {
       tweets: [],
       json: Test,
-      showSetup: false
+      showSetup: true
     }
   },
   sockets: {

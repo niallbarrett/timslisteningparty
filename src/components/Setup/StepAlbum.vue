@@ -1,5 +1,8 @@
 <template>
-  <Step title="Choose the album" description="Something." wide>
+  <Step
+    title="Choose the album"
+    description="Choose an album or skip, everybody knows the pain."
+    wide>
     <Search v-model="query" placeholder="Search albums" empty="Search by artist or album name" :count="results.length" :loading="loading">
       <ResultAlbum
         v-for="result in results"
@@ -9,10 +12,11 @@
         @click="select(result.id)"/>
     </Search>
     <template #results>
-      <Album :item="album"/>
+      <Album :item="album" class="p-x-4"/>
     </template>
     <template #footer>
-      <Button text="Next" :disabled="disabled" class="primary" @click="$emit('next')"/>
+      <Button text="Skip" clear @click="$emit('next')"/>
+      <Button text="Next" :disabled="disabled" class="primary m-l-2" @click="$emit('next')"/>
     </template>
   </Step>
 </template>

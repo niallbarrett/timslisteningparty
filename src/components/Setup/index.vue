@@ -2,7 +2,10 @@
   <transition name="fade" appear>
     <div class="setup p-4 d-flex justify-content-center align-items-center pos-fixed bg-border">
       <transition name="slide">
-        <Step v-if="step === 0" title="Connect to Spotify" description="A premium account is required. For best results, have Spotify open and playing on your chosen device.">
+        <Step
+          v-if="step === 0"
+          title="Connect to Spotify"
+          description="A premium account is required. For best results, have Spotify open and playing on your chosen device.">
           <template #footer>
             <Button text="Skip" clear @click="step = 2"/>
             <Button text="Connect" class="primary m-l-2" @click="connect"/>
