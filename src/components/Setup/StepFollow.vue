@@ -4,7 +4,12 @@
     description="Choose who you want to listen along with."
     wide
     class="is-w-fixed">
-    <Search v-model="query" placeholder="Search users" empty="Search by username or @handle" :count="results.length" :loading="loading">
+    <Search
+      v-model="query"
+      placeholder="Search users"
+      empty="Search by username or @handle"
+      :count="results.length"
+      :loading="loading">
       <User
         v-for="result in results"
         :key="result.id_str"
@@ -30,6 +35,7 @@
 <script>
 // Libraries
 import { mapGetters } from 'vuex'
+import { debounce } from 'lodash'
 // Components
 import Step from './Step'
 import Button from '@/components/common/Button'
@@ -48,41 +54,36 @@ export default {
       query: '',
       results: [],
       loading: false,
-      prev: null,
-      disabled: true,
-      timeout: null
+      disabled: true
     }
   },
   sockets: {
     users: function(data) {
       this.loading = false
-      this.results = data
+      this.results = data.errors ? [] : data
     }
   },
   computed: {
     ...mapGetters([
       'following',
       'timId'
-    ]),
+    ])
+  },
+  created() {
+    this.search = debounce(this.search, 300)
   },
   watch: {
-    query(val) {
-      if (val.length > 0)
-        return this.search(val)
-
-      return this.loading = false
+    query() {
+      this.search()
     }
   },
   methods: {
-    search(query) {
+    search() {
+      if (!this.query)
+        return this.loading = false
+
       this.loading = true
-
-      if (this.timeout)
-        clearTimeout(this.timeout)
-
-      this.timeout = setTimeout(() => {
-        this.$socket.emit('search', query)
-      }, 300)
+      this.$socket.emit('search', this.query)
     },
     select(user) {
       if (user.id_str === this.timId)
