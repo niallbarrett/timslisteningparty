@@ -1,11 +1,11 @@
 <template>
-  <div class="result d-flex p-y-2 p-x-2 b-t cursor-pointer" v-on="$listeners">
-    <img :src="item.images[1].url" class="h-6 m-r-2">
+  <div :class="['album p-2 d-flex align-items-center cursor-pointer', {'is-active': active}]" v-on="$listeners">
+    <img :src="item.images[1].url" class="h-6 w-6 m-r-2 b-a br-0">
     <div class="d-flex direction-column">
-      <div class="">
+      <div class="f-4 fw-700 lh-condensed-ultra wb-break-word">
         {{ item.name }}
       </div>
-      <div class="fs-xs c-secondary">
+      <div class="c-secondary f-5">
         {{ item.artists[0].name }}
       </div>
     </div>
@@ -18,13 +18,22 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    active: {
+      type: Boolean,
+      default: false
     }
   }
 }
 </script>
 
 <style lang='scss' scoped>
-  .result:first-of-type {
-    border-top-width: 0;
+  .album {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+    &.is-active {
+      background-color: var(--border-color);
+    }
   }
 </style>

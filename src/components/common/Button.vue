@@ -4,8 +4,9 @@
     :class="{'is-clear': clear, 'is-icon': icon, 'is-compact': compact}"
     v-bind="$attrs"
     v-on="$listeners">
-    {{ text }}
-    <slot/>
+    <slot>
+      {{ text }}
+    </slot>
   </button>
 </template>
 

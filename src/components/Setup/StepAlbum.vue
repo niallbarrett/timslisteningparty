@@ -9,6 +9,7 @@
         :key="result.id"
         v-close-popover
         :item="result"
+        :active="album.id === result.id"
         @click="select(result.id)"/>
     </Search>
     <template #results>

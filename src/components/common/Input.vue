@@ -1,6 +1,10 @@
 <template>
   <div class="d-flex flex-1 align-items-center pos-relative">
-    <input :value="value" :placeholder="placeholder" :class="['input h-6 p-x-3 bg-accent flex-1 b-a br-1 f-5', inputClass]" v-on="listeners">
+    <input
+      :value="value"
+      :placeholder="placeholder"
+      :class="['input h-6 p-x-3 bg-accent flex-1 b-a br-1 f-5', inputClass]"
+      v-on="listeners">
     <slot/>
   </div>
 </template>
@@ -36,8 +40,14 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  .input:focus {
-    background-color: var(--bg-color);
-    border-color: var(--primary-color);
+  .input {
+    color: var(--text-color);
+    &::placeholder {
+      color: var(--secondary-color);
+    }
+    &:focus {
+      background-color: var(--bg-color);
+      border-color: var(--primary-color);
+    }
   }
 </style>
