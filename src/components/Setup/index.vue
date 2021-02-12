@@ -12,7 +12,7 @@
           </template>
         </Step>
         <StepAlbum v-if="step === 1" @next="step++"/>
-        <StepFollow v-if="step === 2" @next="finish"/>
+        <StepFollow v-if="step === 2" @prev="step--" @next="finish"/>
       </transition>
     </div>
   </transition>

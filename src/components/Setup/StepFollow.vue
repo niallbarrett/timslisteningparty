@@ -27,7 +27,8 @@
         @remove="select(user)"/>
     </template>
     <template #footer>
-      <Button text="Start the party" class="primary" @click="confirm"/>
+      <Button text="Re-choose album" clear @click="$emit('prev')"/>
+      <Button text="Start the party" class="primary m-l-2" @click="confirm"/>
     </template>
   </Step>
 </template>
@@ -59,8 +60,8 @@ export default {
   },
   sockets: {
     users: function(data) {
-      this.loading = false
       this.results = data.errors ? [] : data
+      this.loading = false
     }
   },
   computed: {
@@ -70,7 +71,7 @@ export default {
     ])
   },
   created() {
-    this.search = debounce(this.search, 300)
+    this.search = debounce(this.search, 350)
   },
   watch: {
     query() {

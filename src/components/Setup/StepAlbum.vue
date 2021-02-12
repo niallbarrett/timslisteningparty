@@ -25,6 +25,7 @@
 <script>
 // Libraries
 import { mapGetters } from 'vuex'
+import { debounce } from 'lodash'
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 // Components
@@ -56,27 +57,22 @@ export default {
       'album'
     ])
   },
+  created() {
+    this.search = debounce(this.search, 350)
+  },
   watch: {
-    query(val) {
-      if (!val.length)
-        return this.loading = false
-
-      return this.search()
+    query() {
+      this.search()
     }
   },
   methods: {
     search() {
-      this.loading = true
+      if (!this.query)
+        return this.loading = false
 
-      if (this.prev)
-        this.prev.abort()
-
-      this.prev = spotify.searchAlbums(this.query)
-      this.prev.then((data) => {
-        this.prev = null
+      spotify.searchAlbums(this.query).then((data) => {
+        this.results = data.albums.items
         this.loading = false
-
-        return this.results = data.albums.items
       })
     },
     select(id) {

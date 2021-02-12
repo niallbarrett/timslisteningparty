@@ -1,14 +1,7 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.right="dark" tabIndex="0">
     <div v-if="album.id" class="pos-sticky-t">
-      <Panel>
-        <template #title>
-          <Album :item="album" class="p-t-2 p-x-2"/>
-        </template>
-        <h1>
-          Tracks
-        </h1>
-      </Panel>
+      <Album :item="album"/>
     </div>
     <Timeline :count="tweets.length" class="m-x-3">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
@@ -31,7 +24,7 @@ import Setup from '@/components/Setup'
 import Timeline from '@/components/Timeline'
 import Tweet from '@/components/Tweet'
 import Panel from '@/components/common/Panel'
-import Album from '@/components/Setup/Album'
+import Album from '@/components/Album'
 import User from '@/components/User'
 
 export default {

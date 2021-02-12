@@ -144,8 +144,11 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .lh-condensed-ultra {
   line-height: 1;
 }
-.ta-center {
+.ta-c {
   text-align: center;
+}
+.ta-r {
+  text-align: right;
 }
 // Colors
 .bg-color {
