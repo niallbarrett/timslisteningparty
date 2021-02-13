@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.right="dark" @keyup.up="setup" tabIndex="0">
+  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.up="setup" tabIndex="0">
     <div v-if="album.id" class="w-14 pos-sticky-t">
       <Album :item="album"/>
     </div>
@@ -13,6 +13,7 @@
         </UserPopover>
       </Panel>
     </div>
+    <ModePicker/>
     <Setup v-if="showSetup" :show.sync="showSetup"/>
   </div>
 </template>
@@ -24,21 +25,23 @@ import { mapGetters } from 'vuex'
 // Components
 import Setup from '@/components/Setup'
 import Timeline from '@/components/Timeline'
-import Tweet from '@/components/Tweet'
+import Tweet from '@/components/Twitter/Tweet'
+import User from '@/components/Twitter/User'
+import UserPopover from '@/components/Twitter/UserPopover'
 import Panel from '@/components/common/Panel'
 import Album from '@/components/Album'
-import User from '@/components/User'
-import UserPopover from '@/components/Twitter/UserPopover'
+import ModePicker from '@/components/ModePicker'
 
 export default {
   components: {
     Setup,
     Timeline,
     Tweet,
+    User,
+    UserPopover,
     Panel,
     Album,
-    User,
-    UserPopover
+    ModePicker
   },
   data() {
     return {
@@ -71,9 +74,6 @@ export default {
         top: 0,
         behavior: 'smooth'
       })
-    },
-    dark() {
-      document.body.classList.toggle('is-dim')
     },
     setup() {
       this.showSetup = !this.showSetup
