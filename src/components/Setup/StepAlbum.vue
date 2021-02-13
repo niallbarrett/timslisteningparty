@@ -63,7 +63,7 @@ export default {
     ])
   },
   created() {
-    this.search = debounce(this.search, 350)
+    this.search = debounce(this.search, 300)
   },
   watch: {
     query() {

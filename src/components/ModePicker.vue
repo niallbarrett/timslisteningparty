@@ -58,4 +58,7 @@ export default {
   .is-active {
     --border-color: var(--primary-color);
   }
+  .button {
+    box-shadow: var(--elevation-1), var(--elevation-2);
+  }
 </style>

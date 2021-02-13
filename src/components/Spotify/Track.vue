@@ -12,12 +12,14 @@
       {{ item.name }}
     </div>
     <div class="m-l-auto c-secondary f-6">
-      {{ formatDuration(item.duration_ms) }}
+      {{ duration }}
     </div>
   </div>
 </template>
 
 <script>
+// Utils
+import { formatDuration } from '@/utils/Format'
 // Assets
 import PlayIcon from '@/components/icons/Play'
 
@@ -36,15 +38,9 @@ export default {
       hover: false
     }
   },
-  methods: {
-    formatDuration(duration) {
-      const minutes = Math.floor((duration / 1000 / 60) % 60)
-      const seconds = this.formatDisplay(Math.floor((duration / 1000) % 60))
-
-      return `${minutes}:${seconds}`
-    },
-    formatDisplay(time) {
-      return time > 9 ? time : `0${time}`
+  computed: {
+    duration() {
+      return formatDuration(this.item.duration_ms)
     }
   }
 }

@@ -8,6 +8,9 @@
 </template>
 
 <script>
+// Utils
+import { formatDuration } from '@/utils/Format'
+// Components
 import MediaBadge from './MediaBadge'
 
 export default {
@@ -28,9 +31,6 @@ export default {
   methods: {
     onTimeUpdate() {
       this.currentTime = this.$refs.video.currentTime * 1000
-    },
-    formatDisplay(time) {
-      return time > 9 ? time : `0${time}`
     }
   },
   computed: {
@@ -40,10 +40,7 @@ export default {
       if (left < 0)
         return '0:00'
 
-      const seconds = Math.floor((left / 1000) % 60)
-      const minutes = Math.floor((left / 1000 / 60) % 60)
-
-      return `${minutes}:${this.formatDisplay(seconds)}`
+      return formatDuration(left)
     }
   }
 }

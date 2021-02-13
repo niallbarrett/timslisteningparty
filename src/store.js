@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export const store = {
   state: {
     token: null,
-    album: album, // {}
+    album: album,
     following: [tim]
   },
   getters: {

@@ -3,7 +3,7 @@
     <div
       :class="['cover m-b-2 d-grid pos-relative c-secondary b-a br-1 overflow-hidden', {'cursor-pointer': !empty && !preview}]"
       @click="play">
-      <svg viewBox="0 0 1 1"/>
+      <svg :viewBox="aspect"/>
       <img v-if="!empty" :src="cover" class="w-100">
       <div v-else class="d-flex align-items-center justify-content-center">
         <NoteIcon class="h-8"/>
@@ -69,6 +69,9 @@ export default {
     },
     tracks() {
       return this.preview ? `· ${this.item.total_tracks} tracks` : ''
+    },
+    aspect() {
+      return this.empty ? '0 0 1 1' : '0 0 0 0'
     }
   },
   methods: {
