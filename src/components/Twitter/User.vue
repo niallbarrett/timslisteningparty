@@ -16,7 +16,7 @@
 
 <script>
 // Components
-import Avatar from '@/components/Avatar'
+import Avatar from './Avatar'
 import Button from '@/components/common/Button'
 // Assets
 import Verified from '@/components/icons/Verified'

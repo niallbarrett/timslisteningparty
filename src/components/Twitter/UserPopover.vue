@@ -32,7 +32,7 @@
 // Libraries
 import { autoLink, formatCount } from '@/utils/Twitter'
 // Components
-import Avatar from '@/components/Avatar'
+import Avatar from './Avatar'
 import Count from './Count'
 // Assets
 import Verified from '@/components/icons/Verified'

@@ -40,7 +40,7 @@ import { debounce } from 'lodash'
 import Step from './Step'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
-import User from '@/components/User'
+import User from '@/components/Twitter/User'
 
 export default {
   components: {

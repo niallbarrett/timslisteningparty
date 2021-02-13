@@ -5,7 +5,6 @@ const app = express()
 const port = 4000
 const Twit = require('twit')
 
-// const TEST_ID = '1004998938804543489'
 let FOLLOWING = []
 
 const server = app.listen(`${port}`, function() {
@@ -25,7 +24,6 @@ function startStream() {
   let stream = T.stream('statuses/filter', { follow: FOLLOWING })
 
   stream.on('tweet', function(tweet) {
-    console.log(tweet, FOLLOWING.includes(tweet.user.id_str))
     if (FOLLOWING.includes(tweet.user.id_str))
       io.emit('tweet', tweet)
   })

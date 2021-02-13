@@ -38,7 +38,7 @@
 import { format, parse, differenceInCalendarDays } from 'date-fns'
 import { autoLink } from '@/utils/Twitter'
 // Components
-import Avatar from '@/components/Avatar'
+import Avatar from '../Avatar'
 import Retweeted from './Retweeted'
 import MediaImages from './MediaImages'
 import MediaGif from './MediaGif'
