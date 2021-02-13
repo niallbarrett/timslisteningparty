@@ -1,7 +1,11 @@
 <template>
   <div :class="['tweet p-t-3 d-flex b-t hover', {'p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
-    <Retweeted v-if="item.retweeted_status" :name="item.user.name"/>
-    <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="m-r-2"/>
+    <UserPopover v-if="item.retweeted_status" :item="item.user" class="w-100">
+      <Retweeted :name="item.user.name"/>
+    </UserPopover>
+    <UserPopover v-if="!quote" :item="tweet.user" placement="bottom">
+      <Avatar :image="tweet.user.profile_image_url" class="m-r-2"/>
+    </UserPopover>
     <div class="flex-1">
       <UserPopover :item="tweet.user">
         <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
@@ -31,8 +35,8 @@
 
 <script>
 // Libraries
-import twttr from 'twitter-text'
 import { format, parse, differenceInCalendarDays } from 'date-fns'
+import { autoLink } from '@/utils/Twitter'
 // Components
 import Avatar from '@/components/Avatar'
 import Retweeted from './Retweeted'
@@ -87,9 +91,9 @@ export default {
     },
     text() {
       if (this.tweet.extended_tweet)
-        return this.linkify(this.tweet.extended_tweet.full_text)
+        return autoLink(this.tweet.extended_tweet.full_text)
 
-      return this.linkify(this.tweet.text)
+      return autoLink(this.tweet.text)
     },
     time() {
       let timestamp = parse(this.tweet.created_at, this.pattern, new Date())
@@ -101,11 +105,6 @@ export default {
         return format(timestamp, 'MMM d')
 
       return format(timestamp, 'MMM d, yyyy') // Implement last year
-    }
-  },
-  methods: {
-    linkify(text) {
-      return twttr.autoLink(text, { usernameIncludeSymbol: true, targetBlank: true })
     }
   }
 }

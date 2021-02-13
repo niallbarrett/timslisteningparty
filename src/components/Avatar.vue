@@ -1,5 +1,5 @@
 <template>
-  <img :src="image" :class="`avatar h-${size} w-${size} flex-shrink-0`"/>
+  <img :src="src" :class="`avatar h-${size} w-${size} flex-shrink-0`" @error="error = true"/>
 </template>
 
 <script>
@@ -18,7 +18,16 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      error: false,
+      default: 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'
+    }
+  },
   computed: {
+    src() {
+      return this.error ? this.default : this.image
+    },
     size() {
       if (this.large)
         return '8'

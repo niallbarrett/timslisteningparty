@@ -3,7 +3,7 @@
     <div class="panel d-flex direction-column bg-accent br-2 overflow-hidden">
       <div class="b-b p-2">
         <slot name="title">
-          <div v-if="title" class="f-4 fw-800">
+          <div v-if="title" class="p-l-2 f-4 fw-800">
             {{ title }}
           </div>
         </slot>

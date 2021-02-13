@@ -8,7 +8,9 @@
     </Timeline>
     <div v-if="!!following.length" class="w-14 pos-sticky-t">
       <Panel title="Following">
-        <User v-for="user in following" :key="user.id_str" :item="user"/>
+        <UserPopover v-for="user in following" :key="user.id_str" :item="user" placement="auto">
+          <User :item="user"/>
+        </UserPopover>
       </Panel>
     </div>
     <Setup v-if="showSetup" :show.sync="showSetup"/>
@@ -26,6 +28,7 @@ import Tweet from '@/components/Tweet'
 import Panel from '@/components/common/Panel'
 import Album from '@/components/Album'
 import User from '@/components/User'
+import UserPopover from '@/components/Twitter/UserPopover'
 
 export default {
   components: {
@@ -34,7 +37,8 @@ export default {
     Tweet,
     Panel,
     Album,
-    User
+    User,
+    UserPopover
   },
   data() {
     return {
