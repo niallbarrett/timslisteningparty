@@ -119,6 +119,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .align-items-end {
   align-items: flex-end;
 }
+.align-self-start {
+  align-self: flex-start;
+}
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -264,4 +267,7 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .round {
   border-radius: 50%;
+}
+.underline-hover:hover {
+  text-decoration: underline;
 }

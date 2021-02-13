@@ -4,7 +4,7 @@
     <div :class="['d-flex direction-column', {'p-r-2': dismiss}]">
       <div class="d-flex align-items-center f-4 fw-700 lh-condensed wb-break-word">
         {{ item.name }}
-        <Verified v-if="item.verified" class="h-3 m-l-1 vertical-align-middle"/>
+        <Verified v-if="item.verified" class="h-3"/>
       </div>
       <div class="handle c-secondary f-5 wb-break-word">{{ item.screen_name }}</div>
     </div>

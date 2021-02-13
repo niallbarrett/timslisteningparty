@@ -3,21 +3,21 @@
     <UserPopover v-if="item.retweeted_status" :item="item.user" placement="bottom-start" class="w-100">
       <Retweeted :name="item.user.name"/>
     </UserPopover>
-    <UserPopover v-if="!quote" :item="tweet.user">
-      <Avatar :image="tweet.user.profile_image_url" class="m-r-2"/>
+    <UserPopover v-if="!quote" :item="tweet.user" class="m-r-2 align-self-start">
+      <Avatar :image="tweet.user.profile_image_url"/>
     </UserPopover>
     <div class="flex-1">
-      <UserPopover :item="tweet.user" placement="bottom-start">
-        <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
+      <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
+        <UserPopover :item="tweet.user">
           <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
-          <p class="fw-700">
+          <p class="d-flex align-items-center fw-700 underline-hover">
             {{ tweet.user.name }}
+            <Verified v-if="!item.verified" class="h-3"/>
           </p>
-          <Verified v-if="item.verified" class="h-3"/>
-          <p class="c-secondary handle p-x-1">{{ tweet.user.screen_name }}</p>
-          <p class="c-secondary time">{{ time }}</p>
-        </div>
-      </UserPopover>
+          <p class="handle p-x-1 d-flex align-items-center c-secondary underline-hover">{{ tweet.user.screen_name }}</p>
+        </UserPopover>
+        <p v-tooltip="date" class="c-secondary underline-hover">· {{ timestamp }}</p>
+      </div>
       <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
@@ -35,7 +35,7 @@
 
 <script>
 // Libraries
-import { format, parse, differenceInCalendarDays } from 'date-fns'
+import { format, isToday, isThisYear } from 'date-fns'
 import { autoLink } from '@/utils/Twitter'
 // Components
 import Avatar from '../Avatar'
@@ -68,11 +68,6 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      pattern: 'EEE MMM dd HH:mm:ss xx yyyy'
-    }
-  },
   computed: {
     tweet() {
       if (this.item.retweeted_status)
@@ -95,16 +90,18 @@ export default {
 
       return autoLink(this.tweet.text)
     },
-    time() {
-      let timestamp = parse(this.tweet.created_at, this.pattern, new Date())
-      let diff = differenceInCalendarDays(new Date(), timestamp)
+    timestamp() {
+      const date = new Date(this.tweet.created_at)
 
-      if (diff < 1)
-        return format(timestamp, 'HH:mm')
-      if (diff < 365)
-        return format(timestamp, 'MMM d')
+      if (isToday(date))
+        return format(date, 'HH:mm')
+      if (isThisYear(date))
+        return format(date, 'MMM d')
 
-      return format(timestamp, 'MMM d, yyyy') // Implement last year
+      return format(date, 'MMM d, yyyy')
+    },
+    date() {
+      return format(new Date(this.tweet.created_at), 'HH:mm · MMM d, yyyy')
     }
   }
 }

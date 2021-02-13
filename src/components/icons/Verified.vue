@@ -6,6 +6,7 @@
 
 <style lang='scss' scoped>
   .verified {
+    margin-left: 2px;
     color: var(--verified-color);
   }
 </style>
