@@ -10,13 +10,14 @@
       <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
         <UserPopover :item="tweet.user">
           <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
-          <p class="d-flex align-items-center fw-700 underline-hover">
+          <p class="p-r-1 d-flex align-items-center fw-700 underline-hover">
             {{ tweet.user.name }}
             <Verified v-if="!item.verified" class="h-3"/>
           </p>
-          <p class="handle p-x-1 d-flex align-items-center c-secondary underline-hover">{{ tweet.user.screen_name }}</p>
+          <p class="handle d-flex align-items-center c-secondary underline-hover">{{ tweet.user.screen_name }}</p>
         </UserPopover>
-        <p v-tooltip="date" class="c-secondary underline-hover">· {{ timestamp }}</p>
+        <p class="p-x-1 c-secondary">·</p>
+        <p v-tooltip="{content: date, trigger: 'click'}" class="c-secondary underline-hover">{{ timestamp }}</p>
       </div>
       <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
@@ -101,7 +102,7 @@ export default {
       return format(date, 'MMM d, yyyy')
     },
     date() {
-      return format(new Date(this.tweet.created_at), 'HH:mm · MMM d, yyyy')
+      return format(new Date(this.tweet.created_at), 'h:mm aa · MMM d, yyyy')
     }
   }
 }
