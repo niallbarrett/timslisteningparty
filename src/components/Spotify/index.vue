@@ -1,7 +1,7 @@
 <template>
   <Panel>
     <template #title>
-      <Album :item="item" class="p-t-2 p-x-2" @play="play"/>
+      <Details :item="item" class="p-t-2 p-x-2" @play="play"/>
     </template>
     <div class="p-y-2">
       <Track
@@ -19,13 +19,13 @@ import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 // Components
 import Panel from '@/components/common/Panel'
-import Album from '@/components/Setup/Album'
+import Details from './Details'
 import Track from './Track'
 
 export default {
   components: {
     Panel,
-    Album,
+    Details,
     Track
   },
   props: {

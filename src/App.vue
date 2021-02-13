@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.up="setup" tabIndex="0">
     <div v-if="album.id" class="w-14 pos-sticky-t">
-      <Album :item="album"/>
+      <Spotify :item="album"/>
     </div>
     <Timeline :count="tweets.length" class="m-x-3">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
@@ -29,7 +29,7 @@ import Tweet from '@/components/Twitter/Tweet'
 import User from '@/components/Twitter/User'
 import UserPopover from '@/components/Twitter/UserPopover'
 import Panel from '@/components/common/Panel'
-import Album from '@/components/Album'
+import Spotify from '@/components/Spotify'
 import ModePicker from '@/components/ModePicker'
 
 export default {
@@ -40,7 +40,7 @@ export default {
     User,
     UserPopover,
     Panel,
-    Album,
+    Spotify,
     ModePicker
   },
   data() {

@@ -18,7 +18,7 @@
         @click="select(result.id)"/>
     </Search>
     <template #results>
-      <Album :item="album" class="p-x-4" preview/>
+      <Details :item="album" class="p-x-4" preview/>
     </template>
     <template #footer>
       <Button text="Skip" clear @click="$emit('next')"/>
@@ -35,18 +35,18 @@ import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 // Components
 import Step from './Step'
-import Album from './Album'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import ResultAlbum from '@/components/common/Search/ResultAlbum'
+import Details from '@/components/Spotify/Details'
 
 export default {
   components: {
     Step,
-    Album,
     Button,
     Search,
-    ResultAlbum
+    ResultAlbum,
+    Details
   },
   data() {
     return {
