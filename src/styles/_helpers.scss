@@ -183,6 +183,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .c-accent {
   color: var(--accent-color);
 }
+.c-text {
+  color: var(--text-color);
+}
 // Border radius
 @each $item in $border-radius {
   $i: index($border-radius, $item) - 1;

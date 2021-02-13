@@ -3,15 +3,17 @@
     <Retweeted v-if="item.retweeted_status" :name="item.user.name"/>
     <Avatar v-if="!quote" :image="tweet.user.profile_image_url" class="m-r-2"/>
     <div class="flex-1">
-      <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
-        <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
-        <p class="fw-700">
-          {{ tweet.user.name }}
-        </p>
-        <Verified v-if="item.verified" class="h-3"/>
-        <p class="c-secondary handle p-x-1">{{ tweet.user.screen_name }}</p>
-        <p class="c-secondary time">{{ time }}</p>
-      </div>
+      <UserPopover :item="tweet.user">
+        <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
+          <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
+          <p class="fw-700">
+            {{ tweet.user.name }}
+          </p>
+          <Verified v-if="item.verified" class="h-3"/>
+          <p class="c-secondary handle p-x-1">{{ tweet.user.screen_name }}</p>
+          <p class="c-secondary time">{{ time }}</p>
+        </div>
+      </UserPopover>
       <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
@@ -37,6 +39,7 @@ import Retweeted from './Retweeted'
 import MediaImages from './MediaImages'
 import MediaGif from './MediaGif'
 import MediaVideo from './MediaVideo'
+import UserPopover from '@/components/Twitter/UserPopover'
 // Assets
 import Verified from '@/components/icons/Verified'
 
@@ -48,7 +51,8 @@ export default {
     MediaImages,
     MediaGif,
     MediaVideo,
-    Verified
+    Verified,
+    UserPopover
   },
   props: {
     item: {

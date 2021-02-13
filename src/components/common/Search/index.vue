@@ -72,10 +72,3 @@ export default {
   }
 }
 </script>
-
-<style lang='scss' scoped>
-  .popover-menu {
-    background-color: var(--bg-color);
-    box-shadow: var(--elevation-1), var(--elevation-2);
-  }
-</style>
