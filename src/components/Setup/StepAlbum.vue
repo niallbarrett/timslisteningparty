@@ -3,7 +3,12 @@
     title="Choose the album"
     description="Choose an album or skip, everybody knows the pain."
     wide>
-    <Search v-model="query" placeholder="Search albums" empty="Search by artist or album name" :count="results.length" :loading="loading">
+    <Search
+      v-model="query"
+      placeholder="Search albums"
+      empty="Search by artist or album name"
+      :count="results.length"
+      :loading="loading">
       <ResultAlbum
         v-for="result in results"
         :key="result.id"
@@ -13,7 +18,7 @@
         @click="select(result.id)"/>
     </Search>
     <template #results>
-      <Album :item="album" class="p-x-4"/>
+      <Album :item="album" class="p-x-4" preview/>
     </template>
     <template #footer>
       <Button text="Skip" clear @click="$emit('next')"/>
@@ -69,6 +74,8 @@ export default {
     search() {
       if (!this.query)
         return this.loading = false
+
+      this.loading = true
 
       spotify.searchAlbums(this.query).then((data) => {
         this.results = data.albums.items

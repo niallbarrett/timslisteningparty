@@ -1,13 +1,14 @@
 <template>
   <div
-    class="p-2 d-flex align-items-center f-5 lh-condensed-ultra cursor-pointer"
+    class="p-y-1 p-l-2 p-r-3 d-flex align-items-center f-5 cursor-pointer hover"
     @mouseover="hover = true"
-    @mouseleave="hover = false">
-    <div class="w-3 p-r-1 d-flex justify-content-end align-items-center c-secondary ta-r">
+    @mouseleave="hover = false"
+    @click="$emit('play', item.track_number - 1)">
+    <div class="w-3 d-flex justify-content-end align-items-center c-secondary ta-r">
       <PlayIcon v-if="hover" class="h-2 c-primary"/>
       <div v-else>{{ item.track_number }}</div>
     </div>
-    <div>
+    <div class="p-x-2 flex-1 t-ellipsis" :title="item.name">
       {{ item.name }}
     </div>
     <div class="m-l-auto c-secondary f-6">

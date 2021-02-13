@@ -45,6 +45,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   .w-#{$i} {
     width: $v;
   }
+  .min-w-#{$i} {
+    min-width: $v;
+  }
   @each $side in $sides {
     $s: str-slice($side, 0, 1);
     .p-#{$s}-#{$i}{
@@ -149,6 +152,11 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .ta-r {
   text-align: right;
+}
+.t-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 // Colors
 .bg-color {

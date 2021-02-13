@@ -1,5 +1,5 @@
 <template>
-  <div :class="['user p-2 d-flex align-items-center cursor-default', {'is-active': active}]" v-on="$listeners">
+  <div :class="['user p-2 d-flex align-items-center cursor-default hover', {'is-active': active}]" v-on="$listeners">
     <Avatar :image="item.profile_image_url_https" class="m-r-2"/>
     <div :class="['d-flex direction-column', {'p-r-2': dismiss}]">
       <div class="d-flex align-items-center f-4 fw-700 lh-condensed wb-break-word">
@@ -48,9 +48,6 @@ export default {
 
 <style lang='scss' scoped>
   .user {
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
     &.is-active {
       background-color: var(--border-color);
     }

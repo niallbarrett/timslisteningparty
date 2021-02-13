@@ -1,14 +1,20 @@
 <template>
   <div>
     <div
-      :class="['cover h-13 w-13 p-3 m-b-2 d-flex align-items-center justify-content-center c-secondary b-a br-1', {'cursor-pointer justify-content-end align-items-end': !empty}]"
-      :style="{backgroundImage: cover}">
-      <NoteIcon v-if="empty" class="h-8"/>
-      <Button v-if="!empty" icon class="play primary">
-        <PlayIcon class="h-3"/>
-      </Button>
+      :class="['cover m-b-2 d-grid pos-relative c-secondary b-a br-1 overflow-hidden', {'cursor-pointer': !empty && !preview}]"
+      @click="play">
+      <svg viewBox="0 0 1 1"/>
+      <img v-if="!empty" :src="cover" class="w-100">
+      <div v-else class="d-flex align-items-center justify-content-center">
+        <NoteIcon class="h-8"/>
+      </div>
+      <div v-if="!empty && !preview" class="play p-2 pos-absolute pointer-events-none">
+        <Button icon class="primary">
+          <PlayIcon class="h-3"/>
+        </Button>
+      </div>
     </div>
-    <div class="f-4 fw-700 lh-condensed-ultra">
+    <div class="f-4 fw-700 lh-condensed">
       {{ title }}
     </div>
     <div class="f-5 c-secondary">
@@ -36,6 +42,10 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    preview: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -46,7 +56,7 @@ export default {
       return this.empty ? 'Album' : this.item.name
     },
     cover() {
-      return this.empty ? null : `url(${this.item.images[0].url})`
+      return this.item.images[0].url
     },
     year() {
       return format(new Date(this.item.release_date), 'yyyy')
@@ -55,7 +65,16 @@ export default {
       if (this.empty)
         return 'Artist'
 
-      return `${this.item.artists[0].name} · ${this.year} · ${this.item.total_tracks} tracks`
+      return `${this.item.artists[0].name} · ${this.year} ${this.tracks}`
+    },
+    tracks() {
+      return this.preview ? `· ${this.item.total_tracks} tracks` : ''
+    }
+  },
+  methods: {
+    play() {
+      if (!this.preview)
+        return this.$emit('play')
     }
   }
 }
@@ -68,10 +87,17 @@ export default {
     background-size: cover;
     background-position: center;
     .play {
+      right: 0;
+      bottom: 0;
       opacity: var(--o);
       transform: translateY(var(--y));
       transition: all 0.2s ease;
-      box-shadow: var(--elevation-1), var(--elevation-2);
+      .button {
+        box-shadow: var(--elevation-1), var(--elevation-2);
+      }
+    }
+    & > * {
+      grid-area: 1/1;
     }
     &:hover .play {
       --o: 1;

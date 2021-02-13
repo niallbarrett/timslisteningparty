@@ -2,8 +2,7 @@
   <Step
     title="The only ones I know..."
     description="Choose who you want to listen along with."
-    wide
-    class="is-w-fixed">
+    wide>
     <Search
       v-model="query"
       placeholder="Search users"

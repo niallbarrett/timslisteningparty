@@ -45,11 +45,9 @@ export default {
   .step {
     box-shadow: var(--elevation-1), var(--elevation-2);
     &-results {
+      width: 40%;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
-    }
-    &.is-w-fixed &-results {
-      width: 40%;
     }
   }
 </style>

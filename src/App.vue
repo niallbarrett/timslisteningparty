@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.right="dark" tabIndex="0">
-    <div v-if="album.id" class="pos-sticky-t">
+  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.right="dark" @keyup.up="setup" tabIndex="0">
+    <div v-if="album.id" class="w-14 pos-sticky-t">
       <Album :item="album"/>
     </div>
     <Timeline :count="tweets.length" class="m-x-3">
@@ -70,6 +70,9 @@ export default {
     },
     dark() {
       document.body.classList.toggle('is-dim')
+    },
+    setup() {
+      this.showSetup = !this.showSetup
     }
   }
 }

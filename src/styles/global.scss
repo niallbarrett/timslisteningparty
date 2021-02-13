@@ -13,6 +13,9 @@ body {
   @extend .f-4;
   line-height: 1.5;
 }
+img {
+  display: block;
+}
 button, input, video {
   outline: none;
   border: none;
@@ -36,7 +39,7 @@ a {
 .hover {
   transition: background-color var(--transition-duration) var(--transition-timing-function);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(0, 0, 0, 0.08);
   }
 }
 .popover {
