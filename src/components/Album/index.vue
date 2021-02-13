@@ -1,7 +1,7 @@
 <template>
   <Panel>
     <template #title>
-      <Album :item="item" class="p-2" @play="play"/>
+      <Album :item="item" class="p-t-2 p-x-2" @play="play"/>
     </template>
     <div class="p-y-2">
       <Track

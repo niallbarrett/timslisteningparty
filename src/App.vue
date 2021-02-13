@@ -8,7 +8,7 @@
     </Timeline>
     <div v-if="!!following.length" class="w-14 pos-sticky-t">
       <Panel title="Following">
-        <UserPopover v-for="user in following" :key="user.id_str" :item="user" placement="auto">
+        <UserPopover v-for="user in following" :key="user.id_str" :item="user">
           <User :item="user"/>
         </UserPopover>
       </Panel>

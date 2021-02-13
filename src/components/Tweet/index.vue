@@ -1,13 +1,13 @@
 <template>
   <div :class="['tweet p-t-3 d-flex b-t hover', {'p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
-    <UserPopover v-if="item.retweeted_status" :item="item.user" class="w-100">
+    <UserPopover v-if="item.retweeted_status" :item="item.user" placement="bottom-start" class="w-100">
       <Retweeted :name="item.user.name"/>
     </UserPopover>
-    <UserPopover v-if="!quote" :item="tweet.user" placement="bottom">
+    <UserPopover v-if="!quote" :item="tweet.user">
       <Avatar :image="tweet.user.profile_image_url" class="m-r-2"/>
     </UserPopover>
     <div class="flex-1">
-      <UserPopover :item="tweet.user">
+      <UserPopover :item="tweet.user" placement="bottom-start">
         <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
           <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
           <p class="fw-700">

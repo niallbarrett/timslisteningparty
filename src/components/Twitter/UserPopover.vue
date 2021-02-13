@@ -1,7 +1,7 @@
 <template>
   <v-popover
     :placement="placement"
-    trigger="click"
+    trigger="hover"
     :delay="{ show: 600, hide: 0 }"
     boundaries-element="body"
     container="body"
@@ -50,7 +50,7 @@ export default {
     },
     placement: {
       type: String,
-      default: 'bottom-start'
+      default: 'bottom'
     }
   },
   computed: {
