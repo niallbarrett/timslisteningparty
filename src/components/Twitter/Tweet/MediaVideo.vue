@@ -48,6 +48,6 @@ export default {
 
 <style lang='scss' scoped>
   .media-item {
-    background-color: var(--video-bg-color);
+    background-color: #000;
   }
 </style>

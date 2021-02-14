@@ -1,5 +1,5 @@
 <template>
-  <div :class="['album p-2 d-flex align-items-center cursor-pointer', {'is-active': active}]" v-on="$listeners">
+  <div :class="['album p-2 d-flex align-items-center cursor-pointer hover', {'bg-border': active}]" v-on="$listeners">
     <img :src="item.images[1].url" class="h-6 w-6 m-r-2 b-a br-0">
     <div class="d-flex direction-column">
       <div class="f-4 fw-700 lh-condensed-ultra wb-break-word">
@@ -26,14 +26,3 @@ export default {
   }
 }
 </script>
-
-<style lang='scss' scoped>
-  .album {
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
-    &.is-active {
-      background-color: var(--border-color);
-    }
-  }
-</style>

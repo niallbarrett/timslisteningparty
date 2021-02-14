@@ -55,8 +55,8 @@ export default {
     bottom: 0;
     left: 0;
   }
-  .is-active {
-    --border-color: var(--primary-color);
+  .is-active div {
+    border: 1px solid var(--primary-color);
   }
   .button {
     box-shadow: var(--elevation-1), var(--elevation-2);

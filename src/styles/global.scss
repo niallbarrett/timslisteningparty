@@ -33,24 +33,26 @@ a {
 .handle:before {
   content: '@';
 }
-.time:before {
-  content: '· ';
-}
 .hover {
   transition: background-color var(--transition-duration) var(--transition-timing-function);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: #{'rgba(var(--border-color), 0.25)'};
   }
 }
-.popover {
+.tooltip {
   outline: none;
+  &:not(.popover) {
+    background-color: #{'rgba(var(--tooltip-color), 0.7)'};
+    color: #fff;
+    border-radius: 2px;
+  }
   &[aria-hidden='true'] {
     opacity: 0;
-    transition: opacity .15s;
+    transition: opacity 0.2s;
   }
   &[aria-hidden='false'] {
     opacity: 1;
-    transition: opacity .15s;
+    transition: opacity 0.2s;
   }
 }
 .v-popover {

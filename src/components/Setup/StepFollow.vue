@@ -26,7 +26,7 @@
         @remove="select(user)"/>
     </template>
     <template #footer>
-      <Button text="Re-choose album" clear @click="$emit('prev')"/>
+      <Button v-if="token" text="Re-choose album" clear @click="$emit('prev')"/>
       <Button text="Start the party" class="primary m-l-2" @click="confirm"/>
     </template>
   </Step>
@@ -65,6 +65,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'token',
       'following',
       'timId'
     ])

@@ -17,7 +17,7 @@
           <p class="handle d-flex align-items-center c-secondary underline-hover">{{ tweet.user.screen_name }}</p>
         </UserPopover>
         <p class="p-x-1 c-secondary">·</p>
-        <p v-tooltip="{content: date, trigger: 'click'}" class="c-secondary underline-hover">{{ timestamp }}</p>
+        <p v-tooltip="{content: fullTimestamp, delay: { show: 600 }, classes: 'p-x-1 f-6'}" class="c-secondary underline-hover">{{ timestamp }}</p>
       </div>
       <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
@@ -101,7 +101,7 @@ export default {
 
       return format(date, 'MMM d, yyyy')
     },
-    date() {
+    fullTimestamp() {
       return format(new Date(this.tweet.created_at), 'h:mm aa · MMM d, yyyy')
     }
   }

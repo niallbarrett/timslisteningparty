@@ -6,7 +6,11 @@ import VTooltip from 'v-tooltip'
 
 import store from '@/store'
 
-Vue.use(VTooltip)
+Vue.use(VTooltip, {
+  popover: {
+    defaultInnerClass: 'popover-inner'
+  }
+})
 Vue.use(new VueSocketIO({
     debug: true,
     connection: SocketIO('http://localhost:4000')

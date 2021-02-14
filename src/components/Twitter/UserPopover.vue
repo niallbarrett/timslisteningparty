@@ -8,7 +8,7 @@
     class="cursor-default">
     <slot/>
     <template slot="popover">
-      <div class="popover-menu w-100 m-t-1 br-1 b-a overflow-hidden">
+      <div class="popover-menu w-100 m-1 br-1 b-a overflow-hidden">
         <div class="banner h-9 bg-accent b-b" :style="{backgroundImage: `url(${item.profile_banner_url}`}"/>
         <div class="content p-x-3 p-b-3">
           <Avatar :image="item.profile_image_url" large class="m-b-1"/>

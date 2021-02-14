@@ -175,7 +175,7 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   background-color: var(--accent-color);
 }
 .bg-border {
-  background-color: var(--border-color);
+  background-color: #{'rgb(var(--border-color))'};
 }
 .c-primary {
   color: var(--primary-color);
@@ -232,14 +232,14 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   @if $s == 'a' {
     .b-a {
       border-width: 1px;
-      border-color: var(--border-color);
+      border-color: #{'rgb(var(--border-color))'};
       border-style: solid;
     }
   }
   @else {
     .b-#{$s} {
       border-#{$side}-width: 1px;
-      border-#{$side}-color: var(--border-color);
+      border-#{$side}-color: #{'rgb(var(--border-color))'};
       border-#{$side}-style: solid;
     }
   }
