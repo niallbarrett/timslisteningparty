@@ -4,7 +4,8 @@
       v-for="item in items"
       :key="item.id_str"
       class="media-item cursor-pointer"
-      :style="{backgroundImage: `url(${item.media_url})`}"/>
+      :style="{backgroundImage: `url(${item.media_url})`}"
+      @click="$emit('view', item.id_str)"/>
   </div>
 </template>
 

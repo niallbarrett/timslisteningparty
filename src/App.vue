@@ -14,6 +14,7 @@
       </Panel>
     </div>
     <ModePicker/>
+    <TweetModal v-if="highlight" :item="highlight"/>
     <Setup v-if="showSetup" :show.sync="showSetup"/>
   </div>
 </template>
@@ -28,6 +29,7 @@ import Timeline from '@/components/Timeline'
 import Tweet from '@/components/Twitter/Tweet'
 import User from '@/components/Twitter/User'
 import UserPopover from '@/components/Twitter/UserPopover'
+import TweetModal from '@/components/Twitter/TweetModal'
 import Panel from '@/components/common/Panel'
 import Spotify from '@/components/Spotify'
 import ModePicker from '@/components/ModePicker'
@@ -39,6 +41,7 @@ export default {
     Tweet,
     User,
     UserPopover,
+    TweetModal,
     Panel,
     Spotify,
     ModePicker
@@ -59,7 +62,8 @@ export default {
   computed: {
     ...mapGetters([
       'following',
-      'album'
+      'album',
+      'highlight'
     ])
   },
   methods: {

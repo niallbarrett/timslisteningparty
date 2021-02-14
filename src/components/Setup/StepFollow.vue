@@ -18,12 +18,9 @@
         @click="select(result)"/>
     </Search>
     <template #results>
-      <User
-        v-for="user in following"
-        :key="user.id_str"
-        :item="user"
-        :dismiss="user.id_str !== timId"
-        @remove="select(user)"/>
+      <UserPopover v-for="user in following" :key="user.id_str" :item="user">
+        <User :item="user" :dismiss="user.id_str !== timId" @remove="select(user)"/>
+      </UserPopover>
     </template>
     <template #footer>
       <Button v-if="token" text="Re-choose album" clear @click="$emit('prev')"/>
@@ -41,13 +38,15 @@ import Step from './Step'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import User from '@/components/Twitter/User'
+import UserPopover from '@/components/Twitter/UserPopover'
 
 export default {
   components: {
     Step,
     Button,
     Search,
-    User
+    User,
+    UserPopover
   },
   data() {
     return {

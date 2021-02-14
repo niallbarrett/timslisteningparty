@@ -8,7 +8,8 @@ export const store = {
   state: {
     token: null,
     album: album,
-    following: [tim]
+    following: [tim],
+    highlight: null
   },
   getters: {
     token(state) {
@@ -22,6 +23,9 @@ export const store = {
     },
     timId(state) {
       return state.following[0].id_str
+    },
+    highlight(state) {
+      return state.highlight
     }
   },
   mutations: {
@@ -30,6 +34,9 @@ export const store = {
     },
     setAlbum(state, album) {
       return state.album = album
+    },
+    setHighlight(state, tweet) {
+      return state.highlight = tweet
     },
     addUser(state, user) {
       return state.following.push(user)

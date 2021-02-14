@@ -2,13 +2,13 @@
   <v-popover
     :placement="placement"
     trigger="hover"
-    :delay="{ show: 600, hide: 0 }"
+    :delay="{ show: 600 }"
     boundaries-element="body"
     container="body"
     class="cursor-default">
     <slot/>
     <template slot="popover">
-      <div class="popover-menu w-100 m-1 br-1 b-a overflow-hidden">
+      <div class="popover-menu m-1 br-1 b-a overflow-hidden">
         <div class="banner h-9 bg-accent b-b" :style="{backgroundImage: `url(${item.profile_banner_url}`}"/>
         <div class="content p-x-3 p-b-3">
           <Avatar :image="item.profile_image_url" large class="m-b-1"/>
@@ -69,7 +69,7 @@ export default {
 
 <style lang='scss' scoped>
   .popover-menu {
-    max-width: 300px;
+    width: 300px;
     .avatar {
       border: 2px solid var(--bg-color);
     }

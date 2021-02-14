@@ -19,11 +19,11 @@
         <p class="p-x-1 c-secondary">·</p>
         <p v-tooltip="{content: fullTimestamp, delay: { show: 600 }, classes: 'p-x-1 f-6'}" class="c-secondary underline-hover">{{ timestamp }}</p>
       </div>
-      <p class="text m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
+      <p class="m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
         <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
-        <MediaImages v-else :items="entities.media"/>
+        <MediaImages v-else :items="entities.media" @view="view"/>
       </div>
       <tweet
         v-if="tweet.is_quote_status"
@@ -35,9 +35,8 @@
 </template>
 
 <script>
-// Libraries
-import { format, isToday, isThisYear } from 'date-fns'
-import { autoLink } from '@/utils/Twitter'
+// Mixins
+import TweetMixin from '@/mixins/TweetMixin'
 // Components
 import Avatar from '../Avatar'
 import Retweeted from './Retweeted'
@@ -50,6 +49,7 @@ import Verified from '@/components/icons/Verified'
 
 export default {
   name: 'tweet',
+  mixins: [TweetMixin],
   components: {
     Avatar,
     Retweeted,
@@ -59,50 +59,9 @@ export default {
     Verified,
     UserPopover
   },
-  props: {
-    item: {
-      type: Object,
-      required: true
-    },
-    quote: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    tweet() {
-      if (this.item.retweeted_status)
-        return this.item.retweeted_status
-
-      return this.item
-    },
-    entities() {
-      if (this.tweet.extended_tweet)
-        return this.tweet.extended_tweet.entities
-
-      if (this.tweet.extended_entities)
-        return this.tweet.extended_entities
-
-      return this.tweet.entities
-    },
-    text() {
-      if (this.tweet.extended_tweet)
-        return autoLink(this.tweet.extended_tweet.full_text)
-
-      return autoLink(this.tweet.text)
-    },
-    timestamp() {
-      const date = new Date(this.tweet.created_at)
-
-      if (isToday(date))
-        return format(date, 'HH:mm')
-      if (isThisYear(date))
-        return format(date, 'MMM d')
-
-      return format(date, 'MMM d, yyyy')
-    },
-    fullTimestamp() {
-      return format(new Date(this.tweet.created_at), 'h:mm aa · MMM d, yyyy')
+  methods: {
+    view(media_id) {
+      this.$store.commit('setHighlight', { ...this.item, penis: media_id })
     }
   }
 }
