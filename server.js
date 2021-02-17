@@ -2,22 +2,21 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
-const port = 4000
 const Twit = require('twit')
 
 let FOLLOWING = []
 
-const server = app.listen(`${port}`, function() {
-  console.log(`Server started on port ${port}`)
+const server = app.listen(process.env.VUE_APP_NODE_PORT, function() {
+  console.log(`Server started on port ${process.env.VUE_APP_NODE_PORT}`)
 })
 
 const io = require("socket.io")(server)
 
 const T = new Twit({
-  consumer_key: process.env.VUE_APP_TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.VUE_APP_TWITTER_CONSUMER_SECRET,
-  access_token: process.env.VUE_APP_TWITTER_ACCESS_TOKEN_KEY,
-  access_token_secret: process.env.VUE_APP_TWITTER_ACCESS_TOKEN_SECRET
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 })
 
 function startStream() {

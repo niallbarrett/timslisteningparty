@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       step: 0,
+      redirect_uri: `http://localhost:${process.env.VUE_APP_PORT}/`,
       endpoint: 'https://accounts.spotify.com/authorize',
       scopes: 'user-read-playback-state user-modify-playback-state user-read-private'
     }
@@ -66,7 +67,7 @@ export default {
   },
   methods: {
     connect() {
-      return window.location = `${this.endpoint}?client_id=${process.env.VUE_APP_SPOTIFY_CLIENT_ID}&redirect_uri=${process.env.VUE_APP_SPOTIFY_REDIRECT_URI}&response_type=token&scope=${encodeURIComponent(this.scopes)}`
+      return window.location = `${this.endpoint}?client_id=${process.env.VUE_APP_SPOTIFY_CLIENT_ID}&redirect_uri=${this.redirect_uri}&response_type=token&scope=${encodeURIComponent(this.scopes)}`
     },
     finish() {
       this.$emit('update:show', false)

@@ -13,7 +13,7 @@ Vue.use(VTooltip, {
 })
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: SocketIO('http://localhost:4000')
+    connection: SocketIO(`http://localhost:${process.env.VUE_APP_NODE_PORT}`)
   })
 )
 Vue.config.productionTip = false
