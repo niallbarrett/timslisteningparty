@@ -43,7 +43,8 @@ export default {
   },
   data() {
     return {
-      showSetup: false
+      debug: false,
+      showSetup: !this.debug
     }
   },
   computed: {
@@ -55,7 +56,8 @@ export default {
   },
   methods: {
     setup() {
-      this.showSetup = !this.showSetup
+      if (this.debug)
+        return this.showSetup = !this.showSetup
     }
   }
 }

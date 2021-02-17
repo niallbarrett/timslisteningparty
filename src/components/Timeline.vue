@@ -29,6 +29,7 @@ export default {
   },
   data() {
     return {
+      debug: false,
       scrolled: false,
       threshold: 400,
       tweets: [],
@@ -39,7 +40,7 @@ export default {
   sockets: {
     tweet: function(tweet) {
       this.tweets.push(tweet)
-      this.scrollToTop()
+      return this.scrolled ? this.unseen.push(tweet.user) : this.scrollToTop()
     }
   },
   created() {
@@ -62,6 +63,9 @@ export default {
       this.scrolled = window.scrollY > this.threshold
     },
     add() {
+      if (!this.debug)
+        return
+
       let tweet = this.json.shift()
       this.tweets.push(tweet)
 
