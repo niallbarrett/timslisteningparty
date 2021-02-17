@@ -53,7 +53,7 @@ export default {
   .avatar {
     border: 2px solid var(--primary-color);
     &:not(:first-of-type) {
-      margin-left: -12px;
+      margin-left: -10px;
     }
   }
   .slide-enter-active, .slide-leave-active {

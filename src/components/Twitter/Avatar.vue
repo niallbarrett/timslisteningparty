@@ -26,7 +26,13 @@ export default {
   },
   computed: {
     src() {
-      return this.error ? this.default : this.image
+      if (this.error)
+        return this.default
+
+      if (this.compact)
+        return this.image
+
+      return this.image.replace('_normal', '_bigger')
     },
     size() {
       if (this.large)
