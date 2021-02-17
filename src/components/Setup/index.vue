@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" appear>
-    <div class="setup p-4 d-flex justify-content-center align-items-center pos-fixed bg-border">
+    <div v-hide-scroll class="setup p-4 d-flex justify-content-center align-items-center pos-fixed bg-border">
       <transition name="slide">
         <Step
           v-if="step === 0"
@@ -22,6 +22,8 @@
 // Libraries
 import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
+// Directives
+import HideScroll from '@/directives/HideScroll'
 // Components
 import Step from './Step'
 import StepAlbum from './StepAlbum'
@@ -34,6 +36,9 @@ export default {
     StepAlbum,
     StepFollow,
     Button
+  },
+  directives: {
+    HideScroll
   },
   props: {
     show: {
@@ -48,12 +53,6 @@ export default {
       endpoint: 'https://accounts.spotify.com/authorize',
       scopes: 'user-read-playback-state user-modify-playback-state user-read-private'
     }
-  },
-  mounted() {
-    document.documentElement.style.overflow = 'hidden'
-  },
-  destroyed() {
-    document.documentElement.style.overflow = 'auto'
   },
   created() {
     let token = window.location.hash.substr(1)
@@ -94,11 +93,5 @@ export default {
   }
   .slide-leave-active {
     transform: translateX(-500px);
-  }
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s ease;
   }
 </style>

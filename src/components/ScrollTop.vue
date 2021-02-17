@@ -3,7 +3,7 @@
     <div class="h-0 pos-sticky-t d-flex justify-content-center pointer-events-none">
       <div class="scroll-top h-5 p-l-2 p-r-3 m-3 pos-absolute d-flex align-items-center bg-primary f-5 pointer-events-all cursor-pointer" v-on="$listeners">
         <ArrowUpIcon class="h-3"/>
-        <div class="m-r-3 d-flex">
+        <div class="m-r-2 d-flex">
           <Avatar
             v-for="user in users.slice(0, 3)"
             :key="user.id_str"
@@ -51,8 +51,10 @@ export default {
     box-shadow: var(--elevation-2);
   }
   .avatar {
-    margin-right: -8px;
     border: 2px solid var(--primary-color);
+    &:not(:first-of-type) {
+      margin-left: -12px;
+    }
   }
   .slide-enter-active, .slide-leave-active {
     transition: all 0.3s;

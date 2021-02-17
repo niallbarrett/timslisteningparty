@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" appear>
-    <div class="tweet-modal pos-fixed d-flex">
+    <div v-hide-scroll :class="`tweet-modal pos-fixed d-flex is-${direction}`">
       <div class="flex-1 d-flex justify-content-center overflow-hidden pos-relative">
         <transition name="slide">
           <template v-for="(img, index) in media">
@@ -43,6 +43,8 @@
 <script>
 // Mixins
 import TweetMixin from '@/mixins/TweetMixin'
+// Directives
+import HideScroll from '@/directives/HideScroll'
 // Components
 import Button from '@/components/common/Button'
 import UserPopover from './UserPopover'
@@ -62,17 +64,22 @@ export default {
     ArrowForwardIcon,
     ArrowBackIcon
   },
+  directives: {
+    HideScroll
+  },
   data() {
     return {
-      activeIndex: 0
+      activeIndex: 0,
+      direction: 'right'
     }
   },
-  mounted() {
-    this.activeIndex = this.media.findIndex(item => item.id_str === this.item.media_id_active)
-    document.documentElement.style.overflow = 'hidden'
+  watch: {
+    activeIndex(val, old) {
+      this.direction = val > old ? 'left' : 'right'
+    }
   },
-  destroyed() {
-    document.documentElement.style.overflow = 'auto'
+  created() {
+    this.activeIndex = this.media.findIndex(item => item.id_str === this.item.media_id_active)
   },
   computed: {
     media() {
@@ -100,11 +107,15 @@ export default {
 
 <style lang='scss' scoped>
   .tweet-modal {
+    --x: -500px;
     background-color: #{'rgba(var(--tooltip-color), 0.95)'};
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    &.is-left {
+      --x: 500px;
+    }
   }
   .close {
     top: 0;
@@ -117,21 +128,15 @@ export default {
     bottom: 0;
   }
   .slide-enter-active, .slide-leave-active {
-    transition: all 0.6s;
+    transition: all 0.4s;
   }
   .slide-enter, .slide-leave-active {
     opacity: 0;
   }
   .slide-enter {
-    transform: translateX(500px);
+    transform: translateX(var(--x));
   }
   .slide-leave-active {
-    transform: translateX(-500px);
-  }
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s ease;
+    transform: translateX(calc(-1 * var(--x)));
   }
 </style>
