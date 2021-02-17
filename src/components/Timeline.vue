@@ -1,24 +1,80 @@
 <template>
-  <div :class="`timeline min-h-100vh w-100 d-flex direction-column-reverse justify-content-${count > 0 ? 'start':'center align-items-center'} b-l b-r`">
-    <slot v-if="count > 0"/>
+  <div :class="`timeline min-h-100vh w-100 d-flex direction-column-reverse justify-content-${!empty ? 'start':'center align-items-center'} b-l b-r`" tabindex="0" @keyup.left="add">
+    <template v-if="!empty">
+      <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
+    </template>
     <div v-else class="p-5 d-flex direction-column f-3 c-secondary">
-      <Beer class="h-7"/>
+      <BeerIcon class="h-7"/>
       <div>No tweets yet. Go and grab a beer in the meantime!</div>
     </div>
+    <ScrollTop v-if="!!unseen.length" :items="unseen" @click="scrollToTop"/>
   </div>
 </template>
 
 <script>
-import Beer from '@/components/icons/Beer'
+import Test from '@/json/tweets.json'
+// Libraries
+import { throttle } from 'lodash'
+// Components
+import Tweet from '@/components/Twitter/Tweet'
+import ScrollTop from '@/components/ScrollTop'
+// Assets
+import BeerIcon from '@/components/icons/Beer'
 
 export default {
   components: {
-    Beer
+    Tweet,
+    ScrollTop,
+    BeerIcon
   },
-  props: {
-    count: {
-      type: Number,
-      required: true
+  data() {
+    return {
+      scrolled: false,
+      threshold: 400,
+      tweets: [],
+      unseen: [],
+      json: Test
+    }
+  },
+  sockets: {
+    tweet: function(tweet) {
+      this.tweets.push(tweet)
+      this.scrollToTop()
+    }
+  },
+  created() {
+    this.scroll = throttle(this.scroll, 500)
+    document.addEventListener('scroll', this.scroll)
+  },
+  computed: {
+    empty() {
+      return this.tweets.length === 0
+    }
+  },
+  watch: {
+    scrolled(val) {
+      if (!val)
+        this.unseen = []
+    }
+  },
+  methods: {
+    scroll() {
+      this.scrolled = window.scrollY > this.threshold
+    },
+    add() {
+      let tweet = this.json.shift()
+      this.tweets.push(tweet)
+
+      if (this.scrolled)
+        return this.unseen.push(tweet.user)
+
+      return this.scrollToTop()
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }

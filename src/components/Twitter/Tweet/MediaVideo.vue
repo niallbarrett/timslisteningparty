@@ -35,12 +35,7 @@ export default {
   },
   computed: {
     time() {
-      const left = this.item.video_info.duration_millis - this.currentTime
-
-      if (left < 0)
-        return '0:00'
-
-      return formatDuration(left)
+      return formatDuration(this.item.video_info.duration_millis - this.currentTime)
     }
   }
 }

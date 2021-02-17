@@ -1,5 +1,7 @@
 <template>
-  <div :class="['p-2 d-flex align-items-center flex-1 cursor-default hover', {'bg-border': active}]" v-on="$listeners">
+  <div
+    :class="['d-flex align-items-center flex-1 cursor-default', {'bg-border': active}, {'p-2 hover': !readonly}]"
+    v-on="$listeners">
     <Avatar :image="item.profile_image_url_https" class="m-r-2"/>
     <div :class="['d-flex direction-column', {'p-r-2': dismiss}]">
       <div class="d-flex align-items-center f-4 fw-700 lh-condensed wb-break-word">
@@ -39,6 +41,10 @@ export default {
       default: false
     },
     dismiss: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }

@@ -1,11 +1,9 @@
 <template>
-  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.left="add" @keyup.up="setup" tabIndex="0">
+  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.up="setup" tabIndex="0">
     <div v-if="album.id" class="w-14 pos-sticky-t">
       <Spotify :item="album"/>
     </div>
-    <Timeline :count="tweets.length" class="m-x-3">
-      <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
-    </Timeline>
+    <Timeline class="m-x-3"/>
     <div v-if="!!following.length" class="w-14 pos-sticky-t">
       <Panel title="Following">
         <UserPopover v-for="user in following" :key="user.id_str" :item="user">
@@ -20,13 +18,11 @@
 </template>
 
 <script>
-import Test from '@/json/tweets.json'
 // Libraries
 import { mapGetters } from 'vuex'
 // Components
 import Setup from '@/components/Setup'
 import Timeline from '@/components/Timeline'
-import Tweet from '@/components/Twitter/Tweet'
 import User from '@/components/Twitter/User'
 import UserPopover from '@/components/Twitter/UserPopover'
 import TweetModal from '@/components/Twitter/TweetModal'
@@ -38,7 +34,6 @@ export default {
   components: {
     Setup,
     Timeline,
-    Tweet,
     User,
     UserPopover,
     TweetModal,
@@ -48,15 +43,7 @@ export default {
   },
   data() {
     return {
-      tweets: [],
-      json: Test,
       showSetup: false
-    }
-  },
-  sockets: {
-    tweet: function(tweet) {
-      this.tweets.push(tweet)
-      this.scrollToTop()
     }
   },
   computed: {
@@ -67,18 +54,6 @@ export default {
     ])
   },
   methods: {
-    add() {
-      let tweet = this.json.shift()
-      this.tweets.push(tweet)
-      // this.tweets = this.json
-      this.scrollToTop()
-    },
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    },
     setup() {
       this.showSetup = !this.showSetup
     }

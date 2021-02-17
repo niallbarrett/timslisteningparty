@@ -223,6 +223,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .cursor-pointer {
   cursor: pointer;
 }
+.pointer-events-all {
+  pointer-events: all;
+}
 .pointer-events-none {
   pointer-events: none;
 }
@@ -246,6 +249,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 }
 .h-100 {
   height: 100%;
+}
+.h-100vh {
+  height: 100vh;
 }
 .min-h-100vh {
   min-height: 100vh;
