@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     users() {
-      return this.items.filter((val, index, arr) => arr.findIndex( item => (item.id_str === val.id_str)) === index)
+      return this.items.filter((val, index, arr) => arr.findIndex(item => (item.id_str === val.id_str)) === index)
     },
     label() {
       return `${this.items.length} new tweet${this.items.length > 1 ? 's' : ''}`

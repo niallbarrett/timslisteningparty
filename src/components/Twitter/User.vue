@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['d-flex align-items-center flex-1 cursor-default', {'bg-border': active}, {'p-2 hover': !readonly}]"
+    :class="['user d-flex align-items-center flex-1 cursor-default', {'p-2 hover': !readonly}, {'is-active': active}]"
     v-on="$listeners">
     <Avatar :image="item.profile_image_url_https" class="m-r-2"/>
     <div :class="['d-flex direction-column', {'p-r-2': dismiss}]">
@@ -51,3 +51,9 @@ export default {
   }
 }
 </script>
+
+<style lang='scss' scoped>
+  .user.is-active {
+    background-color: #{'rgb(var(--border-color))'};
+  }
+</style>
