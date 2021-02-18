@@ -6,6 +6,7 @@
   --border-color: 200, 214, 229; //#c8d6e5
   --bg-color: #fff;
   --text-color: #000;
+  --verified-color: var(--primary-color);
   --tooltip-color: 0, 0, 0;
   --elevation-1: 10px 9px 21px 0px rgba(128, 152, 213, 0.12);
   --elevation-2: 0 3px 3px -2px rgba(0, 0, 0, 0.4);
@@ -23,6 +24,7 @@
   --border-color: 56, 69, 77; //#38454d
   --bg-color: #15202b;
   --text-color: #fff;
+  --verified-color: #fff;
   --tooltip-color: var(--border-color);
 }
 .is-dark {
@@ -30,5 +32,6 @@
   --bg-color: #000;
   --border-color: 47, 52, 54; //#2f3436
   --text-color: #fff;
+  --verified-color: #fff;
   --tooltip-color: var(--border-color);
 }

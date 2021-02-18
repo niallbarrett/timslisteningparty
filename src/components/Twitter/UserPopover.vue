@@ -9,14 +9,16 @@
     <slot/>
     <template slot="popover">
       <div class="popover-menu m-1 br-1 b-a overflow-hidden">
-        <div class="banner h-9 bg-accent b-b" :style="{backgroundImage: `url(${item.profile_banner_url}`}"/>
+        <div class="banner h-9 bg-accent b-b" :style="{backgroundImage: `url(${item.profile_banner_url}/600x200`}"/>
         <div class="content p-x-3 p-b-3">
           <Avatar :image="item.profile_image_url" large class="m-b-1"/>
-          <div class="d-flex align-items-center f-4 fw-700 lh-condensed wb-break-word">
-            {{ item.name }}
+          <div class="d-flex align-items-center f-4 fw-700 lh-condensed">
+            <span class="t-ellipsis">
+              {{ item.name }}
+            </span>
             <Verified v-if="item.verified" class="h-3"/>
           </div>
-          <div class="handle m-b-2 c-secondary f-5 lh-condensed wb-break-word">{{ item.screen_name }}</div>
+          <div class="handle m-b-2 c-secondary f-5 lh-condensed t-ellipsis">{{ item.screen_name }}</div>
           <div v-if="item.description" class="f-4 lh-condensed" v-html="description"/>
           <div class="d-flex m-t-2">
             <Count :count="following" label="Following" class="m-r-2"/>
