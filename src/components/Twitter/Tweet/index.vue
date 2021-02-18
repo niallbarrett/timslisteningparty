@@ -9,10 +9,10 @@
     <div class="min-w-0 flex-1">
       <div class="min-w-0 d-flex lh-condensed" :class="{'p-x-3': quote}">
         <UserPopover :item="tweet.user" class="min-w-0 max-w-100">
-          <div class="min-w-0 max-w-100 d-flex">
+          <div class="user-hover min-w-0 max-w-100 d-flex">
             <div class="min-w-0 max-w-100 d-flex align-items-center flex-shrink-0">
               <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
-              <div class="min-w-0 d-inline fw-700 underline-hover t-ellipsis">
+              <div class="name min-w-0 d-inline fw-700 t-ellipsis">
                 {{ tweet.user.name }}
               </div>
               <Verified v-if="tweet.user.verified" class="h-3"/>
@@ -81,6 +81,9 @@ export default {
     opacity: 0;
     animation: flash 1s ease;
     animation-fill-mode: forwards;
+    .user-hover:hover .name {
+      text-decoration: underline;
+    }
   }
   @keyframes flash {
     from {
