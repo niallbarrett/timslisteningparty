@@ -6,18 +6,26 @@
     <UserPopover v-if="!quote" :item="tweet.user" class="m-r-2 align-self-start">
       <Avatar :image="tweet.user.profile_image_url"/>
     </UserPopover>
-    <div class="flex-1">
-      <div class="d-flex align-items-center lh-condensed" :class="{'p-x-3': quote}">
-        <UserPopover :item="tweet.user">
-          <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
-          <p class="p-r-1 d-flex align-items-center fw-700 underline-hover">
-            {{ tweet.user.name }}
-            <Verified v-if="item.verified" class="h-3"/>
-          </p>
-          <p class="handle d-flex align-items-center c-secondary underline-hover">{{ tweet.user.screen_name }}</p>
+    <div class="min-w-0 flex-1">
+      <div class="min-w-0 d-flex lh-condensed" :class="{'p-x-3': quote}">
+        <UserPopover :item="tweet.user" class="min-w-0 max-w-100">
+          <div class="min-w-0 max-w-100 d-flex">
+            <div class="min-w-0 max-w-100 d-flex align-items-center flex-shrink-0">
+              <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
+              <div class="min-w-0 d-inline fw-700 underline-hover t-ellipsis">
+                {{ tweet.user.name }}
+              </div>
+              <Verified v-if="tweet.user.verified" class="h-3"/>
+            </div>
+            <div class="min-w-0 m-l-1 d-flex align-items-center">
+              <div class="handle min-w-0 d-inline c-secondary t-ellipsis">{{ tweet.user.screen_name }}</div>
+            </div>
+          </div>
         </UserPopover>
-        <p class="p-x-1 c-secondary">·</p>
-        <p v-tooltip="{content: fullTimestamp, delay: { show: 600 }, classes: 'p-x-1 f-6'}" class="c-secondary cursor-default underline-hover">{{ timestamp }}</p>
+        <div class="d-flex flex-shrink-0 align-items-center c-secondary">
+          <p class="p-x-1">·</p>
+          <div v-tooltip="{content: fullTimestamp, delay: { show: 600 }, hideOnTargetClick: false, classes: 'p-x-1 f-6'}" class="cursor-default underline-hover">{{ timestamp }}</div>
+        </div>
       </div>
       <p class="m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
