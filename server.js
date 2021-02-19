@@ -35,11 +35,11 @@ io.on('connection', function(socket) {
     })
   })
 
-  // socket.on('user', function(user_id) {
-  //   T.get('users/show', { user_id: user_id }).then((result) => {
-  //     socket.emit('user', result.data)
-  //   })
-  // })
+  socket.on('user', function(user_id) {
+    T.get('users/show', { user_id: user_id }).then((result) => {
+      socket.emit('user', result.data)
+    })
+  })
 
   socket.on('start', function(users) {
     FOLLOWING = users

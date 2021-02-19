@@ -13,7 +13,7 @@
           :key="mode"
           v-close-popover
           :class="[`is-${mode} m-t-1 fw-700 t-capitalize cursor-pointer`, {'is-active': mode === active}]"
-          @click="choose(mode)">
+          @click="active = mode">
           <div class="p-2 d-flex align-items-center bg-color c-text f-5 br-1 b-a">
             <div class="h-3 w-3 m-r-2 bg-accent b-a round"/>
             {{ mode }}
@@ -41,10 +41,14 @@ export default {
       modes: ['normal', 'dim', 'dark']
     }
   },
-  methods: {
-    choose(mode) {
-      this.active = mode
-      document.body.className = `is-${this.active}`
+  created() {
+    if (localStorage.mode)
+      return this.active = localStorage.mode
+  },
+  watch: {
+    active(val) {
+      localStorage.mode = val
+      document.body.className = `is-${val}`
     }
   }
 }

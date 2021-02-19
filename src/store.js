@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import tim from '@/json/tim'
 
 Vue.use(Vuex)
 
@@ -8,7 +7,8 @@ export const store = {
   state: {
     token: null,
     album: {},
-    following: [tim],
+    following: [],
+    timId: "19429176",
     highlight: null
   },
   getters: {
@@ -22,7 +22,7 @@ export const store = {
       return state.following
     },
     timId(state) {
-      return state.following[0].id_str
+      return state.timId
     },
     highlight(state) {
       return state.highlight

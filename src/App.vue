@@ -11,9 +11,9 @@
         </UserPopover>
       </Panel>
     </div>
+    <Setup v-if="showSetup" :show.sync="showSetup"/>
     <ModePicker/>
     <TweetModal v-if="highlight" :item="highlight"/>
-    <Setup v-if="showSetup" :show.sync="showSetup"/>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      debug: false,
+      debug: true,
       showSetup: !this.debug
     }
   },

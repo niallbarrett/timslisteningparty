@@ -48,6 +48,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   .min-w-#{$i} {
     min-width: $v;
   }
+  .max-w-#{$i} {
+    max-width: $v;
+  }
   @each $side in $sides {
     $s: str-slice($side, 0, 1);
     .p-#{$s}-#{$i}{
@@ -84,6 +87,13 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
 .pos-absolute-r {
   @extend .pos-absolute;
   right: 0;
+}
+.pos-absolute-a {
+  @extend .pos-absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 // Display
 @each $display in $displays {

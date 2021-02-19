@@ -1,6 +1,6 @@
 <template>
-  <div :class="['step max-h-100vh w-16 d-flex direction-column bg-color br-2 pos-absolute', {'h-16 w-17': wide}]">
-    <div class="min-h-0 d-flex flex-1">
+  <div :class="['step max-h-100vh w-16 d-flex direction-column bg-color br-2 pos-absolute overflow-hidden', {'h-16 w-17': wide}]">
+    <div class="min-h-0 d-flex flex-1 pos-relative">
       <div class="p-y-5 p-x-6 flex-1 d-flex direction-column">
         <div :class="{'m-b-5': wide}">
           <div class="m-b-1 f-1 fw-800">
@@ -12,7 +12,7 @@
         </div>
         <slot/>
       </div>
-      <div v-if="!!$slots.results" class="step-results p-y-4 bg-accent br-2 overflow-y-auto">
+      <div v-if="wide" class="step-results p-y-4 bg-accent br-2 pos-relative overflow-y-auto">
         <slot name="results"/>
       </div>
     </div>

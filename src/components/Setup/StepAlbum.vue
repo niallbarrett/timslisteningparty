@@ -18,11 +18,12 @@
         @click="select(result.id)"/>
     </Search>
     <template #results>
-      <Details :item="album" class="p-x-4" preview/>
+      <Spinner v-if="fetching" message="Fetching that vinyl" transparent/>
+      <Details v-else :item="album" class="p-x-4" preview/>
     </template>
     <template #footer>
-      <Button text="Skip" clear @click="$emit('next')"/>
-      <Button text="Next" :disabled="disabled" class="primary m-l-2" @click="$emit('next')"/>
+      <Button v-if="!album.id" text="Skip" clear @click="$emit('next')"/>
+      <Button text="Next" :disabled="!album.id" class="primary m-l-2" @click="$emit('next')"/>
     </template>
   </Step>
 </template>
@@ -35,6 +36,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 // Components
 import Step from './Step'
+import Spinner from '@/components/common/Spinner'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import ResultAlbum from '@/components/common/Search/ResultAlbum'
@@ -43,6 +45,7 @@ import Details from '@/components/Spotify/Details'
 export default {
   components: {
     Step,
+    Spinner,
     Button,
     Search,
     ResultAlbum,
@@ -53,8 +56,7 @@ export default {
       query: '',
       results: [],
       loading: false,
-      prev: null,
-      disabled: true
+      fetching: false
     }
   },
   computed: {
@@ -63,7 +65,7 @@ export default {
     ])
   },
   created() {
-    this.search = debounce(this.search, 300)
+    this.search = debounce(this.search, 280)
   },
   watch: {
     query() {
@@ -83,9 +85,11 @@ export default {
       })
     },
     select(id) {
+      this.fetching = true
+
       spotify.getAlbum(id).then((data) => {
-        this.disabled = false
-        return this.$store.commit('setAlbum', data)
+        this.$store.commit('setAlbum', data)
+        this.fetching = false
       })
     }
   },

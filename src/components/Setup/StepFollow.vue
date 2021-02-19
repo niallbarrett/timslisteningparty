@@ -17,14 +17,15 @@
         class="cursor-pointer"
         @click="select(result)"/>
     </Search>
+    <Spinner v-if="empty" message="All that is important is that we're grabbing Tim"/>
     <template #results>
       <UserPopover v-for="user in following" :key="user.id_str" :item="user">
         <User :item="user" :dismiss="user.id_str !== timId" @remove="select(user)"/>
       </UserPopover>
     </template>
     <template #footer>
-      <Button v-if="token" text="Re-choose album" clear @click="$emit('prev')"/>
-      <Button text="Start the party" class="primary m-l-2" @click="confirm"/>
+      <Button v-if="token" text="Re-choose album" clear class="m-r-auto" @click="$emit('prev')"/>
+      <Button text="Start the party" :disabled="empty" class="primary m-l-2" @click="confirm"/>
     </template>
   </Step>
 </template>
@@ -35,6 +36,7 @@ import { mapGetters } from 'vuex'
 import { debounce } from 'lodash'
 // Components
 import Step from './Step'
+import Spinner from '@/components/common/Spinner'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import User from '@/components/Twitter/User'
@@ -43,6 +45,7 @@ import UserPopover from '@/components/Twitter/UserPopover'
 export default {
   components: {
     Step,
+    Spinner,
     Button,
     Search,
     User,
@@ -57,6 +60,9 @@ export default {
     }
   },
   sockets: {
+    user: function(data) {
+      return this.$store.commit('addUser', data)
+    },
     users: function(data) {
       this.results = data.errors ? [] : data
       this.loading = false
@@ -67,15 +73,21 @@ export default {
       'token',
       'following',
       'timId'
-    ])
-  },
-  created() {
-    this.search = debounce(this.search, 300)
+    ]),
+    empty() {
+      return !this.following.length
+    }
   },
   watch: {
     query() {
       this.search()
     }
+  },
+  created() {
+    this.search = debounce(this.search, 280)
+
+    if (this.empty)
+      this.$socket.emit('user', this.timId)
   },
   methods: {
     search() {
