@@ -1,19 +1,19 @@
 <template>
   <transition name="fade" appear>
-    <div v-hide-scroll :class="`tweet-modal pos-fixed d-flex is-${direction}`">
+    <div v-hide-scroll :class="`tweet-modal d-flex pos-fixed-a is-${direction}`">
       <div class="flex-1 d-flex justify-content-center overflow-hidden pos-relative">
         <transition name="slide">
           <template v-for="(img, index) in media">
             <div
               v-if="index === activeIndex"
               :key="img.id_str"
-              class="actions p-x-7 pos-absolute flex-1 d-flex flex-align-center justify-content-center"
+              class="p-x-7 flex-1 d-flex flex-align-center justify-content-center pos-absolute-a"
               @click.self="close">
               <img :src="img.media_url" class="max-w-100">
             </div>
           </template>
         </transition>
-        <div class="actions p-3 pos-absolute d-flex direction-column justify-content-center pointer-events-none">
+        <div class="p-3 d-flex direction-column justify-content-center pos-absolute-a pointer-events-none">
           <div class="d-flex">
             <Button v-if="showBack" icon @click="activeIndex--">
               <ArrowBackIcon class="h-4"/>
@@ -109,10 +109,6 @@ export default {
   .tweet-modal {
     --x: -500px;
     background-color: #{'rgba(var(--tooltip-color), 0.95)'};
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     &.is-left {
       --x: 500px;
     }
@@ -120,12 +116,6 @@ export default {
   .close {
     top: 0;
     left: 0;
-  }
-  .actions {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
   }
   .slide-enter-active, .slide-leave-active {
     transition: all 0.4s;

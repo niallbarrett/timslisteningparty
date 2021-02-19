@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" appear>
-    <div v-hide-scroll class="setup p-4 d-flex justify-content-center align-items-center pos-fixed bg-border">
+    <div v-hide-scroll class="p-4 d-flex justify-content-center align-items-center pos-fixed-a bg-border">
       <transition name="slide">
         <Step
           v-if="step === 0"
@@ -76,12 +76,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  .setup {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
   .slide-enter-active, .slide-leave-active {
     transition: all 0.3s;
   }

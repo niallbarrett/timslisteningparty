@@ -39,7 +39,21 @@ export default {
     },
     label() {
       return `${this.items.length} new tweet${this.items.length > 1 ? 's' : ''}`
+    },
+    title() {
+      return `${this.label}! · timslisteningparty`
     }
+  },
+  watch: {
+    items: {
+      handler() {
+        document.title = this.title
+      },
+      immediate: true
+    }
+  },
+  destroyed() {
+    document.title = 'timslisteningparty'
   }
 }
 </script>
