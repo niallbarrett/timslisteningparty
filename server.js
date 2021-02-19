@@ -30,10 +30,16 @@ function startStream() {
 
 io.on('connection', function(socket) {
   socket.on('search', function(query) {
-    T.get('users/search', { q: query }, function(err, data, response) {
-      socket.emit('users', data)
+    T.get('users/search', { q: query }).then((result) => {
+      socket.emit('users', result.data)
     })
   })
+
+  // socket.on('user', function(user_id) {
+  //   T.get('users/show', { user_id: user_id }).then((result) => {
+  //     socket.emit('user', result.data)
+  //   })
+  // })
 
   socket.on('start', function(users) {
     FOLLOWING = users

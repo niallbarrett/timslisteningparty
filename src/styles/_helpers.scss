@@ -161,6 +161,9 @@ $sides: 'all', 'top', 'right', 'bottom', 'left';
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.t-capitalize {
+  text-transform: capitalize;
+}
 // Colors
 .bg-color {
   background-color: var(--bg-color);

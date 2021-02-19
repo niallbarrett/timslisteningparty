@@ -18,7 +18,7 @@
             </span>
             <Verified v-if="item.verified" class="h-3"/>
           </div>
-          <div class="handle m-b-2 c-secondary f-5 lh-condensed t-ellipsis">{{ item.screen_name }}</div>
+          <div class="handle m-b-2 c-secondary f-5 t-ellipsis">{{ item.screen_name }}</div>
           <div v-if="item.description" class="f-4 lh-condensed" v-html="description"/>
           <div class="d-flex m-t-2">
             <Count :count="following" label="Following" class="m-r-2"/>

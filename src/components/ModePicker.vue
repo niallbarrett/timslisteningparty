@@ -7,12 +7,12 @@
       <BulbIcon class="h-4"/>
     </Button>
     <template slot="popover">
-      <div class="popover-menu w-13 p-2 m-l-1 br-1 b-a">
+      <div class="popover-menu w-13 p-x-2 p-y-3 m-l-1 br-1 b-a">
         <div
           v-for="mode in modes"
           :key="mode"
           v-close-popover
-          :class="[`is-${mode} m-t-1 cursor-pointer`, {'is-active': mode === active}]"
+          :class="[`is-${mode} m-t-1 fw-700 t-capitalize cursor-pointer`, {'is-active': mode === active}]"
           @click="choose(mode)">
           <div class="p-2 d-flex align-items-center bg-color c-text f-5 br-1 b-a">
             <div class="h-3 w-3 m-r-2 bg-accent b-a round"/>
