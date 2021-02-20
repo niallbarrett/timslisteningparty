@@ -1,6 +1,6 @@
 <template>
   <v-popover trigger="click">
-    <Field v-model="query" v-bind="$attrs" inputClass="p-l-6">
+    <Field v-model="query" v-bind="$attrs" input-class="p-l-6">
       <SearchIcon class="h-3 m-l-3 pos-absolute c-primary"/>
     </Field>
     <template slot="popover">
@@ -51,9 +51,6 @@ export default {
       width: 0
     }
   },
-  mounted() {
-    this.width = this.$el.clientWidth
-  },
   computed: {
     query: {
       get() {
@@ -69,6 +66,9 @@ export default {
 
       return 'No results found.'
     }
+  },
+  mounted() {
+    this.width = this.$el.clientWidth
   }
 }
 </script>

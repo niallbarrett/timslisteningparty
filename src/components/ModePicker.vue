@@ -41,15 +41,15 @@ export default {
       modes: ['normal', 'dim', 'dark']
     }
   },
-  created() {
-    if (localStorage.mode)
-      return this.active = localStorage.mode
-  },
   watch: {
     active(val) {
       localStorage.mode = val
       document.body.className = `is-${val}`
     }
+  },
+  created() {
+    if (localStorage.mode)
+      return this.active = localStorage.mode
   }
 }
 </script>

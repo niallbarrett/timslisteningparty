@@ -5,7 +5,9 @@
     </template>
     <div v-else class="p-5 d-flex direction-column f-3 c-secondary">
       <BeerIcon class="h-7"/>
-      <div>No tweets yet. Go and grab a beer in the meantime!</div>
+      <div>
+        No tweets yet. Go and grab a beer in the meantime!
+      </div>
     </div>
     <ScrollTop v-if="!!unseen.length" :items="unseen" @click="scrollToTop"/>
   </div>
@@ -43,10 +45,6 @@ export default {
       return this.scrolled ? this.unseen.push(tweet.user) : this.scrollToTop()
     }
   },
-  created() {
-    this.scroll = throttle(this.scroll, 500)
-    document.addEventListener('scroll', this.scroll)
-  },
   computed: {
     empty() {
       return this.tweets.length === 0
@@ -57,6 +55,10 @@ export default {
       if (!val)
         this.unseen = []
     }
+  },
+  created() {
+    this.scroll = throttle(this.scroll, 500)
+    document.addEventListener('scroll', this.scroll)
   },
   methods: {
     scroll() {

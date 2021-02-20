@@ -1,7 +1,7 @@
 <template>
   <div class="media-item pos-relative cursor-pointer">
     <video ref="video" class="max-h-100 max-w-100 m-0-auto d-block object-fit-contain" controls @timeupdate="onTimeUpdate">
-      <source :src="item.video_info.variants[1].url" :type="item.video_info.variants[1].content_type"/>
+      <source :src="item.video_info.variants[1].url" :type="item.video_info.variants[1].content_type">
     </video>
     <MediaBadge :text="time" class="p-x-2"/>
   </div>
@@ -28,14 +28,14 @@ export default {
       currentTime: 0
     }
   },
-  methods: {
-    onTimeUpdate() {
-      this.currentTime = this.$refs.video.currentTime * 1000
-    }
-  },
   computed: {
     time() {
       return formatDuration(this.item.video_info.duration_millis - this.currentTime)
+    }
+  },
+  methods: {
+    onTimeUpdate() {
+      this.currentTime = this.$refs.video.currentTime * 1000
     }
   }
 }

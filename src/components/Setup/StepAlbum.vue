@@ -64,13 +64,13 @@ export default {
       'album'
     ])
   },
-  created() {
-    this.search = debounce(this.search, 280)
-  },
   watch: {
     query() {
       this.search()
     }
+  },
+  created() {
+    this.search = debounce(this.search, 280)
   },
   methods: {
     search() {

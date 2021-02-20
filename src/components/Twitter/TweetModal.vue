@@ -55,7 +55,9 @@ import ArrowForwardIcon from '@/components/icons/ArrowForward'
 import ArrowBackIcon from '@/components/icons/ArrowBack'
 
 export default {
-  mixins: [TweetMixin],
+  directives: {
+    HideScroll
+  },
   components: {
     Button,
     UserPopover,
@@ -64,22 +66,12 @@ export default {
     ArrowForwardIcon,
     ArrowBackIcon
   },
-  directives: {
-    HideScroll
-  },
+  mixins: [TweetMixin],
   data() {
     return {
       activeIndex: 0,
       direction: 'right'
     }
-  },
-  watch: {
-    activeIndex(val, old) {
-      this.direction = val > old ? 'left' : 'right'
-    }
-  },
-  created() {
-    this.activeIndex = this.media.findIndex(item => item.id_str === this.item.media_id_active)
   },
   computed: {
     media() {
@@ -96,6 +88,14 @@ export default {
     showBack() {
       return this.media.length > 1 && this.activeIndex > 0
     }
+  },
+  watch: {
+    activeIndex(val, old) {
+      this.direction = val > old ? 'left' : 'right'
+    }
+  },
+  created() {
+    this.activeIndex = this.media.findIndex(item => item.id_str === this.item.media_id_active)
   },
   methods: {
     close() {

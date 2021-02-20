@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" :class="`avatar h-${size} w-${size} flex-shrink-0`" @error="error = true"/>
+  <img :src="src" :class="`avatar h-${size} w-${size} flex-shrink-0`" @error="error = true">
 </template>
 
 <script>

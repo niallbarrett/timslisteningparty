@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex justify-content-center align-items-start" @keyup.up="setup" tabIndex="0">
+  <div id="app" class="d-flex justify-content-center align-items-start" tabIndex="0" @keyup.up="setup">
     <div v-if="album.id" class="w-14 pos-sticky-t">
       <Spotify :item="album"/>
     </div>

@@ -33,7 +33,7 @@
         <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
         <MediaImages v-else :items="entities.media" @view="view"/>
       </div>
-      <tweet
+      <Tweet
         v-if="tweet.is_quote_status"
         :item="tweet.quoted_status"
         :quote="tweet.is_quote_status"
@@ -56,8 +56,7 @@ import UserPopover from '@/components/Twitter/UserPopover'
 import Verified from '@/components/icons/Verified'
 
 export default {
-  name: 'tweet',
-  mixins: [TweetMixin],
+  name: 'Tweet',
   components: {
     Avatar,
     Retweeted,
@@ -67,6 +66,7 @@ export default {
     Verified,
     UserPopover
   },
+  mixins: [TweetMixin],
   methods: {
     view(media_id) {
       this.$store.commit('setHighlight', { ...this.item, media_id_active: media_id })
