@@ -6,7 +6,7 @@
     @click="$emit('play', item.track_number - 1)">
     <div class="w-3 d-flex justify-content-end align-items-center c-secondary ta-r">
       <PlayIcon v-if="hover" class="h-2 c-primary"/>
-      <div v-else>{{ item.track_number }}</div>
+      <span v-else>{{ item.track_number }}</span>
     </div>
     <div class="p-x-2 flex-1 t-ellipsis" :title="item.name">
       {{ item.name }}

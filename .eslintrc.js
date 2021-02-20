@@ -10,6 +10,7 @@ module.exports = {
   ],
   rules: {
     'no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
+    'vue/no-v-html': 0,
     'vue/max-attributes-per-line': [0, {
       'singleline': 2,
       'multiline': {
@@ -25,6 +26,10 @@ module.exports = {
       'startTag': 'never',
       'endTag': 'never',
       'selfClosingTag': 'never'
+    }],
+    'vue/singleline-html-element-content-newline': ['error', {
+      'ignoreWhenNoAttributes': true,
+      'ignoreWhenEmpty': true
     }]
   }
 }

@@ -14,7 +14,7 @@ export default {
   props: {
     items: {
       type: Array,
-      requred: true
+      required: true
     }
   }
 }

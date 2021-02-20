@@ -5,12 +5,10 @@
     <Avatar :image="item.profile_image_url_https" class="m-r-2"/>
     <div :class="['min-w-0 d-flex direction-column', {'p-r-2': dismiss}]">
       <div class="d-flex align-items-center f-4 fw-700 lh-condensed">
-        <span class="t-ellipsis">
-          {{ item.name }}
-        </span>
+        <span class="t-ellipsis">{{ item.name }}</span>
         <Verified v-if="item.verified" class="h-3"/>
       </div>
-      <div class="handle c-secondary f-5 t-ellipsis">{{ item.screen_name }}</div>
+      <span class="handle c-secondary f-5 t-ellipsis">{{ item.screen_name }}</span>
     </div>
     <Button v-if="dismiss" icon compact class="m-l-auto m-r-2 flex-shrink-0" @click="$emit('remove')">
       <CloseIcon class="h-3"/>

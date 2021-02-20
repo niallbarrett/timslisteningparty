@@ -33,7 +33,9 @@
         </UserPopover>
         <div class="p-b-2 b-b">
           <p class="m-t-1 f-2" v-html="text"/>
-          <p class="m-t-3 c-secondary">{{ fullTimestamp }}</p>
+          <p class="m-t-3 c-secondary">
+            {{ fullTimestamp }}
+          </p>
         </div>
       </div>
     </div>

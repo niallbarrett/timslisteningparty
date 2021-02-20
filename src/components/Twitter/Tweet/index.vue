@@ -12,19 +12,17 @@
           <div class="user-hover min-w-0 max-w-100 d-flex">
             <div class="min-w-0 max-w-100 d-flex align-items-center flex-shrink-0">
               <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
-              <div class="name min-w-0 d-inline fw-700 t-ellipsis">
-                {{ tweet.user.name }}
-              </div>
+              <span class="name min-w-0 d-inline fw-700 t-ellipsis">{{ tweet.user.name }}</span>
               <Verified v-if="tweet.user.verified" class="h-3"/>
             </div>
             <div class="min-w-0 m-l-1 d-flex align-items-center">
-              <div class="handle min-w-0 d-inline c-secondary t-ellipsis">{{ tweet.user.screen_name }}</div>
+              <span class="handle min-w-0 d-inline c-secondary t-ellipsis">{{ tweet.user.screen_name }}</span>
             </div>
           </div>
         </UserPopover>
         <div class="d-flex flex-shrink-0 align-items-center c-secondary">
-          <p class="p-x-1">·</p>
-          <div v-tooltip="{content: fullTimestamp, delay: { show: 600 }, hideOnTargetClick: false, classes: 'p-x-1 f-6'}" class="cursor-default underline-hover">{{ timestamp }}</div>
+          <span class="p-x-1">·</span>
+          <span v-tooltip="{content: fullTimestamp, delay: { show: 600 }, hideOnTargetClick: false, classes: 'p-x-1 f-6'}" class="cursor-default underline-hover">{{ timestamp }}</span>
         </div>
       </div>
       <p class="m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
