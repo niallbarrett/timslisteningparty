@@ -1,6 +1,6 @@
 <template>
   <div :class="['tweet p-t-3 d-flex b-t hover', {'p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
-    <UserPopover v-if="item.retweeted_status" :item="item.user" placement="bottom-start" class="w-full">
+    <UserPopover v-if="item.retweeted_status" :item="item.user" class="trigger-float-left w-full m-b-1 m-l-4">
       <Retweeted :name="item.user.name"/>
     </UserPopover>
     <UserPopover v-if="!quote" :item="tweet.user" class="m-r-2 align-self-start">
