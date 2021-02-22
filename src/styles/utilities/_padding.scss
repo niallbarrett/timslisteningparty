@@ -1,0 +1,22 @@
+@each $space in $spaces {
+  $i: index($spaces, $space) - 1;
+  $v: #{$space}px;
+
+  .p-#{$i} {
+    padding: $v;
+  }
+  .p-x-#{$i} {
+    padding-right: $v;
+    padding-left: $v;
+  }
+  .p-y-#{$i} {
+    padding-top: $v;
+    padding-bottom: $v;
+  }
+  @each $side in $sides {
+    $s: str-slice($side, 0, 1);
+    .p-#{$s}-#{$i}{
+      padding-#{$side}: $v;
+    }
+  }
+}

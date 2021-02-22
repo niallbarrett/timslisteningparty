@@ -1,0 +1,27 @@
+@each $side in $sides {
+  $s: str-slice($side, 0, 1);
+
+  @if $s == 'a' {
+    .b-a {
+      border-width: 1px;
+      border-color: #{'rgb(var(--border-color))'};
+      border-style: solid;
+    }
+  }
+  @else {
+    .b-#{$s} {
+      border-#{$side}-width: 1px;
+      border-#{$side}-color: #{'rgb(var(--border-color))'};
+      border-#{$side}-style: solid;
+    }
+  }
+}
+@each $item in $border-radius {
+  $i: index($border-radius, $item) - 1;
+  .br-#{$i} {
+    border-radius: #{$item}px;
+  }
+}
+.round {
+  border-radius: 50%;
+}

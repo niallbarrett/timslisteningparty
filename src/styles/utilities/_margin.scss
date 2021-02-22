@@ -1,0 +1,32 @@
+@each $space in $spaces {
+  $i: index($spaces, $space) - 1;
+  $v: #{$space}px;
+
+  .m-#{$i} {
+    margin: $v;
+  }
+  .m-x-#{$i} {
+    margin-right: $v;
+    margin-left: $v;
+  }
+  .m-y-#{$i} {
+    margin-top: $v;
+    margin-bottom: $v;
+  }
+  @each $side in $sides {
+    $s: str-slice($side, 0, 1);
+
+    .m-#{$s}-#{$i} {
+      margin-#{$side}: $v;
+    }
+  }
+}
+.m-0-auto {
+  margin: 0 auto;
+}
+.m-r-auto {
+  margin-right: auto;
+}
+.m-l-auto {
+  margin-left: auto;
+}

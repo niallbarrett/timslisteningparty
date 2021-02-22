@@ -1,0 +1,27 @@
+.bg-color {
+  background-color: var(--bg-color);
+}
+.bg-primary {
+  background-color: var(--primary-color);
+}
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+.bg-accent {
+  background-color: var(--accent-color);
+}
+.bg-border {
+  background-color: #{'rgb(var(--border-color))'};
+}
+.c-primary {
+  color: var(--primary-color);
+}
+.c-secondary {
+  color: var(--secondary-color);
+}
+.c-accent {
+  color: var(--accent-color);
+}
+.c-text {
+  color: var(--text-color);
+}

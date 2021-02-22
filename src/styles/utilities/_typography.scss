@@ -1,0 +1,35 @@
+@each $size in $typography {
+  $i: index($typography, $size) - 1;
+
+  .f-#{$i} {
+    font-size: #{$size}px;
+  }
+}
+@each $weight in $weights {
+  .fw-#{$weight} {
+    font-weight: $weight;
+  }
+}
+.lh-condensed {
+  line-height: 1.25;
+}
+.lh-condensed-ultra {
+  line-height: 1;
+}
+.ta-c {
+  text-align: center;
+}
+.ta-r {
+  text-align: right;
+}
+.t-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t-capitalize {
+  text-transform: capitalize;
+}
+.wb-break-word {
+  word-break: break-word;
+}
