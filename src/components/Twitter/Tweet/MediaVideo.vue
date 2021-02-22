@@ -1,7 +1,7 @@
 <template>
   <div class="media-item pos-relative cursor-pointer">
     <video ref="video" class="max-h-100 max-w-100 m-0-auto d-block object-fit-contain" controls @timeupdate="onTimeUpdate">
-      <source :src="item.video_info.variants[1].url" :type="item.video_info.variants[1].content_type">
+      <source :src="video.url" :type="video.content_type">
     </video>
     <MediaBadge :text="time" class="p-x-2"/>
   </div>
@@ -29,6 +29,9 @@ export default {
     }
   },
   computed: {
+    video() {
+      return this.item.video_info.variants.filter(item => item.content_type === 'video/mp4')[0]
+    },
     time() {
       return formatDuration(this.item.video_info.duration_millis - this.currentTime)
     }

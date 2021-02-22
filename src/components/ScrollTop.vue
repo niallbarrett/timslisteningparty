@@ -65,7 +65,7 @@ export default {
     box-shadow: var(--elevation-2);
   }
   .avatar {
-    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color);
     &:not(:first-of-type) {
       margin-left: -10px;
     }

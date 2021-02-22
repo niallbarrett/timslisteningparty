@@ -65,6 +65,9 @@ export default {
     &:hover {
       --opacity: 0.9;
     }
+    &.is-clear:hover {
+      --bg-color: var(--accent-color);
+    }
     &:disabled {
       --opacity: 0.6;
     }

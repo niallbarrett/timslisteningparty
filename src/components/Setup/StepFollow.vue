@@ -24,7 +24,10 @@
       </UserPopover>
     </template>
     <template #footer>
-      <Button v-if="token" text="Re-choose album" clear class="m-r-auto" @click="$emit('prev')"/>
+      <Button v-if="token" clear class="m-r-auto" @click="$emit('prev')">
+        <ArrowBackIcon class="h-3 m-r-1"/>
+        Re-choose album
+      </Button>
       <Button text="Start the party" :disabled="empty" class="primary m-l-2" @click="confirm"/>
     </template>
   </Step>
@@ -41,6 +44,8 @@ import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import User from '@/components/Twitter/User'
 import UserPopover from '@/components/Twitter/UserPopover'
+// Assets
+import ArrowBackIcon from '@/components/icons/ArrowBack'
 
 export default {
   components: {
@@ -49,7 +54,8 @@ export default {
     Button,
     Search,
     User,
-    UserPopover
+    UserPopover,
+    ArrowBackIcon
   },
   data() {
     return {

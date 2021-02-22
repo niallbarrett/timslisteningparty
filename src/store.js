@@ -8,7 +8,7 @@ export const store = {
     token: null,
     album: {},
     following: [],
-    timId: "19429176",
+    timId: '19429176',
     highlight: null
   },
   getters: {

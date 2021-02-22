@@ -1,6 +1,6 @@
 <template>
-  <transition name="fade" appear>
-    <div v-hide-scroll class="p-4 d-flex justify-content-center align-items-center pos-fixed-a bg-border">
+  <transition name="fade">
+    <div v-hide-scroll :class="`modal p-4 d-flex justify-content-center align-items-center pos-fixed-a bg-border is-${direction}`">
       <transition name="slide">
         <Step
           v-if="step === 0"
@@ -49,9 +49,15 @@ export default {
   data() {
     return {
       step: 0,
-      redirect_uri: `http://localhost:${process.env.VUE_APP_PORT}/`,
+      direction: 'left',
+      redirectUri: `http://localhost:${process.env.VUE_APP_PORT}/`,
       endpoint: 'https://accounts.spotify.com/authorize',
       scopes: 'user-read-playback-state user-modify-playback-state user-read-private'
+    }
+  },
+  watch: {
+    step(val, old) {
+      this.direction = val > old ? 'left' : 'right'
     }
   },
   created() {
@@ -66,7 +72,7 @@ export default {
   },
   methods: {
     connect() {
-      return window.location = `${this.endpoint}?client_id=${process.env.VUE_APP_SPOTIFY_CLIENT_ID}&redirect_uri=${this.redirect_uri}&response_type=token&scope=${encodeURIComponent(this.scopes)}`
+      return window.location = `${this.endpoint}?client_id=${process.env.VUE_APP_SPOTIFY_CLIENT_ID}&redirect_uri=${this.redirectUri}&response_type=token&scope=${encodeURIComponent(this.scopes)}`
     },
     finish() {
       this.$emit('update:show', false)
@@ -76,6 +82,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .modal {
+    --x: -500px;
+    &.is-left {
+      --x: 500px;
+    }
+  }
   .slide-enter-active, .slide-leave-active {
     transition: all 0.3s;
   }
@@ -83,9 +95,9 @@ export default {
     opacity: 0;
   }
   .slide-enter {
-    transform: translateX(500px);
+    transform: translateX(var(--x));
   }
   .slide-leave-active {
-    transform: translateX(-500px);
+    transform: translateX(calc(-1 * var(--x)));
   }
 </style>
