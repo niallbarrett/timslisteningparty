@@ -1,6 +1,6 @@
 <template>
   <div class="media-item pos-relative cursor-pointer">
-    <video ref="video" class="max-h-100 max-w-100 m-0-auto d-block object-fit-contain" controls @timeupdate="onTimeUpdate">
+    <video ref="video" class="h-fit w-fit m-0-auto d-block object-fit-contain" controls @timeupdate="onTimeUpdate">
       <source :src="video.url" :type="video.content_type">
     </video>
     <MediaBadge :text="time" class="p-x-2"/>

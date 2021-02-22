@@ -1,10 +1,10 @@
-$displays: block, inline-block, inline, flex, grid;
+$displays: block, inline-block, inline, flex, grid, none;
 $spaces: 0, 4, 8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 196, 256, 384, 512, 768;
 $typography: 32, 26, 22, 18, 16, 14, 12;
 $weights: 300, 400, 500, 600, 700, 800;
 $border-radius: 4, 8, 12;
 $positions: absolute, relative, sticky, fixed;
-$sides: 'all', 'top', 'right', 'bottom', 'left';
+$sides: 'top', 'right', 'bottom', 'left';
 
 :root {
   --font: 'Manrope';

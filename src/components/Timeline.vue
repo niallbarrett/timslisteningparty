@@ -1,5 +1,5 @@
 <template>
-  <div :class="`timeline min-h-100vh w-100 d-flex direction-column-reverse justify-content-${!empty ? 'start':'center align-items-center'} b-l b-r`" tabindex="0" @keyup.left="add">
+  <div :class="`timeline min-h-viewport w-full d-flex direction-column-reverse justify-content-${!empty ? 'start':'center align-items-center'} b-l b-r`" tabindex="0" @keyup.left="add">
     <template v-if="!empty">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
     </template>

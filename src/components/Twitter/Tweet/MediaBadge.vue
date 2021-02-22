@@ -1,5 +1,5 @@
 <template>
-  <div class="media-badge d-inline-block pos-absolute-b m-2 p-y-1 br-1 f-6 pointer-events-none">
+  <div class="media-badge m-2 p-y-1 d-inline-block pos-absolute bottom-0 br-1 f-6 ta-c pointer-events-none">
     {{ text }}
   </div>
 </template>
@@ -19,6 +19,5 @@ export default {
   .media-badge {
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
-    text-align: center;
   }
 </style>

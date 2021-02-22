@@ -1,5 +1,5 @@
 <template>
-  <div :class="['step max-h-100vh w-16 d-flex direction-column bg-color br-2 pos-absolute overflow-hidden', {'h-16 w-17': wide}]">
+  <div :class="['step max-h-viewport w-16 d-flex direction-column bg-color br-2 pos-absolute overflow-hidden', {'h-16 w-17': wide}]">
     <div class="min-h-0 d-flex flex-1 pos-relative">
       <div class="p-y-5 p-x-6 flex-1 d-flex direction-column">
         <div :class="{'m-b-5': wide}">

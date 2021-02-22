@@ -1,6 +1,6 @@
 <template>
   <div :class="['tweet p-t-3 d-flex b-t hover', {'p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
-    <UserPopover v-if="item.retweeted_status" :item="item.user" placement="bottom-start" class="w-100">
+    <UserPopover v-if="item.retweeted_status" :item="item.user" placement="bottom-start" class="w-full">
       <Retweeted :name="item.user.name"/>
     </UserPopover>
     <UserPopover v-if="!quote" :item="tweet.user" class="m-r-2 align-self-start">
@@ -8,9 +8,9 @@
     </UserPopover>
     <div class="min-w-0 flex-1">
       <div class="min-w-0 d-flex lh-condensed" :class="{'p-x-3': quote}">
-        <UserPopover :item="tweet.user" class="min-w-0 max-w-100">
-          <div class="user-hover min-w-0 max-w-100 d-flex">
-            <div class="min-w-0 max-w-100 d-flex align-items-center flex-shrink-0">
+        <UserPopover :item="tweet.user" class="min-w-0 w-fit">
+          <div class="user-hover min-w-0 w-fit d-flex">
+            <div class="min-w-0 w-fit d-flex align-items-center flex-shrink-0">
               <Avatar v-if="quote" :image="tweet.user.profile_image_url" compact class="m-r-1"/>
               <span class="name min-w-0 d-inline fw-700 t-ellipsis">{{ tweet.user.name }}</span>
               <Verified v-if="tweet.user.verified" class="h-3"/>

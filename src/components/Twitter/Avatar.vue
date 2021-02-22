@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" :class="`avatar h-${size} w-${size} flex-shrink-0`" @error="error = true">
+  <img :src="src" :class="`avatar h-${size} w-${size} flex-shrink-0 br-circle`" @error="error = true">
 </template>
 
 <script>
@@ -43,9 +43,3 @@ export default {
   }
 }
 </script>
-
-<style lang='scss' scoped>
-  .avatar {
-    border-radius: 50%;
-  }
-</style>

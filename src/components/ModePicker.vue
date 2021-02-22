@@ -2,7 +2,7 @@
   <v-popover
     placement="right-end"
     trigger="click"
-    class="mode-picker p-3 pos-fixed">
+    class="p-3 pos-fixed bottom-0 left-0">
     <Button icon class="primary">
       <BulbIcon class="h-4"/>
     </Button>
@@ -15,7 +15,7 @@
           :class="[`is-${mode} m-t-1 fw-700 t-capitalize cursor-pointer`, {'is-active': mode === active}]"
           @click="active = mode">
           <div class="p-2 d-flex align-items-center bg-color c-text f-5 br-1 b-a">
-            <div class="h-3 w-3 m-r-2 bg-accent b-a round"/>
+            <div class="h-3 w-3 m-r-2 bg-accent b-a br-circle"/>
             {{ mode }}
           </div>
         </div>
@@ -55,10 +55,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  .mode-picker {
-    bottom: 0;
-    left: 0;
-  }
   .is-active div {
     border: 1px solid var(--primary-color);
   }

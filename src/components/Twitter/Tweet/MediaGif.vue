@@ -1,6 +1,6 @@
 <template>
   <div class="pos-relative">
-    <video class="w-100 d-block pointer-events-none" autoplay mute loop>
+    <video class="w-full d-block pointer-events-none" autoplay mute loop>
       <source :src="item.video_info.variants[0].url">
     </video>
     <MediaBadge text="GIF" class="w-5 fw-800"/>

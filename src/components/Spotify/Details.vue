@@ -4,11 +4,11 @@
       :class="['cover m-b-2 d-grid pos-relative c-secondary b-a br-1 overflow-hidden', {'cursor-pointer': !empty && !preview}]"
       @click="play">
       <svg :viewBox="aspect"/>
-      <img v-if="!empty" :src="cover" class="w-100">
+      <img v-if="!empty" :src="cover" class="w-full">
       <div v-else class="d-flex align-items-center justify-content-center">
         <NoteIcon class="h-8"/>
       </div>
-      <div v-if="!empty && !preview" class="play p-2 pos-absolute pointer-events-none">
+      <div v-if="!empty && !preview" class="play p-2 pos-absolute right-0 bottom-0 pointer-events-none">
         <Button icon class="primary">
           <PlayIcon class="h-3"/>
         </Button>
@@ -90,8 +90,6 @@ export default {
     background-size: cover;
     background-position: center;
     .play {
-      right: 0;
-      bottom: 0;
       opacity: var(--o);
       transform: translateY(var(--y));
       transition: all 0.2s ease;

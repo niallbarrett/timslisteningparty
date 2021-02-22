@@ -3,6 +3,19 @@
     display: $display;
   }
 }
+@each $position in $positions {
+  .pos-#{$position} {
+    position: $position;
+  }
+}
+@each $side in $sides {
+  .#{$side}-0 {
+    #{$side}: 0;
+  }
+  .#{$side}-auto {
+    #{$side}: auto;
+  }
+}
 @each $space in $spaces {
   $i: index($spaces, $space) - 1;
   $v: #{$space}px;
@@ -26,57 +39,26 @@
     max-width: $v;
   }
 }
-.h-100 {
+.h-full {
   height: 100%;
 }
-.h-100vh {
-  height: 100vh;
-}
-.min-h-100vh {
-  min-height: 100vh;
-}
-.max-h-100vh {
-  max-height: 100vh;
-}
-.max-h-100 {
+.h-fit {
   max-height: 100%;
 }
-.w-100 {
+.h-viewport {
+  height: 100vh;
+}
+.min-h-viewport {
+  min-height: 100vh;
+}
+.max-h-viewport {
+  max-height: 100vh;
+}
+.w-full {
   width: 100%;
 }
-.max-w-100 {
+.w-fit {
   max-width: 100%;
-}
-@each $position in $positions {
-  .pos-#{$position} {
-    position: $position;
-  }
-}
-.pos-sticky-t {
-  position: sticky;
-  top: 0;
-}
-.pos-absolute-b {
-  @extend .pos-absolute;
-  bottom: 0;
-}
-.pos-absolute-r {
-  @extend .pos-absolute;
-  right: 0;
-}
-.pos-absolute-a {
-  @extend .pos-absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.pos-fixed-a {
-  @extend .pos-fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -96,6 +78,6 @@
 .object-fit-contain {
   object-fit: contain;
 }
-.vertical-align-middle {
+.va-middle {
   vertical-align: middle;
 }

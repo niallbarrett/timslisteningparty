@@ -1,7 +1,7 @@
 <template>
   <button
     class="button d-flex align-items-center justify-content-center f-5 fw-700 br-1 cursor-pointer pointer-events-all"
-    :class="{'is-clear': clear, 'is-icon round': icon, 'is-compact': compact}"
+    :class="{'is-clear': clear, 'is-icon br-circle': icon, 'is-compact': compact}"
     v-bind="$attrs"
     v-on="$listeners">
     <slot>

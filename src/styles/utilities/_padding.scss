@@ -15,6 +15,7 @@
   }
   @each $side in $sides {
     $s: str-slice($side, 0, 1);
+
     .p-#{$s}-#{$i}{
       padding-#{$side}: $v;
     }

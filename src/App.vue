@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-start" tabIndex="0" @keyup.up="setup">
-    <div v-if="album.id" class="w-14 pos-sticky-t">
+    <div v-if="album.id" class="w-14 pos-sticky top-0">
       <Spotify :item="album"/>
     </div>
     <Timeline class="m-x-3"/>
-    <div v-if="!!following.length" class="w-14 pos-sticky-t">
+    <div v-if="!!following.length" class="w-14 pos-sticky top-0">
       <Panel title="Following">
         <UserPopover v-for="user in following" :key="user.id_str" :item="user">
           <User :item="user"/>

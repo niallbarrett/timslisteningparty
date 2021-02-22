@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-hide-scroll :class="`modal p-4 d-flex justify-content-center align-items-center pos-fixed-a bg-border is-${direction}`">
+    <div v-hide-scroll :class="`modal p-4 d-flex justify-content-center align-items-center pos-fixed top-0 right-0 bottom-0 left-0 bg-border is-${direction}`">
       <transition name="slide">
         <Step
           v-if="step === 0"

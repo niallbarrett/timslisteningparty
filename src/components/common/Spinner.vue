@@ -1,9 +1,9 @@
 <template>
   <transition name="fade">
-    <div :class="['container h-100 w-100 d-flex justify-content-center align-items-center pos-absolute-a', {'is-transparent': transparent}]">
+    <div :class="['container d-flex justify-content-center align-items-center pos-absolute top-0 right-0 bottom-0 left-0', {'is-transparent': transparent}]">
       <div class="d-flex direction-column align-items-center">
         <div class="spinner h-4 d-flex">
-          <div v-for="n in 5" :key="n" class="h-100"/>
+          <div v-for="n in 5" :key="n" class="h-full"/>
         </div>
         <div v-if="message" class="max-w-13 m-t-1 c-secondary f-6 fw-800 ta-c">
           {{ message }}...

@@ -1,6 +1,6 @@
 <template>
   <transition name="slide" appear>
-    <div class="h-0 pos-sticky-t d-flex justify-content-center pointer-events-none">
+    <div class="h-0 pos-sticky top-0 d-flex justify-content-center pointer-events-none">
       <div class="scroll-top h-5 p-l-2 p-r-3 m-3 pos-absolute d-flex align-items-center bg-primary f-5 pointer-events-all cursor-pointer" v-on="$listeners">
         <ArrowUpIcon class="h-3"/>
         <div class="m-r-2 d-flex">
