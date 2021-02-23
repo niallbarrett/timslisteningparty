@@ -14,14 +14,18 @@
         :key="result.id_str"
         :item="result"
         :active="following.some(item => item.id_str === result.id_str)"
+        result
         class="cursor-pointer"
         @click="select(result)"/>
     </Search>
     <Spinner v-if="empty" message="All that is important is that we're grabbing Tim"/>
     <template #results>
-      <UserPopover v-for="user in following" :key="user.id_str" :item="user">
-        <User :item="user" :dismiss="user.id_str !== timId" @remove="select(user)"/>
-      </UserPopover>
+      <User
+        v-for="user in following"
+        :key="user.id_str"
+        :item="user"
+        :dismiss="user.id_str !== timId"
+        @remove="select(user)"/>
     </template>
     <template #footer>
       <Button v-if="token" clear class="m-r-auto" @click="$emit('prev')">
@@ -43,7 +47,6 @@ import Spinner from '@/components/common/Spinner/Vinyl'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import User from '@/components/Twitter/User'
-import UserPopover from '@/components/Twitter/UserPopover'
 // Assets
 import ArrowBackIcon from '@/components/icons/ArrowBack'
 
@@ -54,7 +57,6 @@ export default {
     Button,
     Search,
     User,
-    UserPopover,
     ArrowBackIcon
   },
   data() {

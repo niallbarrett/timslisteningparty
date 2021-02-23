@@ -28,9 +28,7 @@
         </Button>
       </div>
       <div class="w-15 p-3 bg-color b-l overflow-y-auto">
-        <UserPopover :item="tweet.user">
-          <User :item="tweet.user" readonly class="m-b-2"/>
-        </UserPopover>
+        <User :item="tweet.user" readonly class="m-b-2"/>
         <div class="p-b-2 b-b">
           <p class="m-t-1 f-2" v-html="text"/>
           <p class="m-t-3 c-secondary">
@@ -49,7 +47,6 @@ import TweetMixin from '@/mixins/TweetMixin'
 import HideScroll from '@/directives/HideScroll'
 // Components
 import Button from '@/components/common/Button'
-import UserPopover from './UserPopover'
 import User from './User'
 // Assets
 import CloseIcon from '@/components/icons/Close'
@@ -62,7 +59,6 @@ export default {
   },
   components: {
     Button,
-    UserPopover,
     User,
     CloseIcon,
     ArrowForwardIcon,

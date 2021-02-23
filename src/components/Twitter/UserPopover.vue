@@ -5,6 +5,7 @@
     :delay="{ show: 600 }"
     boundaries-element="body"
     container="body"
+    :disabled="disabled"
     class="cursor-default">
     <slot/>
     <template slot="popover">
@@ -12,11 +13,13 @@
         <div class="banner h-9 bg-accent b-b" :style="{backgroundImage: `url(${item.profile_banner_url}/600x200`}"/>
         <div class="content p-x-3 p-b-3">
           <Avatar :image="item.profile_image_url" large class="m-b-1"/>
-          <div class="d-flex align-items-center f-4 fw-700 lh-condensed">
-            <span class="t-ellipsis">{{ item.name }}</span>
-            <Verified v-if="item.verified" class="h-3"/>
+          <div class="min-w-0 m-b-2 d-flex direction-column">
+            <div class="d-flex align-items-center f-4 fw-700 lh-condensed">
+              <span class="t-ellipsis">{{ item.name }}</span>
+              <Verified v-if="item.verified" class="h-3"/>
+            </div>
+            <span class="handle c-secondary f-5 t-ellipsis">{{ item.screen_name }}</span>
           </div>
-          <span class="handle m-b-2 c-secondary f-5 t-ellipsis">{{ item.screen_name }}</span>
           <div v-if="item.description" class="f-4 lh-condensed" v-html="description"/>
           <div class="d-flex m-t-2">
             <Count :count="following" label="Following" class="m-r-2"/>
@@ -51,6 +54,10 @@ export default {
     placement: {
       type: String,
       default: 'bottom'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

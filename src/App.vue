@@ -6,9 +6,7 @@
     <Timeline class="m-x-3"/>
     <div v-if="!!following.length" class="w-14 pos-sticky top-0">
       <Panel title="Following">
-        <UserPopover v-for="user in following" :key="user.id_str" :item="user">
-          <User :item="user"/>
-        </UserPopover>
+        <User v-for="user in following" :key="user.id_str" :item="user"/>
       </Panel>
     </div>
     <Setup v-if="showSetup" :show.sync="showSetup"/>
@@ -24,7 +22,6 @@ import { mapGetters } from 'vuex'
 import Setup from '@/components/Setup'
 import Timeline from '@/components/Timeline'
 import User from '@/components/Twitter/User'
-import UserPopover from '@/components/Twitter/UserPopover'
 import TweetModal from '@/components/Twitter/TweetModal'
 import Panel from '@/components/common/Panel'
 import Spotify from '@/components/Spotify'
@@ -35,7 +32,6 @@ export default {
     Setup,
     Timeline,
     User,
-    UserPopover,
     TweetModal,
     Panel,
     Spotify,
