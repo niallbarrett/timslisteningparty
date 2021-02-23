@@ -39,7 +39,7 @@ import { mapGetters } from 'vuex'
 import { debounce } from 'lodash'
 // Components
 import Step from './Step'
-import Spinner from '@/components/common/Spinner'
+import Spinner from '@/components/common/Spinner/Vinyl'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import User from '@/components/Twitter/User'

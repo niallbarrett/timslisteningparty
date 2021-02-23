@@ -36,7 +36,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 let spotify = new SpotifyWebApi()
 // Components
 import Step from './Step'
-import Spinner from '@/components/common/Spinner'
+import Spinner from '@/components/common/Spinner/Vinyl'
 import Button from '@/components/common/Button'
 import Search from '@/components/common/Search'
 import ResultAlbum from '@/components/common/Search/ResultAlbum'
@@ -89,6 +89,7 @@ export default {
 
       spotify.getAlbum(id).then((data) => {
         this.$store.commit('setAlbum', data)
+        this.query = ''
         this.fetching = false
       })
     }

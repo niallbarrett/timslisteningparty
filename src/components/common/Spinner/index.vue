@@ -1,32 +1,12 @@
 <template>
   <transition name="fade">
-    <div :class="['container d-flex justify-content-center align-items-center pos-absolute top-0 right-0 bottom-0 left-0', {'is-transparent': transparent}]">
-      <div class="d-flex direction-column align-items-center">
-        <div class="spinner h-4 d-flex">
-          <div v-for="n in 5" :key="n" class="h-full"/>
-        </div>
-        <div v-if="message" class="max-w-13 m-t-1 c-secondary f-6 fw-800 ta-c">
-          {{ message }}...
-        </div>
+    <div class="container d-flex justify-content-center align-items-center pos-absolute top-0 right-0 bottom-0 left-0">
+      <div class="spinner h-4 d-flex">
+        <div v-for="n in 5" :key="n" class="h-full"/>
       </div>
     </div>
   </transition>
 </template>
-
-<script>
-export default {
-  props: {
-    message: {
-      type: String,
-      default: undefined
-    },
-    transparent: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>
 
 <style lang='scss' scoped>
   .container {
@@ -45,9 +25,6 @@ export default {
           animation-delay: -1s + (($i - 1) * 0.1s);
         }
       }
-    }
-    &.is-transparent {
-      --bg: transparent;
     }
   }
   @keyframes stretch {
