@@ -1,7 +1,7 @@
 <template>
   <Step
-    title="Choose the album"
-    description="Choose an album or skip, everybody knows the pain."
+    title="Pick a vinyl..."
+    description="Search Spotify for your record of choice."
     wide>
     <Search
       v-model="query"

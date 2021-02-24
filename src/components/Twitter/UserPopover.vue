@@ -6,7 +6,7 @@
     boundaries-element="body"
     container="body"
     :disabled="disabled"
-    class="cursor-default">
+    :class="{'cursor-default': !disabled}">
     <slot/>
     <template slot="popover">
       <div class="popover-menu m-1 br-1 b-a overflow-hidden">

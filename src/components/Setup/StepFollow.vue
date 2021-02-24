@@ -1,7 +1,7 @@
 <template>
   <Step
     title="The only ones I know..."
-    description="Choose who you want to listen along with."
+    description="Choose who you want to listen along with on Twitter."
     wide>
     <Search
       v-model="query"
@@ -18,7 +18,7 @@
         class="cursor-pointer"
         @click="select(result)"/>
     </Search>
-    <Spinner v-if="empty" message="All that is important is that we're grabbing Tim"/>
+    <Spinner v-if="empty || starting" :message="message"/>
     <template #results>
       <User
         v-for="user in following"
@@ -64,7 +64,7 @@ export default {
       query: '',
       results: [],
       loading: false,
-      disabled: true
+      starting: false
     }
   },
   sockets: {
@@ -74,6 +74,10 @@ export default {
     users: function(data) {
       this.results = data.errors ? [] : data
       this.loading = false
+    },
+    connected: function() {
+      this.starting = false
+      this.$emit('next')
     }
   },
   computed: {
@@ -84,6 +88,12 @@ export default {
     ]),
     empty() {
       return !this.following.length
+    },
+    message() {
+      if (this.starting)
+        return 'Starting #timslisteningparty'
+
+      return `All that is important is that we're grabbing Tim`
     }
   },
   watch: {
@@ -115,8 +125,8 @@ export default {
       return this.$store.commit('addUser', user)
     },
     confirm() {
+      this.starting = true
       this.$socket.emit('start', this.following.map(user => user.id_str))
-      this.$emit('next')
     }
   }
 }

@@ -22,6 +22,11 @@ const T = new Twit({
 function startStream() {
   let stream = T.stream('statuses/filter', { follow: FOLLOWING })
 
+  stream.on('connected', function() {
+    console.log('Twitter stream started')
+    io.emit('connected')
+  })
+
   stream.on('tweet', function(tweet) {
     if (FOLLOWING.includes(tweet.user.id_str))
       io.emit('tweet', tweet)
