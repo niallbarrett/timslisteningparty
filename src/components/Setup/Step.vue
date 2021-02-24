@@ -16,7 +16,7 @@
         <slot name="results"/>
       </div>
     </div>
-    <div class="p-y-3 p-x-5 d-flex justify-content-end flex-shrink-0 b-t">
+    <div class="p-y-3 p-x-4 d-flex justify-content-end flex-shrink-0 b-t">
       <slot name="footer"/>
     </div>
   </div>

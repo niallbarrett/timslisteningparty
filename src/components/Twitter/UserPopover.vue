@@ -20,7 +20,7 @@
             </div>
             <span class="handle c-secondary f-5 t-ellipsis">{{ item.screen_name }}</span>
           </div>
-          <div v-if="item.description" class="f-4 lh-condensed" v-html="description"/>
+          <div v-if="item.description" class="f-4 lh-condensed wb-break-word" v-html="description"/>
           <div class="d-flex m-t-2">
             <Count :count="following" label="Following" class="m-r-2"/>
             <Count :count="followers" label="Followers"/>

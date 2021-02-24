@@ -7,9 +7,9 @@
             <div
               v-if="index === activeIndex"
               :key="img.id_str"
-              class="p-x-7 flex-1 d-flex flex-align-center justify-content-center pos-absolute top-0 right-0 bottom-0 left-0"
+              class="p-y-3 p-x-7 flex-1 d-flex flex-align-center justify-content-center pos-absolute top-0 right-0 bottom-0 left-0"
               @click.self="close">
-              <img :src="img.media_url" class="w-fit">
+              <img :src="img.media_url" class="h-fit w-full object-fit-contain">
             </div>
           </template>
         </transition>
@@ -30,7 +30,7 @@
       <div class="w-15 p-3 bg-color b-l overflow-y-auto">
         <User :item="tweet.user" readonly class="m-b-2"/>
         <div class="p-b-2 b-b">
-          <p class="m-t-1 f-2" v-html="text"/>
+          <p class="m-t-1 f-2 wb-break-word" v-html="text"/>
           <p class="m-t-3 c-secondary">
             {{ fullTimestamp }}
           </p>

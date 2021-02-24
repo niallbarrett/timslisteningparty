@@ -25,7 +25,7 @@
           <span v-tooltip="{content: fullTimestamp, delay: { show: 600 }, hideOnTargetClick: false, classes: 'p-x-1 f-6'}" class="cursor-default underline-hover">{{ timestamp }}</span>
         </div>
       </div>
-      <p class="m-t-1" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
+      <p class="m-t-1 wb-break-word" :class="{'p-b-3 p-x-3': quote}" v-html="text"/>
       <div v-if="entities.media" class="media overflow-hidden" :class="{'m-t-3 br-2 b-a': !quote}">
         <MediaGif v-if="entities.media[0].type === 'animated_gif'" :item="entities.media[0]"/>
         <MediaVideo v-else-if="entities.media[0].type === 'video'" :item="entities.media[0]"/>
