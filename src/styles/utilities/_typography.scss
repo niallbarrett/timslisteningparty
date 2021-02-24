@@ -10,20 +10,19 @@
     font-weight: $weight;
   }
 }
-.lh-default {
-  line-height: 1.5;
+@each $name, $value in $line-heights {
+  .lh-#{$name} {
+    line-height: $value;
+  }
 }
-.lh-condensed {
-  line-height: 1.25;
-}
-.lh-condensed-ultra {
-  line-height: 1;
-}
-.ta-c {
-  text-align: center;
-}
-.ta-r {
+.text-right {
   text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
 }
 .t-ellipsis {
   white-space: nowrap;

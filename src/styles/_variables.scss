@@ -6,6 +6,12 @@ $border-radius: 4, 8, 12;
 $positions: absolute, relative, sticky, fixed;
 $sides: 'top', 'right', 'bottom', 'left';
 
+$line-heights: (
+  'default': 1.5,
+  'condensed': 1.25,
+  'condensed-ultra': 1
+);
+
 :root {
   --font: 'Manrope';
   --primary-color: #2e86de;

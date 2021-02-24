@@ -5,7 +5,7 @@
         <div class="vinyl h-7 w-7 d-flex justify-content-center align-items-center br-circle">
           <div class="vinyl-center h-3 w-3 br-circle"/>
         </div>
-        <div v-if="message" class="max-w-13 m-t-2 c-secondary f-6 fw-800 ta-c">
+        <div v-if="message" class="max-w-13 m-t-2 c-secondary f-6 fw-800 text-center">
           {{ message }}...
         </div>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="media-badge m-2 p-y-1 d-inline-block pos-absolute bottom-0 br-1 f-6 ta-c pointer-events-none">
+  <div class="media-badge m-2 p-y-1 d-inline-block pos-absolute bottom-0 br-1 f-6 text-center pointer-events-none">
     {{ text }}
   </div>
 </template>

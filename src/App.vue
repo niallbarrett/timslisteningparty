@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex justify-content-center align-items-start" tabIndex="0" @keyup.up="setup">
+  <div id="app" class="d-flex justify-content-center align-items-start">
     <div v-if="album.id" class="w-14 pos-sticky top-0">
       <Spotify :item="album"/>
     </div>
@@ -39,8 +39,7 @@ export default {
   },
   data() {
     return {
-      debug: true,
-      showSetup: !this.debug
+      showSetup: true
     }
   },
   computed: {
@@ -49,12 +48,6 @@ export default {
       'album',
       'highlight'
     ])
-  },
-  methods: {
-    setup() {
-      if (this.debug)
-        return this.showSetup = !this.showSetup
-    }
   }
 }
 </script>

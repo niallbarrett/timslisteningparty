@@ -1,5 +1,5 @@
 <template>
-  <div :class="`timeline min-h-viewport w-full d-flex direction-column-reverse justify-content-${!empty ? 'start':'center align-items-center'} b-l b-r`" tabindex="0" @keyup.left="add">
+  <div :class="`timeline min-h-viewport w-full d-flex direction-column-reverse justify-content-${!empty ? 'start':'center align-items-center'} b-l b-r`">
     <template v-if="!empty">
       <Tweet v-for="tweet in tweets" :key="tweet.id_str" :item="tweet"/>
     </template>
@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import Test from '@/json/tweets.json'
 // Libraries
 import { throttle } from 'lodash'
 // Components
@@ -31,12 +30,10 @@ export default {
   },
   data() {
     return {
-      debug: false,
       scrolled: false,
       threshold: 400,
       tweets: [],
-      unseen: [],
-      json: Test
+      unseen: []
     }
   },
   sockets: {
@@ -63,18 +60,6 @@ export default {
   methods: {
     scroll() {
       this.scrolled = window.scrollY > this.threshold
-    },
-    add() {
-      if (!this.debug)
-        return
-
-      let tweet = this.json.shift()
-      this.tweets.push(tweet)
-
-      if (this.scrolled)
-        return this.unseen.push(tweet.user)
-
-      return this.scrollToTop()
     },
     scrollToTop() {
       window.scrollTo({

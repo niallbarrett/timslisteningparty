@@ -4,7 +4,7 @@
     @mouseover="hover = true"
     @mouseleave="hover = false"
     @click="$emit('play', item.track_number - 1)">
-    <div class="w-3 d-flex justify-content-end align-items-center c-secondary ta-r">
+    <div class="w-3 d-flex justify-content-end align-items-center c-secondary text-right">
       <PlayIcon v-if="hover" class="h-2 c-primary"/>
       <span v-else>{{ item.track_number }}</span>
     </div>
