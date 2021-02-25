@@ -1,5 +1,5 @@
 <template>
-  <div :class="['tweet p-t-3 d-flex b-t hover', {'p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
+  <div :class="['tweet p-t-3 d-flex b-t hover', {'is-outer p-x-3 p-b-4': !quote}, {'flex-wrap': item.retweeted_status}]">
     <UserPopover v-if="item.retweeted_status" :item="item.user" class="trigger-float-left w-full m-b-1 m-l-4">
       <Retweeted :name="item.user.name"/>
     </UserPopover>
@@ -32,7 +32,7 @@
         <MediaImages v-else :items="entities.media" @view="view"/>
       </div>
       <Tweet
-        v-if="tweet.is_quote_status"
+        v-if="tweet.is_quote_status && !quote"
         :item="tweet.quoted_status"
         :quote="tweet.is_quote_status"
         class="is-quote m-t-2 b-a br-2 overflow-hidden"/>
@@ -76,11 +76,13 @@ export default {
 <style lang='scss' scoped>
   .tweet {
     background-color: var(--bg-color);
-    opacity: 0;
-    animation: flash 1s ease;
-    animation-fill-mode: forwards;
     .user-hover:hover .name {
       text-decoration: underline;
+    }
+    &.is-outer {
+      opacity: 0;
+      animation: flash 1s ease;
+      animation-fill-mode: forwards;
     }
   }
   @keyframes flash {
